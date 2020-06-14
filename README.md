@@ -19,15 +19,36 @@ Verify it's been installed by running:
 
 ## Usage
 
-Init an audio project using:
+Init an audio project.json using:
 
     apm init
 
+This will create a project.json with your configuration:
 
-Install a plugin using:
+    {
+      "name": "Example audio project",
+      "version": "1.0.0",
+      "description": "Example audio project description",
+      "main": "Test.als",
+      "preview": {
+        "audio": "Test.wav",
+        "image": "Test.png"
+      },
+      "plugins": {
+        "plugin-name": {
+          "version": "1.0.0",
+          "resolved": "http://www.example.com/plugin.zip"
+        }
+      }
+    }
 
-    apm install http://www.digitalfishphones.com//binaries//the_fish_fillets_v1_1.zip
+Install a plugin to your project.json config using:
 
+    apm install http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip
+
+To install all plugins from the project.json config use:
+
+    apm install
 
 For a full list of commands use:
 
