@@ -4,8 +4,10 @@
   "description": "VST audio plugin manager",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "apm": "./index.js"
   },
   "keywords": [
     "vst",
@@ -14,5 +16,9 @@
     "manager"
   ],
   "author": "kmturley",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^5.1.0"
+  }
 }
