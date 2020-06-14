@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "readline-sync": "^1.4.10"
   }
 }

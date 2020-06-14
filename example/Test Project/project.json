@@ -1,0 +1,10 @@
+{
+  "name": "Example audio project",
+  "version": "1.0.0",
+  "description": "Example audio project description",
+  "main": "Test.als",
+  "preview": {
+    "audio": "Test.wav",
+    "image": "Test.png"
+  }
+}

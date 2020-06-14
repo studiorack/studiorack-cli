@@ -21,7 +21,7 @@ function failure(msg) {
 async function run(action) {
   if (apm[action]) {
     await apm[action]();
-    success(`Command ${action} recognized`);
+    // success(`Command ${action} recognized`);
   } else {
     failure(`Error command not recognized`);
   }
