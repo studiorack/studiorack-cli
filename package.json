@@ -22,6 +22,8 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^5.1.0",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "slugify": "^1.4.0",
+    "sync-request": "^6.1.0"
   }
 }

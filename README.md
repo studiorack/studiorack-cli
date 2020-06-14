@@ -24,6 +24,11 @@ Init an audio project using:
     apm init
 
 
+Install a plugin using:
+
+    apm install http://www.digitalfishphones.com//binaries//the_fish_fillets_v1_1.zip
+
+
 For a full list of commands use:
 
     apm --help
