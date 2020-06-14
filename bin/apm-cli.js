@@ -11,8 +11,13 @@ program.command('init')
 
 program
   .command('install [path]')
-  .description('Install a plugin and save in project config.')
+  .description('Install a plugin and update project config.')
   .action(apm.install);
+
+program
+  .command('uninstall [path]')
+  .description('Uninstall a plugin and update project config.')
+  .action(apm.uninstall);
 
 program
   .version(pkg.version)

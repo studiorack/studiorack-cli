@@ -1,6 +1,6 @@
 # audio-project-manager
 
-Audio project manager using:
+Audio project manager for handling DAW VST plugin dependencies using:
 
 * Bash
 * NodeJS 8.x
@@ -8,18 +8,29 @@ Audio project manager using:
 
 ## Installation
 
-To install run the command:
+To install the tool, run the command:
 
     npm install -g git+https://git@github.com/kmturley/audio-project-manager.git
 
-Verify it's been installed by running:
+Verify the tool has been installed by running:
 
     apm --version
 
 
 ## Usage
 
-Init an audio project.json using:
+Navigate to a music project folder containing a project.json config, install all plugins using:
+
+    apm install
+
+Then start the project using
+
+    apm start
+
+
+## Creating a new project configuration
+
+If music project folder does not contain a project.json, you can create a new one using:
 
     apm init
 
@@ -42,17 +53,20 @@ This will create a project.json with your configuration:
       }
     }
 
-Install a plugin to your project.json config using:
-
-    apm install http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip
-
-To install all plugins from the project.json config use:
-
-    apm install
-
 For a full list of commands use:
 
     apm --help
+
+
+## Adding/removing individual plugins
+
+Add a plugin and update project.json config using:
+
+    apm install http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip
+
+Remove a plugin and update project.json config using:
+ 
+    apm uninstall http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip
 
 
 ## Contact
