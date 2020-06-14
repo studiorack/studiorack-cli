@@ -20,5 +20,10 @@ program
   .action(apm.uninstall);
 
 program
+  .command('start [path]')
+  .description('Start music project using the project config.')
+  .action(apm.start);
+
+program
   .version(pkg.version)
   .parse(process.argv);
