@@ -10,7 +10,7 @@ program.command('init')
   .action(apm.init);
 
 program
-  .command('install <path>')
+  .command('install [path]')
   .description('Install a plugin and save in project config.')
   .action(apm.install);
 
