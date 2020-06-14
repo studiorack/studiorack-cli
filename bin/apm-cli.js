@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk');
-const program = require('commander');
+const commander = require('commander');
 
-const file = require('./file.js');
-const package = require('./package.json');
+const apm = require('../lib/apm.js')
+const pkg = require('../package.json');
 
 function success(msg) {
   console.log(`-------`);
@@ -18,19 +18,19 @@ function failure(msg) {
   process.exit(0);
 }
 
-async function init(action) {
-  if (action === 'init') {
-    success(`Init successful`);
+async function run(action) {
+  if (apm[action]) {
+    await apm[action]();
+    success(`Command ${action} recognized`);
   } else {
     failure(`Error command not recognized`);
   }
   return true;
 }
 
-program
-  .version(package.version)
+commander
+  .version(pkg.version)
   .arguments('<action>')
   .option('-t, --type <boolean>', 'Type')
-  .option('-p, --paginate <boolean>', 'Paginate')
-  .action(init)
+  .action(run)
   .parse(process.argv);

@@ -1,19 +1,22 @@
 {
-  "name": "audio-plugin-manager",
+  "name": "audio-project-manager",
   "version": "0.0.1",
-  "description": "VST audio plugin manager",
-  "main": "index.js",
+  "description": "Audio project manager tool",
+  "main": "./lib/apm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "apm": "./index.js"
+    "apm": "./bin/apm-cli.js"
   },
   "keywords": [
-    "vst",
     "audio",
+    "project",
+    "manager",
+    "tool",
+    "vst",
     "plugin",
-    "manager"
+    "daw"
   ],
   "author": "kmturley",
   "license": "ISC",
