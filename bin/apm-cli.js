@@ -20,6 +20,11 @@ program
   .action(apm.uninstall);
 
 program
+  .command('search <query>')
+  .description('Search plugin registry by query.')
+  .action(apm.search);
+
+program
   .command('start [path]')
   .description('Start music project using the project config.')
   .action(apm.start);

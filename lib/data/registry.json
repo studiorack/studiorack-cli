@@ -1,0 +1,40 @@
+{
+  "dsk-the-grand": {
+    "key": "dsk-the-grand",
+    "name": "DSK The Grand",
+    "version": "1.0.0",
+    "description": "Grand Piano VST instrument",
+    "homepage": "https://www.dskmusic.com/dsk-the-grand/",
+    "date": 1492480260,
+    "size": 158519901,
+    "sources": {
+      "mac": "https://www.dskmusic.com/?wp_ct=1100165",
+      "win": "https://www.dskmusic.com/?wp_ct=1100164"
+    },
+    "tags": [
+      "dsk",
+      "grand",
+      "piano",
+      "vst"
+    ]
+  },
+  "dsk-dynamic-guitars": {
+    "key": "dsk-dynamic-guitars",
+    "name": "DSK Dynamic Guitars",
+    "version": "1.0.0",
+    "description": "3 Guitar types: Acoustic, Nylon & Steel",
+    "homepage": "https://www.dskmusic.com/dsk-dynamic-guitars/",
+    "date": 1416197220,
+    "size": 196604756,
+    "sources": {
+      "mac": "https://www.dskmusic.com/?wp_ct=1100127",
+      "win": "https://www.dskmusic.com/?wp_ct=1100125"
+    },
+    "tags": [
+      "dsk",
+      "dynamic",
+      "guitar",
+      "vst"
+    ]
+  }
+}
