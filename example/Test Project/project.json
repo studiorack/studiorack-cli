@@ -8,15 +8,10 @@
     "image": "Test.png"
   },
   "plugins": {
-    "dsk-drumz-akoustik": {
+    "dsk-the-grand-macvst": {
       "version": "1.0.0",
-      "resolved": "http://dskmusic.vst4free.com/downloads/vsti/DSK_DrumZ_AkoustiK.zip",
-      "integrity": "a885ec4910d163c009187b11e1f76863edbf0c56"
-    },
-    "the-fish-fillets-v1-1": {
-      "version": "1.0.0",
-      "resolved": "http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip",
-      "integrity": "3476e9bc0202698531881f2282592862290e6327"
+      "resolved": "http://dskmusic.vst4free.com/downloads/vsti/DSK_The_Grand/DSK_The_Grand_-_macVST.zip",
+      "integrity": "eb2e0e67bbb6a9adc7e0604d99539752da31b766"
     }
   }
 }

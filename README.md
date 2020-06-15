@@ -58,15 +58,19 @@ For a full list of commands use:
     apm --help
 
 
-## Adding/removing individual plugins
+## Finding, adding and removing plugins
+
+Search the plugin registry using:
+
+    apm search piano
 
 Add a plugin and update project.json config using:
 
-    apm install http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip
+    apm install dsk-the-grand
 
 Remove a plugin and update project.json config using:
  
-    apm uninstall http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip
+    apm uninstall dsk-the-grand
 
 
 ## Contact

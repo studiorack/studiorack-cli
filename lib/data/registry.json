@@ -8,8 +8,9 @@
     "date": 1492480260,
     "size": 158519901,
     "sources": {
-      "mac": "https://www.dskmusic.com/?wp_ct=1100165",
-      "win": "https://www.dskmusic.com/?wp_ct=1100164"
+      "darwin": "http://dskmusic.vst4free.com/downloads/vsti/DSK_The_Grand/DSK_The_Grand_-_macVST.zip",
+      "win32": "http://dskmusic.vst4free.com/downloads/vsti/DSK_The_Grand/DSK_The_Grand_-_win32.zip",
+      "win64": "http://dskmusic.vst4free.com/downloads/vsti/DSK_The_Grand/DSK_The_Grand_-_win64.zip"
     },
     "tags": [
       "dsk",
@@ -27,14 +28,38 @@
     "date": 1416197220,
     "size": 196604756,
     "sources": {
-      "mac": "https://www.dskmusic.com/?wp_ct=1100127",
-      "win": "https://www.dskmusic.com/?wp_ct=1100125"
+      "darwin": "http://dskmusic.vst4free.com/downloads/vsti/DSK_Dynamic_Guitars/DSK_Dynamic_Guitars-Mac_VST.zip",
+      "win32": "http://dskmusic.vst4free.com/downloads/vsti/DSK_Dynamic_Guitars/DSK_Dynamic_Guitars_32bits.zip",
+      "win64": "http://dskmusic.vst4free.com/downloads/vsti/DSK_Dynamic_Guitars/DSK_Dynamic_Guitars_64bits.zip"
     },
     "tags": [
       "dsk",
       "dynamic",
       "guitar",
       "vst"
+    ]
+  },
+  "the-fish-fillets": {
+    "key": "the-fish-fillets",
+    "name": "The Fish Fillets",
+    "version": "1.1.0",
+    "description": "Channel insert package",
+    "homepage": "http://www.digitalfishphones.com/main.php?item=2&subItem=5",
+    "date": 1040795940,
+    "size": 1218560,
+    "sources": {
+      "darwin": "http://www.u-he.com/FishFilletsOSX.tgz",
+      "win32": "http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip",
+      "win64": "http://www.digitalfishphones.com/binaries/the_fish_fillets_v1_1.zip"
+    },
+    "tags": [
+      "fish",
+      "fillets",
+      "channel",
+      "insert",
+      "compressor",
+      "de-esser",
+      "gate"
     ]
   }
 }

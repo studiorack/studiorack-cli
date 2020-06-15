@@ -10,12 +10,12 @@ program.command('init')
   .action(apm.init);
 
 program
-  .command('install [path]')
+  .command('install [key]')
   .description('Install a plugin and update project config.')
   .action(apm.install);
 
 program
-  .command('uninstall [path]')
+  .command('uninstall [key]')
   .description('Uninstall a plugin and update project config.')
   .action(apm.uninstall);
 
