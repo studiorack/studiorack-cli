@@ -7,11 +7,5 @@
     "audio": "Test.wav",
     "image": "Test.png"
   },
-  "plugins": {
-    "dsk-the-grand-macvst": {
-      "version": "1.0.0",
-      "resolved": "http://dskmusic.vst4free.com/downloads/vsti/DSK_The_Grand/DSK_The_Grand_-_macVST.zip",
-      "integrity": "eb2e0e67bbb6a9adc7e0604d99539752da31b766"
-    }
-  }
+  "plugins": {}
 }

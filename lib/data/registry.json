@@ -1,6 +1,6 @@
 {
   "dsk-the-grand": {
-    "key": "dsk-the-grand",
+    "id": "dsk-the-grand",
     "name": "DSK The Grand",
     "version": "1.0.0",
     "description": "Grand Piano VST instrument",
@@ -20,7 +20,7 @@
     ]
   },
   "dsk-dynamic-guitars": {
-    "key": "dsk-dynamic-guitars",
+    "id": "dsk-dynamic-guitars",
     "name": "DSK Dynamic Guitars",
     "version": "1.0.0",
     "description": "3 Guitar types: Acoustic, Nylon & Steel",
@@ -40,7 +40,7 @@
     ]
   },
   "the-fish-fillets": {
-    "key": "the-fish-fillets",
+    "id": "the-fish-fillets",
     "name": "The Fish Fillets",
     "version": "1.1.0",
     "description": "Channel insert package",
