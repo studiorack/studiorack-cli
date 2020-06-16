@@ -2,7 +2,7 @@
 
 const program = require('commander');
 
-const apm = require('../lib/apm.js')
+const apm = require('../lib/apm')
 const pkg = require('../package.json');
 
 program.command('init')

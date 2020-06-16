@@ -46,10 +46,7 @@ This will create a project.json with your configuration:
         "image": "Test.png"
       },
       "plugins": {
-        "plugin-name": {
-          "version": "1.0.0",
-          "resolved": "http://www.example.com/plugin.zip"
-        }
+        "plugin-name": "1.0.0"
       }
     }
 
