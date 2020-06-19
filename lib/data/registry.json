@@ -1,8 +1,8 @@
 {
   "1208-reviber-by-1208-audio": {
     "author": "1208 Audio",
-    "description": "",
-    "homepage": "https://1208audio.com",
+    "description": "A Musical Two Knob Audio Enhancer",
+    "homepage": "https://1208audio.com/downloads/reviber",
     "id": "1208-reviber-by-1208-audio",
     "media": [
       "https://static.kvraudio.com/i/b/reviber.1589061770.png"
@@ -23,8 +23,8 @@
   },
   "1208-seq-by-1208-audio": {
     "author": "1208 Audio",
-    "description": "",
-    "homepage": "https://1208audio.com",
+    "description": "Based on a classic British design",
+    "homepage": "https://1208audio.com/downloads/1208-seq/",
     "id": "1208-seq-by-1208-audio",
     "media": [
       "https://static.kvraudio.com/i/b/seq.1569879778.png"
@@ -3481,8 +3481,8 @@
   },
   "hanon-b70-by-lostin70s": {
     "author": "lostin70's",
-    "description": "{See video at top of page}",
-    "homepage": "http://www.lostin70s.com",
+    "description": "HaNon B70 is an emulator of the B3 Hammond equipped with a leslie 122.",
+    "homepage": "https://www.lostin70s.com/#/plugins/HaNon%20B70",
     "id": "hanon-b70-by-lostin70s",
     "media": [
       "https://www.youtube.com/watch?v=jJl0CLQUMOs",
@@ -4255,14 +4255,14 @@
   },
   "kick-factory-2-free-lite-by-rdgaudio": {
     "author": "RDGAudio",
-    "description": "{See video at top of page}",
+    "description": "Kick Factory 2 is a high quality kick rompler engine.",
     "homepage": "https://rdgaudio.com",
     "id": "kick-factory-2-free-lite-by-rdgaudio",
     "media": [
       "https://www.youtube.com/watch?v=PYPSjFWMXrE",
       "https://static.kvraudio.com/i/b/kf2_lite_version.jpg"
     ],
-    "name": "Kick factory 2 Free Lite",
+    "name": "Kick Factory 2 Free Lite",
     "sources": {
       "darwin": "https://rdgaudio.com/kick-factory-2-au-vst3-plugins-rdgaudio/",
       "win32": "https://rdgaudio.com/kick-factory-2-au-vst3-plugins-rdgaudio/",
@@ -4320,7 +4320,7 @@
   },
   "krets-modular-audio-environment-by-klevgr-nd-produktion": {
     "author": "Klevgr\u00e4nd Produktion",
-    "description": "{See video at top of page}",
+    "description": "Low level modular system for Audio DSP prototyping, research and experimentation",
     "homepage": "http://klevgrand.se",
     "id": "krets-modular-audio-environment-by-klevgr-nd-produktion",
     "media": [
@@ -4466,7 +4466,7 @@
   },
   "la-petite-excite-by-fine-cut-bodies": {
     "author": "Fine Cut Bodies",
-    "description": "\"La Petite Excite\" is a small exciter plugin and it can lead you into a brighter future when used wisely. For details, check out {See video at top of page} from my good friend AMB or read the manual included in the download.",
+    "description": "\"La Petite Excite\" is a small exciter plugin and it can lead you into a brighter future when used wisely.",
     "homepage": "http://www.finecutbodies.com/",
     "id": "la-petite-excite-by-fine-cut-bodies",
     "media": [
@@ -7523,7 +7523,7 @@
   },
   "santa-jussi-by-klevgr-nd-produktion": {
     "author": "Klevgr\u00c3\u00a4nd Produktion",
-    "description": "{See video at top of page}",
+    "description": "Jussi can sing anything from soft and airy choir-like vowels to hard and angry shouting.",
     "homepage": "http://klevgrand.se",
     "id": "santa-jussi-by-klevgr-nd-produktion",
     "media": [
@@ -7638,8 +7638,8 @@
   },
   "scope-by-discodsp": {
     "author": "discoDSP",
-    "description": "{See video at top of page}",
-    "homepage": "https://www.discodsp.com/",
+    "description": "Scope is an Oscilloscope used to assist dynamics processing and sound synthesis.",
+    "homepage": "https://www.discodsp.com/scope/",
     "id": "scope-by-discodsp",
     "media": [
       "https://www.youtube.com/watch?v=glXAPoSKc_Q",
