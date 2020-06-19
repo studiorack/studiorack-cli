@@ -63,11 +63,11 @@ Search the plugin registry using:
 
 Add a plugin and update project.json config using:
 
-    apm install dsk-the-grand
+    apm install se-polymod-kx-by-kx77free
 
 Remove a plugin and update project.json config using:
  
-    apm uninstall dsk-the-grand
+    apm uninstall se-polymod-kx-by-kx77free
 
 
 ## Contact

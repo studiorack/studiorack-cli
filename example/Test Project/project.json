@@ -7,5 +7,7 @@
     "audio": "Test.wav",
     "image": "Test.png"
   },
-  "plugins": {}
+  "plugins": {
+    "se-polymod-kx-by-kx77free": "2.00"
+  }
 }
