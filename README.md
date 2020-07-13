@@ -1,6 +1,6 @@
-# audio-project-manager
+# apm-cli
 
-Audio project manager for handling DAW VST plugin dependencies using:
+APM command line tool for handling installing DAW VST plugin dependencies using:
 
 * Bash
 * NodeJS 8.x
@@ -10,7 +10,7 @@ Audio project manager for handling DAW VST plugin dependencies using:
 
 To install the tool, run the command:
 
-    npm install -g git+https://git@github.com/kmturley/audio-project-manager.git
+    npm install -g git+https://git@github.com/audio-project-manager/apm-plugin.git
 
 Verify the tool has been installed by running:
 

@@ -1,5 +1,5 @@
 {
-  "name": "audio-project-manager",
+  "name": "apm-cli",
   "version": "0.0.1",
   "description": "Audio project manager tool",
   "main": "./lib/apm.js",
