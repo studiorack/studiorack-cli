@@ -1,5 +1,5 @@
 {
-  "name": "apm-cli",
+  "name": "@audio-project-manager/apm-cli",
   "version": "0.0.1",
   "description": "Audio project manager tool",
   "main": "./lib/apm.js",
@@ -26,5 +26,18 @@
     "readline-sync": "^1.4.10",
     "slugify": "^1.4.0",
     "sync-request": "^6.1.0"
-  }
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/audio-project-manager/apm-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/audio-project-manager/apm-cli/issues"
+  },
+  "homepage": "https://github.com/audio-project-manager/apm-cli#readme"
 }
