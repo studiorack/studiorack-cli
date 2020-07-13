@@ -8,6 +8,6 @@
     "image": "Test.png"
   },
   "plugins": {
-    "se-polymod-kx-by-kx77free": "2.00"
+    "kmturley/apm-plugin": "1.1.0.1"
   }
 }

@@ -70,6 +70,14 @@ Remove a plugin and update project.json config using:
     apm uninstall se-polymod-kx-by-kx77free
 
 
+## Deployment
+
+When updating source code create a version tag:
+
+    npm version patch
+    git push origin --tags
+
+
 ## Contact
 
 For more information please contact kmturley
