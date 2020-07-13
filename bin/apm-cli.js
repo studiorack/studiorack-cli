@@ -11,11 +11,13 @@ program.command('init')
 
 program
   .command('install [id]')
+  .option('-g, --global', 'install the plugin globally rather than locally')
   .description('Install a plugin and update project config.')
   .action(apm.install);
 
 program
   .command('uninstall [id]')
+  .option('-g, --global', 'uninstall the plugin globally rather than locally')
   .description('Uninstall a plugin and update project config.')
   .action(apm.uninstall);
 

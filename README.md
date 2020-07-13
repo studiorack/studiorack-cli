@@ -21,7 +21,7 @@ Verify the tool has been installed by running:
 
 Navigate to a music project folder containing a project.json config, install all plugins using:
 
-    apm install
+    apm install --global
 
 Then start the project using
 
@@ -63,11 +63,11 @@ Search the plugin registry using:
 
 Add a plugin and update project.json config using:
 
-    apm install se-polymod-kx-by-kx77free
+    apm install se-polymod-kx-by-kx77free --global
 
 Remove a plugin and update project.json config using:
  
-    apm uninstall se-polymod-kx-by-kx77free
+    apm uninstall se-polymod-kx-by-kx77free --global
 
 
 ## Deployment
