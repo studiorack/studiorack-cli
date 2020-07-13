@@ -10,7 +10,7 @@ APM command line tool for handling installing DAW VST plugin dependencies using:
 
 To install the tool, run the command:
 
-    npm install -g git+https://git@github.com/audio-project-manager/apm-plugin.git
+    npm install @audio-project-manager/apm-cli -g
 
 Verify the tool has been installed by running:
 
