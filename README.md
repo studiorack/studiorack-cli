@@ -1,6 +1,6 @@
-# apm-cli
+# studiorack-cli
 
-APM command line tool for handling installing DAW VST plugin dependencies using:
+StudioRack command line tool for handling installing DAW VST plugin dependencies using:
 
 * Bash
 * NodeJS 8.x
@@ -10,29 +10,29 @@ APM command line tool for handling installing DAW VST plugin dependencies using:
 
 To install the tool, run the command:
 
-    npm install @audio-project-manager/apm-cli -g
+    npm install @studiorack/studiorack-cli -g
 
 Verify the tool has been installed by running:
 
-    apm --version
+    studiorack --version
 
 
 ## Usage
 
 Navigate to a music project folder containing a project.json config, install all plugins using:
 
-    apm install --global
+    studiorack install --global
 
 Then start the project using
 
-    apm start
+    studiorack start
 
 
 ## Creating a new project configuration
 
 If music project folder does not contain a project.json, you can create a new one using:
 
-    apm init
+    studiorack init
 
 This will create a project.json with your configuration:
 
@@ -52,22 +52,22 @@ This will create a project.json with your configuration:
 
 For a full list of commands use:
 
-    apm --help
+    studiorack --help
 
 
 ## Finding, adding and removing plugins
 
 Search the plugin registry using:
 
-    apm search piano
+    studiorack search piano
 
 Add a plugin and update project.json config using:
 
-    apm install se-polymod-kx-by-kx77free --global
+    studiorack install se-polymod-kx-by-kx77free --global
 
 Remove a plugin and update project.json config using:
  
-    apm uninstall se-polymod-kx-by-kx77free --global
+    studiorack uninstall se-polymod-kx-by-kx77free --global
 
 
 ## Deployment

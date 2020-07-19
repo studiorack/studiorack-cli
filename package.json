@@ -1,13 +1,13 @@
 {
-  "name": "@audio-project-manager/apm-cli",
+  "name": "@studiorack/studiorack-cli",
   "version": "0.0.1",
   "description": "Audio project manager tool",
-  "main": "./lib/apm.js",
+  "main": "./lib/studiorack.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "apm": "./bin/apm-cli.js"
+    "studiorack": "./bin/studiorack-cli.js"
   },
   "keywords": [
     "audio",
@@ -34,10 +34,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/audio-project-manager/apm-cli.git"
+    "url": "git+https://github.com/studiorack/studiorack-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/audio-project-manager/apm-cli/issues"
+    "url": "https://github.com/studiorack/studiorack-cli/issues"
   },
-  "homepage": "https://github.com/audio-project-manager/apm-cli#readme"
+  "homepage": "https://github.com/studiorack/studiorack-cli#readme"
 }

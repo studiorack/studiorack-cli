@@ -8,6 +8,6 @@
     "image": "Test.png"
   },
   "plugins": {
-    "kmturley/apm-plugin": "1.1.0.1"
+    "kmturley/studiorack-plugin": "1.1.0.1"
   }
 }
