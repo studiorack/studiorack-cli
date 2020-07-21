@@ -63,11 +63,11 @@ Search the plugin registry using:
 
 Add a plugin and update project.json config using:
 
-    studiorack install se-polymod-kx-by-kx77free --global
+    studiorack install kmturley/studiorack-plugin --global
 
 Remove a plugin and update project.json config using:
  
-    studiorack uninstall se-polymod-kx-by-kx77free --global
+    studiorack uninstall kmturley/studiorack-plugin --global
 
 
 ## Deployment
