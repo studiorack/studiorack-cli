@@ -27,6 +27,11 @@ program
   .action(studiorack.uninstall);
 
 program
+  .command('publish')
+  .description('Publish plugin to the registry')
+  .action(studiorack.publish);
+
+program
   .command('search <query>')
   .description('Search plugin registry by query.')
   .action(studiorack.search);

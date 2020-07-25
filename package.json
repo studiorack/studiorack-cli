@@ -23,6 +23,7 @@
   "dependencies": {
     "adm-zip": "^0.4.14",
     "commander": "^5.1.0",
+    "open": "^7.1.0",
     "readline-sync": "^1.4.10",
     "slugify": "^1.4.0",
     "sync-request": "^6.1.0"
