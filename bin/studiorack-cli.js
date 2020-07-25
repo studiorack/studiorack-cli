@@ -5,6 +5,11 @@ const program = require('commander');
 const studiorack = require('../lib/studiorack')
 const pkg = require('../package.json');
 
+program
+  .command('create <folder>')
+  .description('Create a new folder using the plugin starter template')
+  .action(studiorack.create);
+
 program.command('init')
   .description('Set up a new or existing StudioRack project.')
   .action(studiorack.init);
