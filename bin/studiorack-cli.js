@@ -42,5 +42,10 @@ program
   .action(studiorack.start);
 
 program
+  .command('validate [path]')
+  .description('Validate a plugin using the Steinberg VST3 SDK validator')
+  .action(studiorack.validate);
+
+program
   .version(pkg.version)
   .parse(process.argv);

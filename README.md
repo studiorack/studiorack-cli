@@ -78,6 +78,10 @@ Create a new plugin using the starter template:
 
 Follow the instructions at ./myplugin/README.md to install and build your plugin
 
+Validate your plugin:
+
+    studiosrack validate ./myplugin/build/VST3/Release/myplugin.vst3
+
 When ready to release, commit your plugin to Github and then run:
 
     studiorack publish
