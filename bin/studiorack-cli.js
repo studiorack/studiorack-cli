@@ -42,5 +42,11 @@ program
   .action(studiorack.start);
 
 program
+  .command('validate [path]')
+  .option('-m, --metadata', 'return metadata only as json')
+  .description('Validate a plugin using the Steinberg VST3 SDK validator')
+  .action(studiorack.validate);
+
+program
   .version(pkg.version)
   .parse(process.argv);
