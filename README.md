@@ -96,7 +96,7 @@ When ready to release, commit your plugin to Github and then run:
 When updating this CLI source code, create a version tag:
 
     npm version patch
-    git push origin --tags
+    git push && git push origin --tags
     npm publish
 
 
