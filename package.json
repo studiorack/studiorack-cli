@@ -26,8 +26,8 @@
     "nodejs-fs-utils": "^1.2.5",
     "open": "^7.1.0",
     "readline-sync": "^1.4.10",
-    "slugify": "^1.4.0",
-    "sync-request": "^6.1.0"
+    "request": "^2.88.2",
+    "slugify": "^1.4.0"
   },
   "directories": {
     "example": "example",
