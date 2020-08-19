@@ -27,7 +27,8 @@
     "open": "^7.1.0",
     "readline-sync": "^1.4.10",
     "request": "^2.88.2",
-    "slugify": "^1.4.0"
+    "slugify": "^1.4.0",
+    "sync-request": "^6.1.0"
   },
   "directories": {
     "example": "example",
