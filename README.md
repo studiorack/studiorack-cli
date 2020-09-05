@@ -86,9 +86,17 @@ Generate plugin metdata:
 
     studiorack validate ./myplugin/build/VST3/Release/myplugin.vst3 --metadata
 
-When ready to release, commit your plugin to Github and then run:
+When ready to release, commit your plugin to GitHub and ensure it is tagged with a topic:
 
-    studiorack publish
+    studiorack-plugin
+
+Then it should appear in the GitHub API:
+
+    https://api.github.com/search/repositories?q=topic:studiorack-plugin+fork:true
+
+StudioRack registry updates once a day at midnight UTC, which will make your plugin available via our API at:
+
+    https://studiorack.github.io/studiorack-registry/
 
 
 ## Updating CLI code
