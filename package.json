@@ -1,6 +1,6 @@
 {
   "name": "@studiorack/studiorack-cli",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Audio project manager tool",
   "main": "./lib/studiorack.js",
   "scripts": {
