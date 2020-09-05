@@ -18,24 +18,27 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - os: ubuntu-latest
-            folder_name: plugin-linux
+            zip_name: plugin-linux.zip
           - os: macos-latest
-            folder_name: plugin-mac
+            zip_name: plugin-mac.zip
           - os: windows-latest
-            folder_name: plugin-win
+            zip_name: plugin-win.zip
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14'
+      - name: Install Windows dependencies
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install curl
+          choco install unzip
 
-      - name: Metadata
+      - name: Validate plugin
         shell: bash
         run: |
           npm install -g
-          studiorack validate "./tests/${{ matrix.folder_name }}/**/*.{vst,vst3}"
-          studiorack validate "./tests/${{ matrix.folder_name }}/**/*.{vst,vst3}" --metadata
+          curl -o ./plugin.zip https://github.com/studiorack/studiorack-plugin/releases/latest/download/${{ matrix.zip_name }}
+          unzip ./plugin.zip -d ./tests
+          studiorack validate "./tests/**/*.{vst,vst3}"
+          studiorack validate "./tests/**/*.{vst,vst3}" --metadata
