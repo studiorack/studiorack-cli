@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           npm install -g
-          curl -o ./plugin.zip https://github.com/studiorack/studiorack-plugin/releases/latest/download/${{ matrix.zip_name }}
+          curl -L -o ./plugin.zip https://github.com/studiorack/studiorack-plugin/releases/latest/download/${{ matrix.zip_name }}
           unzip ./plugin.zip -d ./tests
           studiorack validate "./tests/**/*.{vst,vst3}"
           studiorack validate "./tests/**/*.{vst,vst3}" --metadata
