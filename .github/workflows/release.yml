@@ -1,4 +1,4 @@
-name: Release
+name: Test
 
 on:
   workflow_dispatch:
@@ -12,7 +12,6 @@ on:
 jobs:
   test_release:
     name: Test release
-    needs: test_release
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
