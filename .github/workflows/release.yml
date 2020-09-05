@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test_release:
+    name: Test release
+    needs: test_release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            folder_name: plugin-linux
+          - os: macos-latest
+            folder_name: plugin-mac
+          - os: windows-latest
+            folder_name: plugin-win
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
+      - name: Metadata
+        shell: bash
+        run: |
+          npm install -g
+          studiorack validate "./tests/${{ matrix.folder_name }}/**/*.{vst,vst3}"
+          studiorack validate "./tests/${{ matrix.folder_name }}/**/*.{vst,vst3}" --metadata
