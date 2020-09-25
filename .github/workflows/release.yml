@@ -45,5 +45,7 @@ jobs:
           npm install -g
           curl -L -o ./plugin.zip https://github.com/studiorack/studiorack-plugin/releases/latest/download/${{ matrix.zip_name }}
           unzip ./plugin.zip -d ./tests
-          studiorack validate "./tests/**/*.{vst,vst3}"
-          studiorack validate "./tests/**/*.{vst,vst3}" --metadata
+          studiorack validate "./tests/**/*.{vst,vst3}" --json
+          studiorack validate "./tests/**/*.{vst,vst3}" --summary
+          studiorack validate "./tests/**/*.{vst,vst3}" --txt
+          studiorack validate "./tests/**/*.{vst,vst3}" --zip

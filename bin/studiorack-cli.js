@@ -43,7 +43,9 @@ program
 
 program
   .command('validate [path]')
-  .option('-m, --metadata', 'return metadata only as json')
+  .option('-j, --json', 'plugin json file')
+  .option('-s, --summary', 'plugins summary json file')
+  .option('-t, --txt', 'plugin txt file')
   .option('-z, --zip', 'create a zip file of plugin')
   .description('Validate a plugin using the Steinberg VST3 SDK validator')
   .action(studiorack.validate);

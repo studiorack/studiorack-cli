@@ -84,11 +84,11 @@ Validate your plugin:
 
 Convert and enrich validator report metadata into json:
 
-    studiorack validate ./myplugin/build/VST3/Release/myplugin.vst3 --metadata
+    studiorack validate ./myplugin/build/VST3/Release/myplugin.vst3 --json
 
 Scan multiple plugins at the same time using wildcard selectors:
 
-    studiorack validate "./myplugin/build/VST3/Release/**/*.{vst,vst3}" --metadata
+    studiorack validate "./myplugin/build/VST3/Release/**/*.{vst,vst3}" --json
 
 When ready to release, commit your plugin to GitHub and ensure it is tagged with a topic:
 
