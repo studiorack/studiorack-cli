@@ -18,11 +18,11 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - os: ubuntu-latest
-            zip_name: plugin-linux.zip
+            zip_name: adelay-linux.zip
           - os: macos-latest
-            zip_name: plugin-mac.zip
+            zip_name: adelay-mac.zip
           - os: windows-latest
-            zip_name: plugin-win.zip
+            zip_name: adelay-win.zip
 
     steps:
       - name: Checkout code
