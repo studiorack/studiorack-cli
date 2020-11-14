@@ -2,10 +2,25 @@
 
 import * as open from 'open';
 import * as program from 'commander';
-import { dirRead, fileJsonCreate, fileOpen, pathGetVersionId, pluginCreate, pluginInstall, pluginSearch, pluginUninstall, projectInit, projectLoad, projectSave, validateInstall, validatePlugin } from '@studiorack/core';
+import {
+  dirRead,
+  fileJsonCreate,
+  fileOpen,
+  pathGetVersionId,
+  pluginCreate,
+  pluginInstall,
+  pluginSearch,
+  pluginUninstall,
+  projectInit,
+  projectLoad,
+  projectSave,
+  validateInstall,
+  validatePlugin,
+} from '@studiorack/core';
 
 const pkg = require('../package.json');
-const REGISTRY_PUBLISH = 'https://github.com/studiorack/studiorack-site/issues/new?title=Publish%20my%20plugin&body=Github%20repo%3A%20&labels=enhancement';
+const REGISTRY_PUBLISH =
+  'https://github.com/studiorack/studiorack-site/issues/new?title=Publish%20my%20plugin&body=Github%20repo%3A%20&labels=enhancement';
 
 program
   .command('create <folder>')
@@ -14,9 +29,7 @@ program
     pluginCreate(folder);
   });
 
-program.command('init')
-  .description('Set up a new or existing StudioRack project.')
-  .action(projectInit);
+program.command('init').description('Set up a new or existing StudioRack project.').action(projectInit);
 
 program
   .command('install [id]')
@@ -101,7 +114,7 @@ program
   .action(async (pluginPath: string, options: any) => {
     const plugins: any[] = [];
     const pluginRack = {
-      plugins: plugins
+      plugins: plugins,
     };
     await validateInstall();
     if (pluginPath.includes('*')) {
@@ -121,6 +134,4 @@ program
     }
   });
 
-program
-  .version(pkg.version)
-  .parse(process.argv);
+program.version(pkg.version).parse(process.argv);

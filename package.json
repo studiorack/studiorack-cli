@@ -10,6 +10,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -40,7 +42,10 @@
   "devDependencies": {
     "@studiorack/core": "0.0.2",
     "@types/node": "^14.14.7",
+    "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.0.5"
   },
   "repository": {
