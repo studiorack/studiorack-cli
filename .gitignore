@@ -104,7 +104,6 @@ dist
 .tern-port
 .DS_Store
 
-bin/validator
 example/Test Project/plugins
 tests/**/*.txt
 tests/**/*.json

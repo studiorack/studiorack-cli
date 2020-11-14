@@ -2,15 +2,21 @@
   "name": "@studiorack/studiorack-cli",
   "version": "0.0.20",
   "description": "Audio project manager tool",
-  "main": "./lib/studiorack.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "studiorack": "./bin/studiorack-cli.js"
+    "studiorack": "dist/index.js"
   },
   "keywords": [
-    "audio",
+    "studiorack",
     "project",
     "manager",
     "tool",
@@ -31,11 +37,12 @@
     "slugify": "^1.4.0",
     "sync-request": "^6.1.0"
   },
-  "directories": {
-    "example": "example",
-    "lib": "lib"
+  "devDependencies": {
+    "@studiorack/core": "0.0.2",
+    "@types/node": "^14.14.7",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/studiorack/studiorack-cli.git"
