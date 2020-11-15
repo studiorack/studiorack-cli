@@ -29,18 +29,11 @@
   "author": "kmturley",
   "license": "ISC",
   "dependencies": {
-    "adm-zip": "^0.4.14",
+    "@studiorack/core": "0.0.3",
     "commander": "^5.1.0",
-    "glob": "^7.1.6",
-    "nodejs-fs-utils": "^1.2.5",
-    "open": "^7.1.0",
-    "readline-sync": "^1.4.10",
-    "request": "^2.88.2",
-    "slugify": "^1.4.0",
-    "sync-request": "^6.1.0"
+    "open": "^7.1.0"
   },
   "devDependencies": {
-    "@studiorack/core": "0.0.2",
     "@types/node": "^14.14.7",
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
