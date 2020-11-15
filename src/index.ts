@@ -61,11 +61,12 @@ program
   .action(async (input: string, options: any) => {
     const project = projectLoad();
     if (input) {
-      let [id, version] = pathGetVersionId(input);
-      if (!version) {
-        version = project.plugins[id];
+      const [id, version] = pathGetVersionId(input);
+      let result: string = version;
+      if (!result) {
+        result = project.plugins[id];
       }
-      const success = pluginUninstall(id, version, options.global);
+      const success = pluginUninstall(id, result, options.global);
       if (success) {
         delete project.plugins[id];
       }
@@ -114,7 +115,7 @@ program
   .action(async (pluginPath: string, options: any) => {
     const plugins: any[] = [];
     const pluginRack = {
-      plugins: plugins,
+      plugins,
     };
     await validateInstall();
     if (pluginPath.includes('*')) {
