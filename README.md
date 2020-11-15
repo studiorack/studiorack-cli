@@ -2,15 +2,15 @@
 
 StudioRack command line tool for handling installing DAW VST plugin dependencies using:
 
-* Bash
-* NodeJS 8.x
+* NodeJS 12.x
+* TypeScript 4.x
 
 
 ## Installation
 
 To install the tool, run the command:
 
-    npm install @studiorack/studiorack-cli -g
+    npm install @studiorack/cli -g
 
 Verify the tool has been installed by running:
 
