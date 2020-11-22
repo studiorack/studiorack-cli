@@ -31,8 +31,7 @@
   "dependencies": {
     "@studiorack/core": "0.0.4",
     "cli-table3": "^0.6.0",
-    "commander": "^5.1.0",
-    "open": "^7.1.0"
+    "commander": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.7",

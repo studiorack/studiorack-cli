@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import * as Table3 from "cli-table3";
-import * as open from 'open';
 import * as program from 'commander';
 import {
   dirRead,
@@ -20,8 +19,6 @@ import {
 } from '@studiorack/core';
 
 const pkg = require('../package.json');
-const REGISTRY_PUBLISH =
-  'https://github.com/studiorack/studiorack-site/issues/new?title=Publish%20my%20plugin&body=Github%20repo%3A%20&labels=enhancement';
 
 program
   .command('create <folder>')
@@ -40,16 +37,13 @@ program
     const project = projectLoad();
     if (input) {
       const [id, version] = pathGetVersionId(input);
-      const installedVersion = await pluginInstall(id, version, options.global);
-      if (installedVersion) {
-        project.plugins[id] = installedVersion;
+      const pluginInstalled = await pluginInstall(id, version, options.global);
+      if (pluginInstalled) {
+        project.plugins[id] = pluginInstalled.version;
       }
     } else {
       for (const pluginId in project.plugins) {
-        const installedVersion = await pluginInstall(pluginId, project.plugins[pluginId], options.global);
-        if (installedVersion) {
-          project.plugins[pluginId] = installedVersion;
-        }
+        pluginInstall(pluginId, project.plugins[pluginId], options.global);
       }
     }
     return projectSave(project);
@@ -67,26 +61,16 @@ program
       if (!result) {
         result = project.plugins[id];
       }
-      const success = pluginUninstall(id, result, options.global);
-      if (success) {
+      const pluginInstalled = pluginUninstall(id, result, options.global);
+      if (pluginInstalled) {
         delete project.plugins[id];
       }
     } else {
       for (const pluginId in project.plugins) {
-        const success = pluginUninstall(pluginId, project.plugins[pluginId], options.global);
-        if (success) {
-          delete project.plugins[pluginId];
-        }
+        pluginUninstall(pluginId, project.plugins[pluginId], options.global);
       }
     }
     return projectSave(project);
-  });
-
-program
-  .command('publish')
-  .description('Publish plugin to the registry')
-  .action(async () => {
-    await open(REGISTRY_PUBLISH);
   });
 
 program
