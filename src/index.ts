@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import * as Table3 from "cli-table3";
 import * as open from 'open';
 import * as program from 'commander';
 import {
@@ -90,11 +91,30 @@ program
 
 program
   .command('search <query>')
+  .option('-j, --json', 'output results as json')
   .description('Search plugin registry by query.')
-  .action(async (query: string) => {
+  .action(async (query: string, options: any) => {
     const results = await pluginSearch(query);
-    console.log(JSON.stringify(results, null, 2));
-    console.log(`${results.length} results found.`);
+    if (options.json) {
+      console.log(JSON.stringify(results, null, 2));
+    } else {
+      const table = new Table3({
+        head: ['Id', 'Name', 'Description', 'Date', 'Version', 'Tags']
+      });
+      results.forEach((result) => {
+        const latest = result.versions[result.version];
+        table.push([
+          result.id,
+          latest.name,
+          latest.description,
+          latest.date.split('T')[0],
+          latest.version,
+          latest.tags.join(', '),
+        ]);
+      });
+      console.log(table.toString());
+      console.log(`${results.length} results found.`);
+    }
   });
 
 program
