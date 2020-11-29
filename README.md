@@ -1,4 +1,5 @@
 # studiorack-cli
+![Test](https://github.com/studiorack/studiorack-cli/workflows/Test/badge.svg)
 
 StudioRack command line tool for handling installing DAW VST plugin dependencies using:
 
