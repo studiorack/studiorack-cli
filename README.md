@@ -60,7 +60,7 @@ For a full list of commands use:
 
 Search the plugin registry using:
 
-    studiorack search piano
+    studiorack search delay
 
 Add a plugin and update project.json config using:
 
