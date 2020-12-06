@@ -125,12 +125,16 @@ program
     if (pluginPath.includes('*')) {
       const pathList = dirRead(pluginPath);
       pathList.forEach((pathItem) => {
-        const plugin = validatePlugin(pathItem, options);
-        pluginRack.plugins.push(plugin);
+        const plugin: any = validatePlugin(pathItem, options);
+        if (plugin.version) {
+          pluginRack.plugins.push(plugin);
+        }
       });
     } else {
-      const plugin = validatePlugin(pluginPath, options);
-      pluginRack.plugins.push(plugin);
+      const plugin: any = validatePlugin(pluginPath, options);
+      if (plugin.version) {
+        pluginRack.plugins.push(plugin);
+      }
     }
     if (options.summary) {
       const rootPath = pluginPath.replace('**/*.{vst,vst3}', '').substring(0, pluginPath.lastIndexOf('/'));
