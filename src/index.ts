@@ -22,9 +22,10 @@ const pkg = require('../package.json');
 
 program
   .command('create <folder>')
+  .option('-t, --type', 'Template type (iplug, juce, steinberg)')
   .description('Create a new folder using the plugin starter template')
-  .action((folder: string) => {
-    pluginCreate(folder);
+  .action((folder: string, options: any) => {
+    pluginCreate(folder, options.type);
   });
 
 program.command('init').description('Set up a new or existing StudioRack project.').action(projectInit);
