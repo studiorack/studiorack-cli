@@ -112,6 +112,7 @@ program
 
 program
   .command('validate [path]')
+  .option('-f, --files', 'add files (audio, video and platform)')
   .option('-j, --json', 'plugin json file')
   .option('-s, --summary', 'plugins summary json file')
   .option('-t, --txt', 'plugin txt file')
@@ -138,7 +139,8 @@ program
       }
     }
     if (options.summary) {
-      const rootPath = pluginPath.replace('**/*.{vst,vst3}', '').substring(0, pluginPath.lastIndexOf('/'));
+      let rootPath = pluginPath.replace('**/*.{vst,vst3}', '').substring(0, pluginPath.lastIndexOf('/'));
+      rootPath += rootPath.endsWith('/') ? '' : '/';
       fileJsonCreate(`${rootPath}plugins.json`, pluginRack);
       console.log(`Generated: ${rootPath}plugins.json`);
     }
