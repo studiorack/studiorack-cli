@@ -6,7 +6,8 @@ import {
   dirRead,
   fileJsonCreate,
   fileOpen,
-  pathGetVersionId,
+  pathGetId,
+  pathGetVersion,
   pluginCreate,
   pluginInstall,
   pluginSearch,
@@ -37,7 +38,8 @@ program
   .action(async (input: string, options: any) => {
     const project = projectLoad();
     if (input) {
-      const [id, version] = pathGetVersionId(input);
+      const id = pathGetId(input);
+      const version = pathGetVersion(input);
       const pluginInstalled = await pluginInstall(id, version, options.global);
       if (pluginInstalled) {
         project.plugins[id] = pluginInstalled.version;
@@ -57,7 +59,8 @@ program
   .action(async (input: string, options: any) => {
     const project = projectLoad();
     if (input) {
-      const [id, version] = pathGetVersionId(input);
+      const id = pathGetId(input);
+      const version = pathGetVersion(input);
       let result: string = version;
       if (!result) {
         result = project.plugins[id];
