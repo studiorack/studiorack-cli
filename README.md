@@ -37,16 +37,34 @@ If music project folder does not contain a project.json, you can create a new on
 
 This will create a project.json with your configuration:
 
+
     {
-      "name": "My Project",
-      "version": "0.0.1",
-      "description": "My project description",
-      "main": "Song.als",
-      "audio": "Song.wav",
-      "image": "Song.png",
-      "plugins": {
-        "plugin-name": "1.0.0"
-      }
+      "author": "yourname",
+      "homepage": "https://yoursite.com",
+      "name": "My Song",
+      "description": "Chillout tune",
+      "tags": [
+        "ableton"
+      ],
+      "version": "1.0.0",
+      "date": "2021-01-29T01:09:28.701Z",
+      "type": "ableton",
+      "files": {
+        "project": {
+          "name": "My Song.als",
+          "size": 253018
+        },
+        "audio": {
+          "name": "My Song.wav",
+          "size": 1902788
+        },
+        "image": {
+          "name": "My Song.png",
+          "size": 16360
+        }
+      },
+      "plugins": {},
+      "id": "my-song",
     }
 
 For a full list of commands use:
