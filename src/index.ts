@@ -5,9 +5,19 @@ import {
   configGet,
   configSet,
   ConfigInterface,
+  inputGetParts,
   pluginCreate,
   pluginGet,
   PluginTemplate,
+  projectInstall,
+  pluginInstall,
+  pathGetId,
+  pathGetVersion,
+  pluginUninstall,
+  pluginGetLocal,
+  pluginsGet,
+  pluginsGetLocal,
+  pluginSearch,
 } from '@studiorack/core';
 
 const program = new Command();
@@ -42,14 +52,55 @@ plugin
   });
 
 plugin
-  .command('get <id>')
-  .description('Get plugin details by id')
-  .action(async (id: string) => {
-    try {
-      console.log(await pluginGet(id));
-    } catch(error: any) {
-      console.log(error);
-    }
+  .command('get <input>')
+  .description('Get registry plugin by id')
+  .action(async (input: string) => {
+    const [pluginId, pluginVersion] = inputGetParts(input);
+    console.log(await pluginGet(pluginId, pluginVersion));
+  });
+
+plugin
+  .command('getLocal <path>')
+  .description('Get local plugin details by path')
+  .action(async (path: string) => {
+    console.log(await pluginGetLocal(path));
+  });
+
+plugin
+  .command('install <input>')
+  .description('Install a plugin by id')
+  .action(async (input: string) => {
+    const [pluginId, pluginVersion] = inputGetParts(input);
+    console.log(await pluginInstall(pluginId, pluginVersion));
+  });
+
+plugin
+  .command('list')
+  .description('List registry plugins')
+  .action(async () => {
+    console.log(await pluginsGet());
+  });
+
+plugin
+  .command('listLocal')
+  .description('List local plugins')
+  .action(async () => {
+    console.log(await pluginsGetLocal());
+  });
+
+plugin
+  .command('search <query>')
+  .description('List registry plugins')
+  .action(async (query?: string) => {
+    console.log(await pluginSearch(query));
+  });
+
+plugin
+  .command('uninstall <input>')
+  .description('Uninstall a plugin by id')
+  .action(async (input: string) => {
+    const [pluginId, pluginVersion] = inputGetParts(input);
+    console.log(await pluginUninstall(pluginId, pluginVersion));
   });
 
 program.version(pkg.version).parse(process.argv);
