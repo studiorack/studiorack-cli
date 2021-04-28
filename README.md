@@ -122,7 +122,15 @@ StudioRack registry updates once a day at midnight UTC, which will make your plu
 
 ## Updating CLI code
 
-When updating this CLI source code, create a version tag:
+Install plugin source code locally:
+
+    npm link
+
+Update source code and test using normal commands:
+
+    studiorack --version
+
+To publish and release changes and create a version tag using:
 
     npm version patch
     git push && git push origin --tags
