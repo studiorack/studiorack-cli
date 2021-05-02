@@ -37,11 +37,12 @@ plugin
   });
 
 plugin
-  .command('getLocal <path>')
+  .command('getLocal <input>')
   .option('-j, --json', 'Output results as json')
-  .description('Get local plugin details by path')
-  .action(async (path: string, options: { json?: boolean }) => {
-    console.log(formatOutput(await pluginGetLocal(path), options.json));
+  .description('Get local plugin details by id')
+  .action(async (input: string, options: { json?: boolean }) => {
+    const [pluginId, pluginVersion] = inputGetParts(input);
+    console.log(formatOutput(await pluginGetLocal(pluginId, pluginVersion), options.json));
   });
 
 plugin
@@ -87,7 +88,10 @@ plugin
   });
 
 // Helper function to format output
-function formatOutput(result: any, json?: boolean, list?: boolean) {
+function formatOutput(result: any, json?: boolean, list?: boolean): string {
+  if (!result) {
+    return `Plugin not found`;
+  }
   if (json) {
     return JSON.stringify(result, null, 2);
   }
@@ -95,10 +99,13 @@ function formatOutput(result: any, json?: boolean, list?: boolean) {
     head: ['Id', 'Name', 'Description', 'Date', 'Version', 'Tags'],
   });
   if (list) {
+    if (result.length === 0) {
+      return `No results found`;
+    }
     for (const key in result) {
       const latest = result[key].versions ? pluginLatest(result[key]) : result[key];
       table.push([
-        latest.id || '-',
+        latest.id ? `${latest.repo}/${latest.id}` : '-',
         latest.name || '-',
         latest.description || '-',
         latest.date.split('T')[0] || '-',
@@ -109,7 +116,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean) {
   } else {
     const latest = result.versions ? pluginLatest(result) : result;
     table.push([
-      latest.id || '-',
+      latest.id ? `${latest.repo}/${latest.id}` : '-',
       latest.name || '-',
       latest.description || '-',
       latest.date.split('T')[0] || '-',

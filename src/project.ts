@@ -65,7 +65,10 @@ project
   });
 
 // Helper function to format output
-function formatOutput(result: any, json?: boolean, list?: boolean) {
+function formatOutput(result: any, json?: boolean, list?: boolean): string {
+  if (!result) {
+    return `Project not found`;
+  }
   if (json) {
     return JSON.stringify(result, null, 2);
   }
@@ -73,6 +76,9 @@ function formatOutput(result: any, json?: boolean, list?: boolean) {
     head: ['Id', 'Name', 'Description', 'Date', 'Version', 'Tags'],
   });
   if (list) {
+    if (result.length === 0) {
+      return `No results found`;
+    }
     for (const key in result) {
       const latest = result[key];
       table.push([
