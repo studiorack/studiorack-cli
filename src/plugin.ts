@@ -15,7 +15,9 @@ import {
 } from '@studiorack/core';
 
 const program = new Command();
-const plugin = program.command('plugin');
+const plugin = program
+  .command('plugin')
+  .description('View/add/remove individual plugins');
 
 plugin
   .command('create <folder>')

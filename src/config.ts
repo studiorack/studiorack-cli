@@ -2,7 +2,9 @@ import { Command } from 'commander';
 import { configGet, configSet, ConfigInterface } from '@studiorack/core';
 
 const program = new Command();
-const config = program.command('config');
+const config = program
+  .command('config')
+  .description('View/update configuration');
 
 config
   .command('get <key>')
