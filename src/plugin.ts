@@ -20,11 +20,11 @@ const plugin = program
   .description('View/add/remove individual plugins');
 
 plugin
-  .command('create <folder>')
+  .command('create <path>')
   .option('-t, --type <type>', 'Template type (dplug, iplug, juce, steinberg)')
   .description('Create plugin using a starter template')
-  .action((folder: string, options: { type?: keyof PluginTemplate }) => {
-    console.log(pluginCreate(folder, options.type));
+  .action((path: string, options: { type?: keyof PluginTemplate }) => {
+    console.log(pluginCreate(path, options.type));
   });
 
 plugin
@@ -107,7 +107,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean) {
       ]);
     }
   } else {
-    const latest = pluginLatest(result);
+    const latest = result.versions ? pluginLatest(result) : result;
     table.push([
       latest.id || '-',
       latest.name || '-',
