@@ -26,18 +26,18 @@ project
 project
   .command('getLocal <input>')
   .option('-j, --json', 'Output results as json')
-  .description('Get local project details by path')
-  .action(async (path: string, options: { json?: boolean }) => {
-    console.log(formatOutput(await projectGetLocal(path), options.json));
+  .description('Get local project details by id')
+  .action(async (id: string, options: { json?: boolean }) => {
+    console.log(formatOutput(await projectGetLocal(id), options.json));
   });
 
 project
-  .command('install <path> [input]')
+  .command('install <id> [input]')
   .option('-j, --json', 'Output results as json')
-  .description('Install project by path')
-  .action(async (path: string, options: { json?: boolean }, input?: string) => {
+  .description('Install project by id')
+  .action(async (id: string, options: { json?: boolean }, input?: string) => {
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectInstall(path, pluginId, pluginVersion), options.json));
+    console.log(formatOutput(await projectInstall(id, pluginId, pluginVersion), options.json));
   });
 
 project
@@ -56,12 +56,12 @@ project
   });
 
 project
-  .command('uninstall <path> [input]')
+  .command('uninstall <id> [input]')
   .option('-j, --json', 'Output results as json')
-  .description('Uninstall project by path')
-  .action(async (path: string, options: { json?: boolean }, input?: string) => {
+  .description('Uninstall project by id')
+  .action(async (id: string, options: { json?: boolean }, input?: string) => {
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectUninstall(path, pluginId, pluginVersion), options.json));
+    console.log(formatOutput(await projectUninstall(id, pluginId, pluginVersion), options.json));
   });
 
 // Helper function to format output
@@ -82,7 +82,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     for (const key in result) {
       const latest = result[key];
       table.push([
-        latest.id || '-',
+        latest.id ? `${latest.repo}/${latest.id}` : '-',
         latest.name || '-',
         latest.description || '-',
         latest.date.split('T')[0] || '-',
@@ -93,7 +93,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
   } else {
     const latest = result;
     table.push([
-      latest.id || '-',
+      latest.id ? `${latest.repo}/${latest.id}` : '-',
       latest.name || '-',
       latest.description || '-',
       latest.date.split('T')[0] || '-',

@@ -29,7 +29,7 @@
   "author": "kmturley",
   "license": "ISC",
   "dependencies": {
-    "@studiorack/core": "^1.0.8",
+    "@studiorack/core": "^1.0.10",
     "cli-table3": "^0.6.0",
     "commander": "^7.2.0"
   },
