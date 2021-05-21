@@ -2,10 +2,11 @@ import * as Table3 from 'cli-table3';
 import { Command } from 'commander';
 import {
   inputGetParts,
+  pathGetWithoutExt,
   projectCreate,
-  projectGetLocal,
   projectInstall,
   projectsGetLocal,
+  projectLoad,
   projectStart,
   projectUninstall,
 } from '@studiorack/core';
@@ -16,28 +17,28 @@ const project = program
   .description('View/update projects');
 
 project
-  .command('create <folder>')
+  .command('create <path>')
   .option('-p, --prompt <prompt>', 'Prompt questions')
   .description('Create project using a starter template')
-  .action((folder: string, options: { prompt?: boolean }) => {
-    console.log(projectCreate(folder, options.prompt));
+  .action((path: string, options: { prompt?: boolean }) => {
+    console.log(projectCreate(`${pathGetWithoutExt(path)}.json`, options.prompt));
   });
 
 project
-  .command('getLocal <input>')
+  .command('getLocal <path>')
   .option('-j, --json', 'Output results as json')
   .description('Get local project details by id')
-  .action(async (id: string, options: { json?: boolean }) => {
-    console.log(formatOutput(await projectGetLocal(id), options.json));
+  .action(async (path: string, options: { json?: boolean }) => {
+    console.log(formatOutput(await projectLoad(`${pathGetWithoutExt(path)}.json`), options.json));
   });
 
 project
-  .command('install <id> [input]')
+  .command('install <path> [input]')
   .option('-j, --json', 'Output results as json')
-  .description('Install project by id')
-  .action(async (id: string, options: { json?: boolean }, input?: string) => {
+  .description('Install project by path')
+  .action(async (path: string, input?: string, options?: { json?: boolean }, ) => {
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectInstall(id, pluginId, pluginVersion), options.json));
+    console.log(formatOutput(await projectInstall(`${pathGetWithoutExt(path)}.json`, pluginId, pluginVersion), options?.json));
   });
 
 project
@@ -51,17 +52,17 @@ project
 project
   .command('open <path>')
   .description('Open project')
-  .action(async (path: string, options: { json?: boolean }) => {
-    console.log(await projectStart(path));
+  .action(async (path: string) => {
+    console.log(await projectStart(`${pathGetWithoutExt(path)}.json`));
   });
 
 project
-  .command('uninstall <id> [input]')
+  .command('uninstall <path> [input]')
   .option('-j, --json', 'Output results as json')
-  .description('Uninstall project by id')
-  .action(async (id: string, options: { json?: boolean }, input?: string) => {
+  .description('Uninstall project by path')
+  .action(async (path: string, input?: string, options?: { json?: boolean }) => {
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectUninstall(id, pluginId, pluginVersion), options.json));
+    console.log(formatOutput(await projectUninstall(`${pathGetWithoutExt(path)}.json`, pluginId, pluginVersion), options?.json));
   });
 
 // Helper function to format output
@@ -73,7 +74,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     return JSON.stringify(result, null, 2);
   }
   const table = new Table3({
-    head: ['Id', 'Name', 'Description', 'Date', 'Version', 'Tags'],
+    head: ['Name', 'Plugins', 'Path'],
   });
   if (list) {
     if (result.length === 0) {
@@ -82,23 +83,17 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     for (const key in result) {
       const latest = result[key];
       table.push([
-        latest.id ? `${latest.repo}/${latest.id}` : '-',
         latest.name || '-',
-        latest.description || '-',
-        latest.date.split('T')[0] || '-',
-        latest.version || '-',
-        latest.tags.join(', ') || '-',
+        Object.keys(latest.plugins).join(', ') || '-',
+        latest.path || '-',
       ]);
     }
   } else {
     const latest = result;
     table.push([
-      latest.id ? `${latest.repo}/${latest.id}` : '-',
       latest.name || '-',
-      latest.description || '-',
-      latest.date.split('T')[0] || '-',
-      latest.version || '-',
-      latest.tags.join(', ') || '-',
+      Object.keys(latest.plugins).join(', ') || '-',
+      latest.path || '-',
     ]);
   }
   return table.toString();
