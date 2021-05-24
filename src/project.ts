@@ -56,8 +56,7 @@ project
   .description('Open project by id')
   .action(async (id: string) => {
     const projectLocal = await projectGetLocal(id);
-    const projectRoot = pathGetDirectory(projectLocal.path);
-    await projectStart(`${projectRoot}/${projectLocal.files.project.name}`);
+    await projectStart(`${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`);
   });
 
 project
