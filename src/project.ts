@@ -2,11 +2,12 @@ import * as Table3 from 'cli-table3';
 import { Command } from 'commander';
 import {
   inputGetParts,
+  pathGetDirectory,
   pathGetWithoutExt,
   projectCreate,
   projectInstall,
+  projectGetLocal,
   projectsGetLocal,
-  projectLoad,
   projectStart,
   projectUninstall,
 } from '@studiorack/core';
@@ -20,25 +21,26 @@ project
   .command('create <path>')
   .option('-p, --prompt <prompt>', 'Prompt questions')
   .description('Create project using a starter template')
-  .action((path: string, options: { prompt?: boolean }) => {
-    console.log(projectCreate(`${pathGetWithoutExt(path)}.json`, options.prompt));
+  .action((path: string, options?: { prompt?: boolean }) => {
+    console.log(projectCreate(`${pathGetWithoutExt(path)}.json`, options?.prompt));
   });
 
 project
-  .command('getLocal <path>')
+  .command('getLocal <id>')
   .option('-j, --json', 'Output results as json')
   .description('Get local project details by id')
-  .action(async (path: string, options: { json?: boolean }) => {
-    console.log(formatOutput(await projectLoad(`${pathGetWithoutExt(path)}.json`), options.json));
+  .action(async (id: string, options?: { json?: boolean }) => {
+    console.log(formatOutput(await projectGetLocal(id), options?.json));
   });
 
 project
-  .command('install <path> [input]')
+  .command('install <id> [input]')
   .option('-j, --json', 'Output results as json')
-  .description('Install project by path')
-  .action(async (path: string, input?: string, options?: { json?: boolean }, ) => {
+  .description('Install project by id')
+  .action(async (id: string, input?: string, options?: { json?: boolean }, ) => {
+    const projectLocal = await projectGetLocal(id);
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectInstall(`${pathGetWithoutExt(path)}.json`, pluginId, pluginVersion), options?.json));
+    console.log(formatOutput(await projectInstall(`${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`, pluginId, pluginVersion), options?.json));
   });
 
 project
@@ -50,19 +52,22 @@ project
   });
 
 project
-  .command('open <path>')
-  .description('Open project')
-  .action(async (path: string) => {
-    console.log(await projectStart(`${pathGetWithoutExt(path)}.json`));
+  .command('open <id>')
+  .description('Open project by id')
+  .action(async (id: string) => {
+    const projectLocal = await projectGetLocal(id);
+    const projectRoot = pathGetDirectory(projectLocal.path);
+    await projectStart(`${projectRoot}/${projectLocal.files.project.name}`);
   });
 
 project
-  .command('uninstall <path> [input]')
+  .command('uninstall <id> [input]')
   .option('-j, --json', 'Output results as json')
-  .description('Uninstall project by path')
-  .action(async (path: string, input?: string, options?: { json?: boolean }) => {
+  .description('Uninstall project by id')
+  .action(async (id: string, input?: string, options?: { json?: boolean }) => {
+    const projectLocal = await projectGetLocal(id);
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectUninstall(`${pathGetWithoutExt(path)}.json`, pluginId, pluginVersion), options?.json));
+    console.log(formatOutput(await projectUninstall(`${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`, pluginId, pluginVersion), options?.json));
   });
 
 // Helper function to format output
@@ -74,7 +79,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     return JSON.stringify(result, null, 2);
   }
   const table = new Table3({
-    head: ['Name', 'Plugins', 'Path'],
+    head: ['Id', 'Name', 'Description', 'Date', 'Version', 'Tags'],
   });
   if (list) {
     if (result.length === 0) {
@@ -83,17 +88,25 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     for (const key in result) {
       const latest = result[key];
       table.push([
+        latest.id ? `${latest.repo}/${latest.id}` : '-',
         latest.name || '-',
-        Object.keys(latest.plugins).join(', ') || '-',
-        latest.path || '-',
+        latest.description || '-',
+        latest.date.split('T')[0] || '-',
+        latest.version || '-',
+        latest.tags.join(', ') || '-',
+        // Object.keys(latest.plugins).join(', ') || '-',
       ]);
     }
   } else {
     const latest = result;
     table.push([
+      latest.id ? `${latest.repo}/${latest.id}` : '-',
       latest.name || '-',
-      Object.keys(latest.plugins).join(', ') || '-',
-      latest.path || '-',
+      latest.description || '-',
+      latest.date.split('T')[0] || '-',
+      latest.version || '-',
+      latest.tags.join(', ') || '-',
+      // Object.keys(latest.plugins).join(', ') || '-',
     ]);
   }
   return table.toString();
