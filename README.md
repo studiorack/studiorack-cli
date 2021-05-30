@@ -17,54 +17,73 @@ Verify the tool has been installed by running:
 
     studiorack --version
 
+Check the default configuration by running:
+
+    studiorack config get pluginFolder
+    studiorack config get projectFolder
+
+If you need to adjust change using:
+
+    studiorack config set pluginFolder "path/to/plugins"
+    studiorack config set projectFolder "path/to/projects"
+
 
 ## Usage
 
-Navigate to a music project folder containing a project.json config, install all plugins using:
+List the projects found in projectFolder using:
 
-    studiorack install --global
+    studiorack project listLocal
 
-Then start the project using
+Install a project's plugins using:
 
-    studiorack start
+    studiorack project install <project-id>
+
+Then open the project using:
+
+    studiorack project open <project-id>
 
 
 ## Creating a new project configuration
 
-If music project folder does not contain a project.json, you can create a new one using:
+You can create a new studiorack project .json file using:
 
-    studiorack init
+    studiorack project create <project-id>
 
-This will create a project.json with your configuration:
-
+This will create a studiorack .json file with your configuration:
 
     {
-      "author": "yourname",
-      "homepage": "https://yoursite.com",
-      "name": "My Song",
-      "description": "Chillout tune",
+      "id": "example",
+      "author": "studiorack-user",
+      "homepage": "https://studiorack.github.io/studiorack-site/",
+      "name": "StudioRack Project",
+      "description": "Created using StudioRack",
+      "repo": "songs/april",
       "tags": [
-        "ableton"
+        "StudioRack"
       ],
       "version": "1.0.0",
-      "date": "2021-01-29T01:09:28.701Z",
-      "type": "ableton",
+      "date": "2021-05-30T21:58:39.138Z",
+      "type": {
+        "name": "Ableton",
+        "ext": "als"
+      },
       "files": {
-        "project": {
-          "name": "My Song.als",
-          "size": 253018
-        },
         "audio": {
-          "name": "My Song.wav",
+          "name": "example.wav",
           "size": 1902788
         },
         "image": {
-          "name": "My Song.png",
+          "name": "example.png",
           "size": 16360
+        },
+        "project": {
+          "name": "example.als",
+          "size": 253018
         }
       },
       "plugins": {},
-      "id": "my-song",
+      "path": "songs/april",
+      "status": "installed"
     }
 
 For a full list of commands use:
@@ -76,22 +95,22 @@ For a full list of commands use:
 
 Search the plugin registry using:
 
-    studiorack search delay
+    studiorack plugin search delay
 
 Add a plugin and update project.json config using:
 
-    studiorack install studiorack/studiorack-plugin-steinberg/adelay --global
+    studiorack project install <project-id> <plugin-id>
 
 Remove a plugin and update project.json config using:
  
-    studiorack uninstall studiorack/studiorack-plugin-steinberg/adelay --global
+    studiorack plugin uninstall <project-id> <plugin-id>
 
 
 ## Creating and publishing a plugin
 
 Create a new plugin using the starter template:
 
-    studiorack create myplugin --type steinberg
+    studiorack plugin create myplugin --type steinberg
 
 Follow the instructions at ./myplugin/README.md to install and build your plugin
 
