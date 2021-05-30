@@ -2,7 +2,6 @@ import * as Table3 from 'cli-table3';
 import { Command } from 'commander';
 import {
   inputGetParts,
-  pathGetDirectory,
   pathGetWithoutExt,
   projectCreate,
   projectInstall,
@@ -20,7 +19,7 @@ project
   .option('-p, --prompt <prompt>', 'Prompt questions')
   .description('Create project using a starter template')
   .action((path: string, options?: { prompt?: boolean }) => {
-    console.log(projectCreate(`${pathGetWithoutExt(path)}.json`, options?.prompt));
+    console.log(projectCreate(path, options?.prompt));
   });
 
 project
