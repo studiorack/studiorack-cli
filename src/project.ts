@@ -13,9 +13,7 @@ import {
 } from '@studiorack/core';
 
 const program = new Command();
-const project = program
-  .command('project')
-  .description('View/update projects');
+const project = program.command('project').description('View/update projects');
 
 project
   .command('create <path>')
@@ -37,10 +35,19 @@ project
   .command('install <id> [input]')
   .option('-j, --json', 'Output results as json')
   .description('Install project by id')
-  .action(async (id: string, input?: string, options?: { json?: boolean }, ) => {
+  .action(async (id: string, input?: string, options?: { json?: boolean }) => {
     const projectLocal = await projectGetLocal(id);
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectInstall(`${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`, pluginId, pluginVersion), options?.json));
+    console.log(
+      formatOutput(
+        await projectInstall(
+          `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`,
+          pluginId,
+          pluginVersion
+        ),
+        options?.json
+      )
+    );
   });
 
 project
@@ -66,7 +73,16 @@ project
   .action(async (id: string, input?: string, options?: { json?: boolean }) => {
     const projectLocal = await projectGetLocal(id);
     const [pluginId, pluginVersion] = inputGetParts(input || '');
-    console.log(formatOutput(await projectUninstall(`${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`, pluginId, pluginVersion), options?.json));
+    console.log(
+      formatOutput(
+        await projectUninstall(
+          `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`,
+          pluginId,
+          pluginVersion
+        ),
+        options?.json
+      )
+    );
   });
 
 // Helper function to format output
