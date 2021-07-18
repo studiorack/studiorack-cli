@@ -94,7 +94,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     return JSON.stringify(result, null, 2);
   }
   const table = new Table3({
-    head: ['Id', 'Name', 'Description', 'Date', 'Version', 'Tags'],
+    head: ['Id', 'Name', 'Version', 'Date', 'License', 'Tags'],
   });
   if (list) {
     if (result.length === 0) {
@@ -105,9 +105,9 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
       table.push([
         latest.id ? `${latest.repo}/${latest.id}` : '-',
         latest.name || '-',
-        latest.description || '-',
-        latest.date.split('T')[0] || '-',
         latest.version || '-',
+        latest.date.split('T')[0] || '-',
+        latest.license?.key || '-',
         latest.tags.join(', ') || '-',
       ]);
     }
@@ -116,9 +116,9 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     table.push([
       latest.id ? `${latest.repo}/${latest.id}` : '-',
       latest.name || '-',
-      latest.description || '-',
-      latest.date.split('T')[0] || '-',
       latest.version || '-',
+      latest.date.split('T')[0] || '-',
+      latest.license?.key || '-',
       latest.tags.join(', ') || '-',
     ]);
   }
