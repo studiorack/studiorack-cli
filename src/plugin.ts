@@ -108,7 +108,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
         latest.version || '-',
         latest.date.split('T')[0] || '-',
         latest.license?.key || '-',
-        latest.tags.join(', ') || '-',
+        latest.tags?.join(', ') || '-',
       ]);
     }
   } else {
@@ -119,7 +119,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
       latest.version || '-',
       latest.date.split('T')[0] || '-',
       latest.license?.key || '-',
-      latest.tags.join(', ') || '-',
+      latest.tags?.join(', ') || '-',
     ]);
   }
   return table.toString();
