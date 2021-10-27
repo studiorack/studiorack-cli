@@ -12,6 +12,17 @@ program.addCommand(config);
 program.addCommand(plugin);
 program.addCommand(project);
 
+program
+  .command('test [path]')
+  .option('-s, --summary', 'plugin test summary json file')
+  .description('Test a plugin using the Tracktion plugin validator')
+  .action(async (pluginPath: string, options?: any) => {
+    const result = await validateFolder(pluginPath, options);
+    if (options.summary) {
+      console.log(result);
+    }
+  });
+
 // Backwards compatibility with Github Actions
 program
   .command('validate [path]')
