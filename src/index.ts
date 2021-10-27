@@ -4,7 +4,7 @@ import { Command } from 'commander';
 import { config } from './config';
 import { plugin } from './plugin';
 import { project } from './project';
-import { validateFolder } from '@studiorack/core';
+import { testFolder, validateFolder } from '@studiorack/core';
 
 const pkg = require('../package.json');
 const program = new Command();
@@ -17,7 +17,7 @@ program
   .option('-s, --summary', 'plugin test summary json file')
   .description('Test a plugin using the Tracktion plugin validator')
   .action(async (pluginPath: string, options?: any) => {
-    const result = await validateFolder(pluginPath, options);
+    const result = await testFolder(pluginPath, options);
     if (options.summary) {
       console.log(result);
     }
