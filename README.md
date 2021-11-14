@@ -130,8 +130,9 @@ When ready to release, commit your plugin to GitHub and ensure it is tagged with
 
     studiorack-plugin
 
-Then it should appear in the GitHub API:
+Then it should appear in the GitHub topic search and API:
 
+    https://github.com/topics/studiorack-plugin
     https://api.github.com/search/repositories?q=topic:studiorack-plugin+fork:true
 
 StudioRack registry updates once a day at midnight UTC, which will make your plugin available via our API at:
