@@ -1,4 +1,4 @@
-import { cli, CliOutput, getLastLine } from './shared';
+import { cli, CliOutput } from './shared';
 import path from 'path';
 import { dirDelete } from '@studiorack/core';
 
@@ -10,8 +10,14 @@ beforeAll(async () => {
   dirDelete(PLUGIN_DIR);
 });
 
+test('Plugin get', async () => {
+  const output: CliOutput = await cli(`plugin get "${PLUGIN_ID}" --json`);
+  expect(output.exitCode).toBe(0);
+  expect(output.stdout).toMatchSnapshot();
+});
+
 test('Plugin install', async () => {
   const output: CliOutput = await cli(`plugin install "${PLUGIN_ID}" --json`);
-  // Replace with real test of cli output
-  expect(getLastLine(output)).toEqual('⤓ https://studiorack.github.io/studiorack-registry/index.json');
+  expect(output.exitCode).toBe(0);
+  expect(output.stdout).toMatchSnapshot();
 });
