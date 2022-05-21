@@ -21,6 +21,7 @@ function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
 };
 
 function getLastLine(output: CliOutput): string | undefined {
+  console.log(output.stdout);
   return output.stdout.trim().split('\n').pop();
 }
 
