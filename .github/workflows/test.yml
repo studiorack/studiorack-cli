@@ -6,18 +6,25 @@ on:
 jobs:
   test_code:
     name: Test code
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+          - os: macos-latest
+          - os: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Audit
-        run: |
-          npm audit
-
       - name: Install
         run: |
           npm install
+
+      - name: Audit
+        run: |
+          npm audit
 
       - name: Lint
         run: |
@@ -26,3 +33,7 @@ jobs:
       - name: Test
         run: |
           npm run test
+
+      - name: Build
+        run: |
+          npm run build
