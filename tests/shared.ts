@@ -1,5 +1,4 @@
 import { exec, ExecException } from 'child_process';
-import path from 'path';
 
 interface CliOutput {
   code: number;
@@ -7,14 +6,6 @@ interface CliOutput {
   stdout: string;
   stderr: string;
 }
-
-const PLUGIN_DIR: string = path.join('test', 'plugins');
-
-test('Example test', async () => {
-  const output: CliOutput = await cli(`studiorack test "${PLUGIN_DIR}"`);
-  expect(output.stdout).toEqual(`⎋ /Users/kimturley/Library/Preferences/studiorack/config.json
-`);
-});
 
 function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
   return new Promise(resolve => {
@@ -27,4 +18,14 @@ function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
       });
     });
   });
+};
+
+function getLastLine(output: CliOutput): string | undefined {
+  return output.stdout.trim().split('\n').pop();
+}
+
+export {
+  cli,
+  CliOutput,
+  getLastLine
 };
