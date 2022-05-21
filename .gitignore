@@ -1,5 +1,9 @@
 .DS_Store
+bin
 coverage
 dist
 node_modules
+temp
 config.json
+test/plugins
+test/projects/songs
