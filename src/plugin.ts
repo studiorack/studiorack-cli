@@ -1,4 +1,4 @@
-import * as Table3 from 'cli-table3';
+import CliTable3 from 'cli-table3';
 import { Command } from 'commander';
 import {
   inputGetParts,
@@ -93,7 +93,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
   if (json) {
     return JSON.stringify(result, null, 2);
   }
-  const table = new Table3({
+  const table = new CliTable3({
     head: ['Id', 'Name', 'Version', 'Date', 'License', 'Tags'],
   });
   if (list) {
