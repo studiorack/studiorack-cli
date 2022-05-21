@@ -1,4 +1,5 @@
 import { exec, ExecException } from 'child_process';
+import path from 'path';
 
 interface CliOutput {
   code: number;
@@ -7,9 +8,11 @@ interface CliOutput {
   stderr: string;
 }
 
+const CLI_PATH: string = path.resolve('./', 'dist', 'index.js');
+
 function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
   return new Promise(resolve => {
-    exec(cmd, { cwd }, (error, stdout, stderr) => {
+    exec(`node ${CLI_PATH} ${cmd}`, { cwd }, (error, stdout, stderr) => {
       resolve({
         code: error && error.code ? error.code : 0,
         error,
