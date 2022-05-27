@@ -48,3 +48,64 @@ exports[`Plugin get 1`] = `
 }
 "
 `;
+
+exports[`Plugin install 1`] = `
+"⎋ \${APP_DIR}/config.json
+⤓ https://studiorack.github.io/studiorack-registry/index.json
+⌕ test/plugins/**/*.{component,aax,dll,rta,lv2,sfz,tdm,vst,vst3}
+⎋ test/plugins/Components/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
+⎋ test/plugins/LV2/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
+⎋ test/plugins/VST/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
+⎋ test/plugins/VST3/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
+{
+  \\"author\\": \\"Jean Pierre Cimalando\\",
+  \\"homepage\\": \\"https://github.com/jpcima/ADLplug\\",
+  \\"name\\": \\"ADLplug\\",
+  \\"description\\": \\"FM synthesizer based on OPL3 and OPN2 sound chip emulations. Synthesis of melodic and percussive instruments, support for dynamic parameterization and automation.\\",
+  \\"tags\\": [
+    \\"Instrument\\",
+    \\"Synth\\",
+    \\"FM\\"
+  ],
+  \\"version\\": \\"1.0.2\\",
+  \\"id\\": \\"adlplug\\",
+  \\"date\\": \\"2020-08-05T08:00:00.000Z\\",
+  \\"files\\": {
+    \\"audio\\": {
+      \\"name\\": \\"adlplug.flac\\",
+      \\"size\\": 60649
+    },
+    \\"image\\": {
+      \\"name\\": \\"adlplug.jpg\\",
+      \\"size\\": 140267
+    },
+    \\"linux\\": {
+      \\"name\\": \\"adlplug-linux.zip\\",
+      \\"size\\": 11068718
+    },
+    \\"mac\\": {
+      \\"name\\": \\"adlplug-mac.zip\\",
+      \\"size\\": 33551714
+    },
+    \\"win\\": {
+      \\"name\\": \\"adlplug-win.zip\\",
+      \\"size\\": 24833093
+    }
+  },
+  \\"release\\": \\"v1.0.2\\",
+  \\"license\\": {
+    \\"key\\": \\"bsl-1.0\\",
+    \\"name\\": \\"Boost Software License 1.0\\",
+    \\"url\\": \\"https://choosealicense.com/licenses/bsl-1.0\\"
+  },
+  \\"repo\\": \\"studiorack/adlplug\\",
+  \\"paths\\": [
+    \\"test/plugins/Components/studiorack/adlplug/adlplug/1.0.2/ADLplug.component\\",
+    \\"test/plugins/LV2/studiorack/adlplug/adlplug/1.0.2/ADLplug.lv2\\",
+    \\"test/plugins/VST/studiorack/adlplug/adlplug/1.0.2/ADLplug.vst\\",
+    \\"test/plugins/VST3/studiorack/adlplug/adlplug/1.0.2/ADLplug.vst3\\"
+  ],
+  \\"status\\": \\"installed\\"
+}
+"
+`;
