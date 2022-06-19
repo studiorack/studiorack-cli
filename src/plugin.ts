@@ -104,25 +104,34 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
       const latest = result[key].versions ? pluginLatest(result[key]) : result[key];
       table.push([
         latest.id ? `${latest.repo}/${latest.id}` : '-',
-        latest.name || '-',
-        latest.version || '-',
-        latest.date.split('T')[0] || '-',
-        latest.license?.key || '-',
-        latest.tags?.join(', ') || '-',
+        truncateString(latest.name || '-', 40),
+        truncateString(latest.version || '-', 10),
+        truncateString(latest.date.split('T')[0] || '-', 10),
+        truncateString(latest.license?.key || '-', 20),
+        truncateString(latest.tags?.join(', ') || '-', 30),
       ]);
     }
   } else {
     const latest = result.versions ? pluginLatest(result) : result;
     table.push([
       latest.id ? `${latest.repo}/${latest.id}` : '-',
-      latest.name || '-',
-      latest.version || '-',
-      latest.date.split('T')[0] || '-',
-      latest.license?.key || '-',
-      latest.tags?.join(', ') || '-',
+      truncateString(latest.name || '-', 40),
+      truncateString(latest.version || '-', 10),
+      truncateString(latest.date.split('T')[0] || '-', 10),
+      truncateString(latest.license?.key || '-', 20),
+      truncateString(latest.tags?.join(', ') || '-', 30),
     ]);
   }
   return table.toString();
+}
+
+// Helper function to format strings
+function truncateString(str: string, num: number) {
+  if (str.length > num) {
+    return str.slice(0, num) + '...';
+  } else {
+    return str;
+  }
 }
 
 export { plugin };
