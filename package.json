@@ -10,6 +10,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "ts-node src/index.ts",
+    "dev:cli": "rm /usr/local/bin/studiorack && npm run build && npm link",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json"
@@ -29,7 +30,7 @@
   "author": "kmturley",
   "license": "ISC",
   "dependencies": {
-    "@studiorack/core": "^1.1.55",
+    "@studiorack/core": "^1.2.0",
     "cli-table3": "^0.6.0",
     "commander": "^7.2.0"
   },
