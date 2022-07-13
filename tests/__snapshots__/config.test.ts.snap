@@ -1,14 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Config get 1`] = `
-"⎋ \${APP_DIR}/config.json
-test/plugins
+"test/plugins
 "
 `;
 
 exports[`Config set 1`] = `
-"⎋ \${APP_DIR}/config.json
-+ \${APP_DIR}/config.json
-test/plugins
+"test/plugins
 "
 `;

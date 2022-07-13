@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Plugin get 1`] = `
-"⎋ \${APP_DIR}/config.json
-⤓ https://studiorack.github.io/studiorack-registry/index.json
-{
+"{
   \\"author\\": \\"Jean Pierre Cimalando\\",
   \\"homepage\\": \\"https://github.com/jpcima/ADLplug\\",
   \\"name\\": \\"ADLplug\\",
@@ -51,34 +49,7 @@ exports[`Plugin get 1`] = `
 `;
 
 exports[`Plugin install 1`] = `
-"⎋ \${APP_DIR}/config.json
-⤓ https://studiorack.github.io/studiorack-registry/index.json
-⤓ https:/github.com/studiorack/adlplug/releases/download/v1.0.2/adlplug-mac.zip
-+ \${APP_DIR}/downloads/studiorack/adlplug/adlplug
-⎋ \${APP_DIR}/downloads/studiorack/adlplug/adlplug
-⌕ \${APP_DIR}/downloads/studiorack/adlplug/adlplug/**/*.component
-+ test/plugins/Components/studiorack/adlplug/adlplug/1.0.2
-- \${APP_DIR}/downloads/studiorack/adlplug/adlplug/ADLplug.component
-+ test/plugins/Components/studiorack/adlplug/adlplug/1.0.2/ADLplug.component
-+ test/plugins/Components/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
-⌕ \${APP_DIR}/downloads/studiorack/adlplug/adlplug/**/*.dll
-⌕ \${APP_DIR}/downloads/studiorack/adlplug/adlplug/**/*.lv2
-+ test/plugins/LV2/studiorack/adlplug/adlplug/1.0.2
-- \${APP_DIR}/downloads/studiorack/adlplug/adlplug/ADLplug.lv2
-+ test/plugins/LV2/studiorack/adlplug/adlplug/1.0.2/ADLplug.lv2
-+ test/plugins/LV2/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
-⌕ \${APP_DIR}/downloads/studiorack/adlplug/adlplug/**/*.vst
-+ test/plugins/VST/studiorack/adlplug/adlplug/1.0.2
-- \${APP_DIR}/downloads/studiorack/adlplug/adlplug/ADLplug.vst
-+ test/plugins/VST/studiorack/adlplug/adlplug/1.0.2/ADLplug.vst
-+ test/plugins/VST/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
-⌕ \${APP_DIR}/downloads/studiorack/adlplug/adlplug/**/*.vst3
-+ test/plugins/VST3/studiorack/adlplug/adlplug/1.0.2
-- \${APP_DIR}/downloads/studiorack/adlplug/adlplug/ADLplug.vst3
-+ test/plugins/VST3/studiorack/adlplug/adlplug/1.0.2/ADLplug.vst3
-+ test/plugins/VST3/studiorack/adlplug/adlplug/1.0.2/ADLplug.json
-- \${APP_DIR}/downloads/studiorack/adlplug/adlplug
-{
+"{
   \\"author\\": \\"Jean Pierre Cimalando\\",
   \\"homepage\\": \\"https://github.com/jpcima/ADLplug\\",
   \\"name\\": \\"ADLplug\\",
