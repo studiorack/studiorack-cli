@@ -1,9 +1,0 @@
-{
-  "extends": ["tslint:recommended", "tslint-config-prettier"],
-  "rules": {
-    "forin": false,
-    "no-console": false,
-    "no-var-requires": false,
-    "semicolon": [true, "always", "ignore-bound-class-methods"]
-  }
-}
