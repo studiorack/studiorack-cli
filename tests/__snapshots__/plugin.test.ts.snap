@@ -2,103 +2,133 @@
 
 exports[`Plugin get 1`] = `
 "{
-  \\"author\\": \\"Jean Pierre Cimalando\\",
-  \\"homepage\\": \\"https://github.com/jpcima/ADLplug\\",
-  \\"name\\": \\"ADLplug\\",
-  \\"description\\": \\"FM synthesizer based on OPL3 and OPN2 sound chip emulations. Synthesis of melodic and percussive instruments, support for dynamic parameterization and automation.\\",
-  \\"tags\\": [
-    \\"Instrument\\",
-    \\"Synth\\",
-    \\"FM\\"
+  "author": "Paul Kellett",
+  "homepage": "http://mda.smartelectronix.com",
+  "name": "MDA",
+  "description": "Collection of effect plug-ins, from delay to an overdrive and a vocoder.",
+  "tags": [
+    "Effect",
+    "Delay",
+    "Vocoder"
   ],
-  \\"version\\": \\"1.0.2\\",
-  \\"id\\": \\"adlplug\\",
-  \\"date\\": \\"2020-08-05T08:00:00.000Z\\",
-  \\"files\\": {
-    \\"audio\\": {
-      \\"name\\": \\"adlplug.flac\\",
-      \\"size\\": 60649
+  "date": "2020-12-20T08:00:00.000Z",
+  "files": {
+    "audio": {
+      "name": "mda.flac",
+      "size": 127392,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac"
     },
-    \\"image\\": {
-      \\"name\\": \\"adlplug.jpg\\",
-      \\"size\\": 140267
+    "image": {
+      "name": "mda.jpg",
+      "size": 104156,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg"
     },
-    \\"linux\\": {
-      \\"name\\": \\"adlplug-linux.zip\\",
-      \\"size\\": 11068718
+    "linux": {
+      "name": "mda-linux.zip",
+      "size": 70938,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda-linux.zip"
     },
-    \\"mac\\": {
-      \\"name\\": \\"adlplug-mac.zip\\",
-      \\"size\\": 33551714
+    "mac": {
+      "name": "mda-mac.zip",
+      "size": 5122516,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda-mac.zip"
     },
-    \\"win\\": {
-      \\"name\\": \\"adlplug-win.zip\\",
-      \\"size\\": 24833093
+    "win": {
+      "name": "mda-win.zip",
+      "size": 1247768,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip"
     }
   },
-  \\"release\\": \\"v1.0.2\\",
-  \\"license\\": {
-    \\"key\\": \\"bsl-1.0\\",
-    \\"name\\": \\"Boost Software License 1.0\\",
-    \\"url\\": \\"https://choosealicense.com/licenses/bsl-1.0\\",
-    \\"same\\": false
-  },
-  \\"repo\\": \\"studiorack/adlplug\\"
+  "license": "gpl-3.0",
+  "id": "studiorack/mda/mda",
+  "version": "1.0.4"
 }
 "
 `;
 
 exports[`Plugin install 1`] = `
-"{
-  \\"author\\": \\"Jean Pierre Cimalando\\",
-  \\"homepage\\": \\"https://github.com/jpcima/ADLplug\\",
-  \\"name\\": \\"ADLplug\\",
-  \\"description\\": \\"FM synthesizer based on OPL3 and OPN2 sound chip emulations. Synthesis of melodic and percussive instruments, support for dynamic parameterization and automation.\\",
-  \\"tags\\": [
-    \\"Instrument\\",
-    \\"Synth\\",
-    \\"FM\\"
+"install studiorack/mda/mda undefined
+{
+  "author": "Paul Kellett",
+  "homepage": "http://mda.smartelectronix.com",
+  "name": "MDA",
+  "description": "Collection of effect plug-ins, from delay to an overdrive and a vocoder.",
+  "tags": [
+    "Effect",
+    "Delay",
+    "Vocoder"
   ],
-  \\"version\\": \\"1.0.2\\",
-  \\"id\\": \\"adlplug\\",
-  \\"date\\": \\"2020-08-05T08:00:00.000Z\\",
-  \\"files\\": {
-    \\"audio\\": {
-      \\"name\\": \\"adlplug.flac\\",
-      \\"size\\": 60649
+  "date": "2020-12-20T08:00:00.000Z",
+  "files": {
+    "audio": {
+      "name": "mda.flac",
+      "size": 127392,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac"
     },
-    \\"image\\": {
-      \\"name\\": \\"adlplug.jpg\\",
-      \\"size\\": 140267
+    "image": {
+      "name": "mda.jpg",
+      "size": 104156,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg"
     },
-    \\"linux\\": {
-      \\"name\\": \\"adlplug-linux.zip\\",
-      \\"size\\": 11068718
+    "linux": {
+      "name": "mda-linux.zip",
+      "size": 70938,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda-linux.zip"
     },
-    \\"mac\\": {
-      \\"name\\": \\"adlplug-mac.zip\\",
-      \\"size\\": 33551714
+    "mac": {
+      "name": "mda-mac.zip",
+      "size": 5122516,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda-mac.zip"
     },
-    \\"win\\": {
-      \\"name\\": \\"adlplug-win.zip\\",
-      \\"size\\": 24833093
+    "win": {
+      "name": "mda-win.zip",
+      "size": 1247768,
+      "url": "https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip"
     }
   },
-  \\"release\\": \\"v1.0.2\\",
-  \\"license\\": {
-    \\"key\\": \\"bsl-1.0\\",
-    \\"name\\": \\"Boost Software License 1.0\\",
-    \\"url\\": \\"https://choosealicense.com/licenses/bsl-1.0\\",
-    \\"same\\": false
-  },
-  \\"repo\\": \\"studiorack/adlplug\\",
-  \\"paths\\": [
-    \\"test/plugins/Components/studiorack/adlplug/adlplug/1.0.2/ADLplug.component\\",
-    \\"test/plugins/LV2/studiorack/adlplug/adlplug/1.0.2/ADLplug.lv2\\",
-    \\"test/plugins/VST/studiorack/adlplug/adlplug/1.0.2/ADLplug.vst\\",
-    \\"test/plugins/VST3/studiorack/adlplug/adlplug/1.0.2/ADLplug.vst3\\"
+  "license": "gpl-3.0",
+  "id": "studiorack/mda/mda",
+  "version": "1.0.4",
+  "paths": [
+    "test/plugins/Components/studiorack/mda/mda/1.0.4/mda.component",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Ambience.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Bandisto.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda BeatBox.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Combo.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda DX10.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda De-ess.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Degrade.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Delay.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Detune.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Dither.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda DubDelay.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Dynamics.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Image.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda JX10.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Leslie.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Limiter.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Looplex.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Loudness.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda MultiBand.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Overdrive.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Piano.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda RePsycho!.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda RezFilter.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda RingMod.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda RoundPan.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Shepard.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Splitter.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Stereo.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda SubBass.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Talkbox.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda TestTone.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda ThruZero.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Tracker.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda VocInput.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda Vocoder.vst",
+    "test/plugins/VST/studiorack/mda/mda/1.0.4/mda ePiano.vst"
   ],
-  \\"status\\": \\"installed\\"
+  "status": "installed"
 }
 "
 `;

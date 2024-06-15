@@ -12,6 +12,7 @@ import {
   pluginsGetLocal,
   pluginSearch,
   pluginLatest,
+  pluginLicense,
 } from '@studiorack/core';
 
 const program = new Command();
@@ -103,22 +104,22 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     for (const key in result) {
       const latest = result[key].versions ? pluginLatest(result[key]) : result[key];
       table.push([
-        latest.id ? latest.id : '-',
+        latest.id || '-',
         truncateString(latest.name || '-', 40),
-        truncateString(result[key].version || '-', 10),
+        truncateString(latest.version || '-', 10),
         truncateString(latest.date.split('T')[0] || '-', 10),
-        truncateString(latest.license?.key || '-', 20),
+        truncateString(pluginLicense(latest.license)?.name || '-', 20),
         truncateString(latest.tags?.join(', ') || '-', 30),
       ]);
     }
   } else {
     const latest = result.versions ? pluginLatest(result) : result;
     table.push([
-      latest.id ? latest.id : '-',
+      latest.id || '-',
       truncateString(latest.name || '-', 40),
-      truncateString(result.version || '-', 10),
+      truncateString(latest.version || '-', 10),
       truncateString(latest.date.split('T')[0] || '-', 10),
-      truncateString(latest.license?.key || '-', 20),
+      truncateString(pluginLicense(latest.license)?.name || '-', 20),
       truncateString(latest.tags?.join(', ') || '-', 30),
     ]);
   }

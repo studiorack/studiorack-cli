@@ -1,6 +1,6 @@
 {
   "name": "@studiorack/cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Audio project manager tool",
   "type": "module",
   "main": "./build/index.js",
@@ -16,10 +16,10 @@
     "build": "npm run clean && tsc",
     "clean": "rimraf coverage build tmp",
     "dev": "tsx ./src/index.ts",
-    "dev:cli": "npm run build && npm link",
+    "dev:cli": "rm $(which studiorack) && npm run build && npm link",
     "format": "prettier . --write",
     "lint": "eslint ./**/*.ts",
-    "test": "vitest run ./tests",
+    "test": "vitest run ./tests --hook-timeout=60000 --test-timeout=60000 --no-file-parallelism",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -37,7 +37,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@studiorack/core": "^2.0.5",
+    "@studiorack/core": "^2.0.7",
     "cli-table3": "^0.6.5",
     "commander": "^12.1.0"
   },
