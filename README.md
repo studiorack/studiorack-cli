@@ -1,11 +1,11 @@
 # studiorack-cli
+
 ![Test](https://github.com/studiorack/studiorack-cli/workflows/Test/badge.svg)
 
 StudioRack command line tool for handling installing DAW VST plugin dependencies using:
 
-* NodeJS 12.x
-* TypeScript 4.x
-
+- NodeJS 12.x
+- TypeScript 4.x
 
 ## Installation
 
@@ -27,7 +27,6 @@ If you need to adjust change using:
     studiorack config set pluginFolder "path/to/plugins"
     studiorack config set projectFolder "path/to/projects"
 
-
 ## Usage
 
 List the projects found in projectFolder using:
@@ -41,7 +40,6 @@ Install a project's plugins using:
 Then open the project using:
 
     studiorack project open <project-id>
-
 
 ## Creating a new project configuration
 
@@ -90,7 +88,6 @@ For a full list of commands use:
 
     studiorack --help
 
-
 ## Finding, adding and removing plugins
 
 Search the plugin registry using:
@@ -102,9 +99,8 @@ Add a plugin and update project.json config using:
     studiorack project install <project-id> <plugin-id>
 
 Remove a plugin and update project.json config using:
- 
-    studiorack plugin uninstall <project-id> <plugin-id>
 
+    studiorack plugin uninstall <project-id> <plugin-id>
 
 ## Creating and publishing a plugin
 
@@ -139,7 +135,6 @@ StudioRack registry updates once a day at midnight UTC, which will make your plu
 
     https://studiorack.github.io/studiorack-registry/
 
-
 ## Updating CLI code
 
 Install plugin source code locally:
@@ -155,7 +150,6 @@ To publish and release changes and create a version tag using:
     npm version patch
     git push && git push origin --tags
     npm publish
-
 
 ## Contact
 

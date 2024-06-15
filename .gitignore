@@ -1,9 +1,33 @@
-.DS_Store
-bin
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Coverage
 coverage
-dist
-node_modules
-temp
-config.json
+
+# Transpiled files
+build/
+out/
+
+# VS Code
+.vscode
+!.vscode/tasks.js
+
+# JetBrains IDEs
+.idea/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Misc
+.DS_Store
 test/plugins
 test/projects/songs
+test/tool

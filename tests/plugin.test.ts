@@ -1,9 +1,10 @@
+import { beforeAll, expect, test } from 'vitest';
 import { cli, CliOutput } from './shared';
 import path from 'path';
 import { dirDelete } from '@studiorack/core';
 
 const PLUGIN_DIR: string = path.join('test', 'plugins');
-const PLUGIN_ID: string = 'studiorack/adlplug/adlplug';
+const PLUGIN_ID: string = 'studiorack/mda/mda';
 
 beforeAll(async () => {
   await cli(`config set pluginFolder "${PLUGIN_DIR}"`);

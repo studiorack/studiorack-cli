@@ -42,10 +42,10 @@ project
         await projectInstall(
           `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`,
           pluginId,
-          pluginVersion
+          pluginVersion,
         ),
-        options?.json
-      )
+        options?.json,
+      ),
     );
   });
 
@@ -77,10 +77,10 @@ project
         await projectUninstall(
           `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`,
           pluginId,
-          pluginVersion
+          pluginVersion,
         ),
-        options?.json
-      )
+        options?.json,
+      ),
     );
   });
 

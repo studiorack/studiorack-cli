@@ -10,7 +10,7 @@ interface CliOutput {
 }
 
 const APP_DIR: string = path.join(dirAppData(), 'studiorack');
-const CLI_PATH: string = path.resolve('./', 'dist', 'index.js');
+const CLI_PATH: string = path.resolve('./', 'build', 'index.js');
 
 function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
   return new Promise(resolve => {
@@ -19,18 +19,15 @@ function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
         exitCode: error && error.code ? error.code : 0,
         error,
         stdout: cleanOutput(stdout),
-        stderr
+        stderr,
       });
     });
   });
-};
+}
 
 function cleanOutput(output: string): string {
   const regex: RegExp = new RegExp(APP_DIR, 'g');
   return output.replace(regex, '${APP_DIR}');
 }
 
-export {
-  cli,
-  CliOutput
-};
+export { cli, CliOutput };

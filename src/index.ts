@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { config } from './config';
-import { plugin } from './plugin';
-import { project } from './project';
-import { PluginLocal, pluginValidateFolder, PluginValidationOptions, toolFolder, toolInstall } from '@studiorack/core';
+import { config } from './config.js';
+import { plugin } from './plugin.js';
+import { project } from './project.js';
+import {
+  pluginValidateFolder,
+  PluginValidationOptions,
+  PluginVersion,
+  toolFolder,
+  toolInstall,
+} from '@studiorack/core';
 
-const pkg = require('../package.json');
 const program = new Command();
 program.addCommand(config);
 program.addCommand(plugin);
@@ -36,10 +41,10 @@ program
   .option('-z, --zip', 'create a zip file of plugin')
   .description('Validate a plugin using the Steinberg VST3 SDK validator')
   .action(async (pluginPath: string, options: PluginValidationOptions) => {
-    const result: PluginLocal[] = await pluginValidateFolder(pluginPath, options);
+    const result: PluginVersion[] = await pluginValidateFolder(pluginPath, options);
     if (options.summary) {
       console.log(result);
     }
   });
 
-program.version(pkg.version).parse(process.argv);
+program.version('2.0.1').parse(process.argv);

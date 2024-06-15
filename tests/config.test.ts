@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import { cli, CliOutput } from './shared';
 import path from 'path';
 
