@@ -47,8 +47,7 @@ exports[`Plugin get 1`] = `
 `;
 
 exports[`Plugin install 1`] = `
-"install studiorack/mda/mda undefined
-{
+"{
   "author": "Paul Kellett",
   "homepage": "http://mda.smartelectronix.com",
   "name": "MDA",

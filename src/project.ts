@@ -40,7 +40,7 @@ project
     console.log(
       formatOutput(
         await projectInstall(
-          `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`,
+          `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name || projectLocal.files.project.url)}.json`,
           pluginId,
           pluginVersion,
         ),
@@ -62,7 +62,9 @@ project
   .description('Open project by id')
   .action(async (id: string) => {
     const projectLocal = await projectGetLocal(id);
-    await projectStart(`${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`);
+    await projectStart(
+      `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name || projectLocal.files.project.url)}.json`,
+    );
   });
 
 project
@@ -75,7 +77,7 @@ project
     console.log(
       formatOutput(
         await projectUninstall(
-          `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name)}.json`,
+          `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name || projectLocal.files.project.url)}.json`,
           pluginId,
           pluginVersion,
         ),
@@ -102,7 +104,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     for (const key in result) {
       const latest = result[key];
       table.push([
-        latest.id ? `${latest.repo}/${latest.id}` : '-',
+        latest.id || '-',
         latest.name || '-',
         latest.description || '-',
         latest.date.split('T')[0] || '-',
@@ -114,7 +116,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
   } else {
     const latest = result;
     table.push([
-      latest.id ? `${latest.repo}/${latest.id}` : '-',
+      latest.id || '-',
       latest.name || '-',
       latest.description || '-',
       latest.date.split('T')[0] || '-',

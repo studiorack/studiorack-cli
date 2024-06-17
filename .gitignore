@@ -29,5 +29,5 @@ out/
 # Misc
 .DS_Store
 test/plugins
-test/projects/songs
+test/projects
 test/tool
