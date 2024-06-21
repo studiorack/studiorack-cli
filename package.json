@@ -1,6 +1,6 @@
 {
   "name": "@studiorack/cli",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "description": "Audio project manager tool",
   "type": "module",
   "main": "./build/index.js",
@@ -37,7 +37,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@studiorack/core": "^2.0.8",
+    "@studiorack/core": "^2.0.10",
     "cli-table3": "^0.6.5",
     "commander": "^12.1.0"
   },
