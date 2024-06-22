@@ -4,7 +4,6 @@ import {
   inputGetParts,
   pluginCreate,
   pluginGet,
-  PluginTemplate,
   pluginInstall,
   pluginUninstall,
   pluginGetLocal,
@@ -13,24 +12,30 @@ import {
   pluginSearch,
   pluginLatest,
   pluginLicense,
+  logEnable,
 } from '@studiorack/core';
+import { CliOptions, CliPluginCreateOptions } from './types/options.js';
 
 const program = new Command();
 const plugin = program.command('plugin').description('View/add/remove individual plugins');
 
 plugin
   .command('create <path>')
+  .option('-l, --log', 'Enable logging')
   .option('-t, --type <type>', 'Template type (dplug, iplug, juce, steinberg)')
   .description('Create plugin using a starter template')
-  .action((path: string, options: { type?: keyof PluginTemplate }) => {
+  .action((path: string, options: CliPluginCreateOptions) => {
+    if (options.log) logEnable();
     console.log(pluginCreate(path, options.type));
   });
 
 plugin
   .command('get <input>')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Get registry plugin by id')
-  .action(async (input: string, options: { json?: boolean }) => {
+  .action(async (input: string, options: CliOptions) => {
+    if (options.log) logEnable();
     const [pluginId, pluginVersion] = inputGetParts(input);
     console.log(formatOutput(await pluginGet(pluginId, pluginVersion), options.json));
   });
@@ -38,8 +43,10 @@ plugin
 plugin
   .command('getLocal <input>')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Get local plugin details by id')
-  .action(async (input: string, options: { json?: boolean }) => {
+  .action(async (input: string, options: CliOptions) => {
+    if (options.log) logEnable();
     const [pluginId, pluginVersion] = inputGetParts(input);
     console.log(formatOutput(await pluginGetLocal(pluginId, pluginVersion), options.json));
   });
@@ -47,8 +54,10 @@ plugin
 plugin
   .command('install <input>')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Install a plugin by id')
-  .action(async (input: string, options: { json?: boolean }) => {
+  .action(async (input: string, options: CliOptions) => {
+    if (options.log) logEnable();
     const [pluginId, pluginVersion] = inputGetParts(input);
     console.log(formatOutput(await pluginInstall(pluginId, pluginVersion), options.json));
   });
@@ -56,32 +65,40 @@ plugin
 plugin
   .command('list')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('List registry plugins')
-  .action(async (options: { json?: boolean }) => {
+  .action(async (options: CliOptions) => {
+    if (options.log) logEnable();
     console.log(formatOutput(await pluginsGet(), options.json, true));
   });
 
 plugin
   .command('listLocal')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('List local plugins')
-  .action(async (options: { json?: boolean }) => {
+  .action(async (options: CliOptions) => {
+    if (options.log) logEnable();
     console.log(formatOutput(await pluginsGetLocal(), options.json, true));
   });
 
 plugin
   .command('search <query>')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Search registry plugins')
-  .action(async (query: string, options: { json?: boolean }) => {
+  .action(async (query: string, options: CliOptions) => {
+    if (options.log) logEnable();
     console.log(formatOutput(await pluginSearch(query), options.json, true));
   });
 
 plugin
   .command('uninstall <input>')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Uninstall a plugin by id')
-  .action(async (input: string, options: { json?: boolean }) => {
+  .action(async (input: string, options: CliOptions) => {
+    if (options.log) logEnable();
     const [pluginId, pluginVersion] = inputGetParts(input);
     console.log(formatOutput(await pluginUninstall(pluginId, pluginVersion), options.json));
   });

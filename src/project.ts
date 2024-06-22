@@ -9,32 +9,41 @@ import {
   projectsGetLocal,
   projectStart,
   projectUninstall,
+  logEnable,
 } from '@studiorack/core';
+import { CliOptions, CliProjectCreateOptions } from './types/options.js';
 
 const program = new Command();
 const project = program.command('project').description('View/update projects');
 
 project
   .command('create <path>')
+  .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .option('-p, --prompt <prompt>', 'Prompt questions')
   .description('Create project using a starter template')
-  .action((path: string, options?: { prompt?: boolean }) => {
-    console.log(projectCreate(path, options?.prompt));
+  .action((path: string, options: CliProjectCreateOptions) => {
+    if (options.log) logEnable();
+    console.log(projectCreate(path, options.prompt));
   });
 
 project
   .command('getLocal <id>')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Get local project details by id')
-  .action(async (id: string, options?: { json?: boolean }) => {
-    console.log(formatOutput(await projectGetLocal(id), options?.json));
+  .action(async (id: string, options: CliOptions) => {
+    if (options.log) logEnable();
+    console.log(formatOutput(await projectGetLocal(id), options.json));
   });
 
 project
   .command('install <id> [input]')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Install project by id')
-  .action(async (id: string, input?: string, options?: { json?: boolean }) => {
+  .action(async (id: string, input?: string, options?: CliOptions) => {
+    if (options?.log) logEnable();
     const projectLocal = await projectGetLocal(id);
     const [pluginId, pluginVersion] = inputGetParts(input || '');
     console.log(
@@ -52,15 +61,20 @@ project
 project
   .command('listLocal')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('List local projects')
-  .action(async (options: { json?: boolean }) => {
+  .action(async (options: CliOptions) => {
+    if (options.log) logEnable();
     console.log(formatOutput(await projectsGetLocal(), options.json, true));
   });
 
 project
   .command('open <id>')
+  .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Open project by id')
-  .action(async (id: string) => {
+  .action(async (id: string, options: CliOptions) => {
+    if (options.log) logEnable();
     const projectLocal = await projectGetLocal(id);
     await projectStart(
       `${projectLocal.path}/${pathGetWithoutExt(projectLocal.files.project.name || projectLocal.files.project.url)}.json`,
@@ -70,8 +84,10 @@ project
 project
   .command('uninstall <id> [input]')
   .option('-j, --json', 'Output results as json')
+  .option('-l, --log', 'Enable logging')
   .description('Uninstall project by id')
-  .action(async (id: string, input?: string, options?: { json?: boolean }) => {
+  .action(async (id: string, input?: string, options?: CliOptions) => {
+    if (options?.log) logEnable();
     const projectLocal = await projectGetLocal(id);
     const [pluginId, pluginVersion] = inputGetParts(input || '');
     console.log(
