@@ -13,16 +13,6 @@ const PLUGIN: PluginVersion = {
   tags: ['Effect', 'Delay', 'Vocoder'],
   date: '2020-12-20T08:00:00.000Z',
   files: {
-    audio: {
-      name: 'mda.flac',
-      size: 127392,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac',
-    },
-    image: {
-      name: 'mda.jpg',
-      size: 104156,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg',
-    },
     linux: {
       name: 'mda-linux.zip',
       size: 70938,
@@ -37,6 +27,16 @@ const PLUGIN: PluginVersion = {
       name: 'mda-win.zip',
       size: 1247768,
       url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip',
+    },
+    audio: {
+      name: 'mda.flac',
+      size: 127392,
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac',
+    },
+    image: {
+      name: 'mda.jpg',
+      size: 104156,
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg',
     },
   },
   license: 'gpl-3.0',
@@ -51,16 +51,6 @@ const PLUGIN_LOCAL: PluginVersionLocal = {
   tags: ['Effect', 'Delay', 'Vocoder'],
   date: '2020-12-20T08:00:00.000Z',
   files: {
-    audio: {
-      name: 'mda.flac',
-      size: 127392,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac',
-    },
-    image: {
-      name: 'mda.jpg',
-      size: 104156,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg',
-    },
     linux: {
       name: 'mda-linux.zip',
       size: 70938,
@@ -75,6 +65,16 @@ const PLUGIN_LOCAL: PluginVersionLocal = {
       name: 'mda-win.zip',
       size: 1247768,
       url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip',
+    },
+    audio: {
+      name: 'mda.flac',
+      size: 127392,
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac',
+    },
+    image: {
+      name: 'mda.jpg',
+      size: 104156,
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg',
     },
   },
   license: 'gpl-3.0',
