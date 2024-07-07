@@ -2,10 +2,9 @@
 
 ![Test](https://github.com/studiorack/studiorack-cli/workflows/Test/badge.svg)
 
-StudioRack command line tool for handling installing DAW VST plugin dependencies using:
+StudioRack command line tool to manage audio DAW VST plugin dependencies.
 
-- NodeJS 12.x
-- TypeScript 4.x
+![StudioRack Cli](/screenshot.jpg)
 
 ## Installation
 
@@ -135,13 +134,27 @@ StudioRack registry updates once a day at midnight UTC, which will make your plu
 
     https://studiorack.github.io/studiorack-registry/
 
-## Updating CLI code
+## Developer information
 
-Install plugin source code locally:
+StudioRack Cli was built using:
 
-    npm link
+- NodeJS 20.x
+- TypeScript 5.x
+- Commander 12.x
 
-Update source code and test using normal commands:
+## Installation
+
+Install dependencies using:
+
+    npm install
+
+## Usage
+
+Run a build and link the `studiorack` command line to this local package:
+
+    npm run dev:cli
+
+Test using normal commands:
 
     studiorack --version
 
