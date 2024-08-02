@@ -123,9 +123,9 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
         latest.id || '-',
         latest.name || '-',
         latest.description || '-',
-        latest.date.split('T')[0] || '-',
+        latest.date?.split('T')[0] || '-',
         latest.version || '-',
-        latest.tags.join(', ') || '-',
+        latest.tags?.join(', ') || '-',
         // Object.keys(latest.plugins).join(', ') || '-',
       ]);
     }
@@ -135,9 +135,9 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
       latest.id || '-',
       latest.name || '-',
       latest.description || '-',
-      latest.date.split('T')[0] || '-',
+      latest.date?.split('T')[0] || '-',
       latest.version || '-',
-      latest.tags.join(', ') || '-',
+      latest.tags?.join(', ') || '-',
       // Object.keys(latest.plugins).join(', ') || '-',
     ]);
   }

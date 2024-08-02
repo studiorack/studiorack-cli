@@ -124,7 +124,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
         latest.id || '-',
         truncateString(latest.name || '-', 40),
         truncateString(latest.version || '-', 10),
-        truncateString(latest.date.split('T')[0] || '-', 10),
+        truncateString(latest.date?.split('T')[0] || '-', 10),
         truncateString(pluginLicense(latest.license)?.name || '-', 20),
         truncateString(latest.tags?.join(', ') || '-', 30),
       ]);
@@ -135,7 +135,7 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
       latest.id || '-',
       truncateString(latest.name || '-', 40),
       truncateString(latest.version || '-', 10),
-      truncateString(latest.date.split('T')[0] || '-', 10),
+      truncateString(latest.date?.split('T')[0] || '-', 10),
       truncateString(pluginLicense(latest.license)?.name || '-', 20),
       truncateString(latest.tags?.join(', ') || '-', 30),
     ]);
