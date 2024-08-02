@@ -6,78 +6,68 @@ import { PluginVersion, PluginVersionLocal, dirDelete } from '@studiorack/core';
 const PLUGIN_DIR: string = path.join('test', 'plugins');
 const PLUGIN_ID: string = 'studiorack/mda';
 const PLUGIN: PluginVersion = {
-  author: 'Paul Kellett',
-  homepage: 'http://mda.smartelectronix.com',
   name: 'MDA',
+  author: 'Paul Kellett',
+  homepage: 'https://github.com/studiorack/mda',
   description: 'Collection of effect plug-ins, from delay to an overdrive and a vocoder.',
-  tags: ['Effect', 'Delay', 'Vocoder'],
   date: '2020-12-20T08:00:00.000Z',
+  license: 'gpl-3.0',
+  tags: ['Effect', 'Delay', 'Vocoder'],
   files: {
-    linux: {
-      name: 'mda-linux.zip',
-      size: 70938,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-linux.zip',
-    },
-    mac: {
-      name: 'mda-mac.zip',
-      size: 5122516,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-mac.zip',
-    },
-    win: {
-      name: 'mda-win.zip',
-      size: 1247768,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip',
-    },
     audio: {
-      name: 'mda.flac',
+      url: 'https://studiorack.github.io/studiorack-registry/plugins/studiorack/mda/mda.flac',
       size: 127392,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac',
     },
     image: {
-      name: 'mda.jpg',
+      url: 'https://studiorack.github.io/studiorack-registry/plugins/studiorack/mda/mda.jpg',
       size: 104156,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg',
+    },
+    linux: {
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-linux.zip',
+      size: 70938,
+    },
+    mac: {
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-mac.zip',
+      size: 5122516,
+    },
+    win: {
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip',
+      size: 1247768,
     },
   },
-  license: 'gpl-3.0',
   id: 'studiorack/mda',
   version: '1.0.4',
 };
 const PLUGIN_LOCAL: PluginVersionLocal = {
-  author: 'Paul Kellett',
-  homepage: 'http://mda.smartelectronix.com',
   name: 'MDA',
+  author: 'Paul Kellett',
+  homepage: 'https://github.com/studiorack/mda',
   description: 'Collection of effect plug-ins, from delay to an overdrive and a vocoder.',
-  tags: ['Effect', 'Delay', 'Vocoder'],
   date: '2020-12-20T08:00:00.000Z',
+  license: 'gpl-3.0',
+  tags: ['Effect', 'Delay', 'Vocoder'],
   files: {
-    linux: {
-      name: 'mda-linux.zip',
-      size: 70938,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-linux.zip',
-    },
-    mac: {
-      name: 'mda-mac.zip',
-      size: 5122516,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-mac.zip',
-    },
-    win: {
-      name: 'mda-win.zip',
-      size: 1247768,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip',
-    },
     audio: {
-      name: 'mda.flac',
+      url: 'https://studiorack.github.io/studiorack-registry/plugins/studiorack/mda/mda.flac',
       size: 127392,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.flac',
     },
     image: {
-      name: 'mda.jpg',
+      url: 'https://studiorack.github.io/studiorack-registry/plugins/studiorack/mda/mda.jpg',
       size: 104156,
-      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda.jpg',
+    },
+    linux: {
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-linux.zip',
+      size: 70938,
+    },
+    mac: {
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-mac.zip',
+      size: 5122516,
+    },
+    win: {
+      url: 'https://github.com/studiorack/mda/releases/download/v1.0.4/mda-win.zip',
+      size: 1247768,
     },
   },
-  license: 'gpl-3.0',
   id: 'studiorack/mda',
   version: '1.0.4',
   paths: [],
