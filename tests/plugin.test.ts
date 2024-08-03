@@ -152,6 +152,10 @@ if (process.platform === 'win32') {
   PLUGIN_LOCAL.paths = [path.join('test', 'plugins', 'LV2', 'studiorack', 'mda', '1.0.4', 'mda.lv2')];
 }
 
+function format(obj: any) {
+  return JSON.stringify(obj, null, 2);
+}
+
 beforeAll(async () => {
   await cli(`config set pluginFolder "${PLUGIN_DIR}"`);
   dirDelete(PLUGIN_DIR);
@@ -160,11 +164,38 @@ beforeAll(async () => {
 test('Plugin get', async () => {
   const output: CliOutput = await cli(`plugin get "${PLUGIN_ID}" --json`);
   expect(output.exitCode).toBe(0);
-  expect(output.stdout).toMatch(JSON.stringify(PLUGIN, null, 2));
+  expect(output.stdout).toMatch(format(PLUGIN));
 });
 
 test('Plugin install', async () => {
   const output: CliOutput = await cli(`plugin install "${PLUGIN_ID}" --json`);
   expect(output.exitCode).toBe(0);
-  expect(output.stdout).toMatch(JSON.stringify(PLUGIN_LOCAL, null, 2));
+  expect(output.stdout).toMatch(format(PLUGIN_LOCAL));
+});
+
+test('Plugin getLocal', async () => {
+  const output: CliOutput = await cli(`plugin getLocal "${PLUGIN_ID}" --json`);
+  expect(output.exitCode).toBe(0);
+  expect(output.stdout).toMatch(format(PLUGIN_LOCAL));
+});
+
+test('Plugin listLocal', async () => {
+  const output: CliOutput = await cli(`plugin listLocal --json`);
+  expect(output.exitCode).toBe(0);
+  expect(output.stdout).toMatch(format([PLUGIN_LOCAL]));
+});
+
+test('Plugin search', async () => {
+  const output: CliOutput = await cli(`plugin search "mda" --json`);
+  expect(output.exitCode).toBe(0);
+  expect(output.stdout).toMatch(format([PLUGIN]));
+});
+
+test('Plugin uninstall', async () => {
+  const PLUGIN_LOCAL_UPDATED: any = Object.assign({}, PLUGIN_LOCAL);
+  PLUGIN_LOCAL_UPDATED.paths = [];
+  PLUGIN_LOCAL_UPDATED.status = 'available';
+  const output: CliOutput = await cli(`plugin uninstall "${PLUGIN_ID}" --json`);
+  expect(output.exitCode).toBe(0);
+  expect(output.stdout).toMatch(format(PLUGIN_LOCAL_UPDATED));
 });
