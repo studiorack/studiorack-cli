@@ -47,4 +47,4 @@ program
     }
   });
 
-program.version('2.0.0').parse(process.argv);
+program.version('2.0.1').parse(process.argv);
