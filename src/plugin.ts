@@ -11,7 +11,6 @@ import {
   pluginsGetLocal,
   pluginSearch,
   pluginLatest,
-  pluginLicense,
   logEnable,
 } from '@studiorack/core';
 import { CliOptions, CliPluginCreateOptions } from './types/options.js';
@@ -121,11 +120,11 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     for (const key in result) {
       const latest = result[key].versions ? pluginLatest(result[key]) : result[key];
       table.push([
-        latest.id || '-',
+        latest.id || key || '-',
         truncateString(latest.name || '-', 40),
-        truncateString(latest.version || '-', 10),
+        truncateString(result[key].version || '-', 10),
         truncateString(latest.date?.split('T')[0] || '-', 10),
-        truncateString(pluginLicense(latest.license)?.name || '-', 20),
+        truncateString(latest.license || '-', 20),
         truncateString(latest.tags?.join(', ') || '-', 30),
       ]);
     }
@@ -134,9 +133,9 @@ function formatOutput(result: any, json?: boolean, list?: boolean): string {
     table.push([
       latest.id || '-',
       truncateString(latest.name || '-', 40),
-      truncateString(latest.version || '-', 10),
+      truncateString(result.version || '-', 10),
       truncateString(latest.date?.split('T')[0] || '-', 10),
-      truncateString(pluginLicense(latest.license)?.name || '-', 20),
+      truncateString(latest.license || '-', 10),
       truncateString(latest.tags?.join(', ') || '-', 30),
     ]);
   }
