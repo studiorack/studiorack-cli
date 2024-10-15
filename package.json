@@ -18,7 +18,7 @@
     "dev": "tsx ./src/index.ts",
     "dev:cli": "rm $(which studiorack) && npm run build && npm link",
     "format": "prettier . --write",
-    "lint": "eslint ./**/*.ts",
+    "lint": "eslint .",
     "test": "vitest run ./tests --hook-timeout=60000 --test-timeout=60000 --no-file-parallelism",
     "prepare": "npm run build"
   },
@@ -42,15 +42,15 @@
     "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.2.0",
+    "@eslint/js": "^9.12.0",
     "@types/node": "^20.12.12",
-    "eslint": "^8.57.0",
+    "eslint": "^9.12.0",
     "globals": "^15.2.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.7",
     "tsx": "^4.10.1",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^7.8.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.9.0",
     "vitest": "^1.6.0"
   },
   "repository": {
