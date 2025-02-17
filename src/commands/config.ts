@@ -1,40 +1,41 @@
 import { Command } from 'commander';
-import { configGet, configSet, ConfigInterface, logEnable } from '@studiorack/core';
-import { CliOptions } from './types/options.js';
+import { CliOptions } from '../types/options.js';
+import { ConfigInterface, ConfigLocal, dirApp, isTests } from '@open-audio-stack/core';
 
+const appDir: string = isTests() ? 'test' : dirApp();
+const config: ConfigLocal = new ConfigLocal({ appDir });
+config.logEnable();
 const program = new Command();
-const config = program.command('config').description('View/update configuration');
+export const configCmd = program.command('config').description('View/update configuration');
 
-config
+configCmd
   .command('get <key>')
   .option('-j, --json', 'Output results as json')
   .option('-l, --log', 'Enable logging')
   .description('Get a config setting by key')
   .action((key: keyof ConfigInterface, options: CliOptions) => {
-    if (options.log) logEnable();
+    // if (options.log) config.logEnable();
     if (options.json) {
       const obj: any = {};
-      obj[key] = configGet(key);
-      console.log(obj);
+      obj[key] = config.get(key);
+      console.log({ key });
     } else {
-      console.log(configGet(key));
+      console.log(config.get(key));
     }
   });
 
-config
+configCmd
   .command('set <key> <val>')
   .option('-j, --json', 'Output results as json')
   .option('-l, --log', 'Enable logging')
   .description('Set a config setting by key and value')
   .action((key: keyof ConfigInterface, val: any, options: CliOptions) => {
-    if (options.log) logEnable();
+    // if (options.log) config.logEnable();
     if (options.json) {
       const obj: any = {};
-      obj[key] = configSet(key, val);
+      obj[key] = config.set(key, val);
       console.log(obj);
     } else {
-      console.log(configSet(key, val));
+      console.log(config.set(key, val));
     }
   });
-
-export { config };

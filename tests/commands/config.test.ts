@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { cli, CliOutput } from './shared';
+import { cli, CliOutput } from '../shared';
 import path from 'path';
 
 const PLUGIN_DIR: string = path.join('test', 'plugins');
