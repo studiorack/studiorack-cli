@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { dirApp, isTests, ManagerLocal, RegistryType } from '@open-audio-stack/core';
+import { isTests, ManagerLocal, RegistryType } from '@open-audio-stack/core';
 import { Command } from 'commander';
 import { sync } from './commands/sync.js';
 import { configCmd } from './commands/config.js';
@@ -13,9 +13,9 @@ import { reset } from './commands/reset.js';
 import { scan } from './commands/scan.js';
 import { search } from './commands/search.js';
 import { uninstall } from './commands/uninstall.js';
+import { CONFIG_LOCAL_TEST } from './data/Config.js';
 
 // Create based program and add static commands.
-const appDir: string = isTests() ? 'test' : dirApp();
 const program = new Command();
 program.addCommand(configCmd);
 
@@ -23,7 +23,7 @@ program.addCommand(configCmd);
 const types = [RegistryType.Plugins, RegistryType.Presets, RegistryType.Projects];
 types.forEach((type: RegistryType) => {
   const command: Command = program.command(type);
-  const manager: ManagerLocal = new ManagerLocal(type, { appDir });
+  const manager: ManagerLocal = new ManagerLocal(type, isTests() ? CONFIG_LOCAL_TEST : undefined);
   create(command, manager);
   filter(command, manager);
   get(command, manager);

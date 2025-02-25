@@ -1,10 +1,9 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
-import { ConfigInterface, ConfigLocal, dirApp, isTests } from '@open-audio-stack/core';
+import { ConfigInterface, ConfigLocal, isTests } from '@open-audio-stack/core';
+import { CONFIG_LOCAL_TEST } from '../data/Config.js';
 
-const appDir: string = isTests() ? 'test' : dirApp();
-const config: ConfigLocal = new ConfigLocal({ appDir });
-config.logEnable();
+const config: ConfigLocal = new ConfigLocal(isTests() ? CONFIG_LOCAL_TEST : undefined);
 const program = new Command();
 export const configCmd = program.command('config').description('View/update configuration');
 
@@ -14,7 +13,7 @@ configCmd
   .option('-l, --log', 'Enable logging')
   .description('Get a config setting by key')
   .action((key: keyof ConfigInterface, options: CliOptions) => {
-    // if (options.log) config.logEnable();
+    if (options.log) config.logEnable();
     if (options.json) {
       const obj: any = {};
       obj[key] = config.get(key);

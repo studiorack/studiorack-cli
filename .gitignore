@@ -28,6 +28,7 @@ out/
 
 # Misc
 .DS_Store
+test/config.json
 test/plugins
 test/projects
 test/tool
