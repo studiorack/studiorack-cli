@@ -1,31 +1,17 @@
-import { exec, ExecException } from 'child_process';
 import path from 'path';
+import { execaSync, SyncResult } from 'execa';
+import { getSystem, SystemType } from '@open-audio-stack/core';
 
-interface CliOutput {
-  exitCode: number;
-  error: ExecException | null;
-  stdout: string;
-  stderr: string;
-}
 const CLI_PATH: string = path.resolve('./', 'build', 'index.js');
 
-function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
-  return new Promise(resolve => {
-    exec(`node ${CLI_PATH} ${cmd}`, { cwd }, (error, stdout, stderr) => {
-      resolve({
-        exitCode: error && error.code ? error.code : 0,
-        error,
-        stdout: cleanOutput(stdout),
-        stderr,
-      });
-    });
-  });
+export function cli(...args: string[]): string {
+  const result: SyncResult = execaSync('node', [CLI_PATH, ...args]);
+  return cleanOutput(result.stdout as string);
 }
 
 function cleanOutput(output: string): string {
+  if (getSystem() === SystemType.Win) {
+    output = output.replace(/\\/g, '/');
+  }
   return output;
-  // const regex: RegExp = new RegExp(dirApp(), 'g');
-  // return output.replace(regex, '${APP_DIR}');
 }
-
-export { cli, CliOutput };
