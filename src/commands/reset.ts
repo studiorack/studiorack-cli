@@ -10,6 +10,6 @@ export function reset(command: Command, manager: ManagerLocal) {
     .action((options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();
-      manager.reset();
+      console.log(manager.reset());
     });
 }

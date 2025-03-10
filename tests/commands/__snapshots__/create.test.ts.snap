@@ -1,0 +1,6 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Create package 1`] = `
+"[34m?[39m [1mOrg id[22m [2m(org-name)[22m[21G
+[?25h"
+`;

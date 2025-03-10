@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
 import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
+import { formatOutput } from '../utils.js';
 
 export function install(command: Command, manager: ManagerLocal) {
   command
@@ -11,6 +12,7 @@ export function install(command: Command, manager: ManagerLocal) {
       if (options.log) manager.logEnable();
       else manager.logDisable();
       const [slug, version] = inputGetParts(input);
-      console.log(await manager.install(slug, version));
+      await manager.install(slug, version);
+      console.log(formatOutput(manager.getPackage(slug), version));
     });
 }

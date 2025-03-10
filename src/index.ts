@@ -21,9 +21,10 @@ program.addCommand(configCmd);
 
 // Dynamically add commands for each registry type.
 const types = [RegistryType.Plugins, RegistryType.Presets, RegistryType.Projects];
-types.forEach((type: RegistryType) => {
+for (const type of types) {
   const command: Command = program.command(type);
-  const manager: ManagerLocal = new ManagerLocal(type, isTests() ? CONFIG_LOCAL_TEST : undefined);
+  const manager: ManagerLocal = new ManagerLocal(type as RegistryType, isTests() ? CONFIG_LOCAL_TEST : undefined);
+  await manager.sync();
   create(command, manager);
   filter(command, manager);
   get(command, manager);
@@ -34,6 +35,6 @@ types.forEach((type: RegistryType) => {
   search(command, manager);
   sync(command, manager);
   uninstall(command, manager);
-});
+}
 
 program.version('3.0.0').parse(process.argv);

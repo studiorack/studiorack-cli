@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
 import { ManagerLocal } from '@open-audio-stack/core';
+import { formatOutput } from '../utils.js';
 
 export function search(command: Command, manager: ManagerLocal) {
   command
@@ -10,6 +11,6 @@ export function search(command: Command, manager: ManagerLocal) {
     .action(async (query: string, options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();
-      console.log(manager.search(query));
+      console.log(formatOutput(manager.search(query)));
     });
 }
