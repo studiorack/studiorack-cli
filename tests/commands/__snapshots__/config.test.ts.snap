@@ -1,24 +1,24 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Config get 1`] = `"test"`;
+exports[`Config get 1`] = `test`;
 
-exports[`Config get 2`] = `"test/installed/plugins"`;
+exports[`Config get 2`] = `test/installed/plugins`;
 
-exports[`Config get 3`] = `"test/installed/presets"`;
+exports[`Config get 3`] = `test/installed/presets`;
 
-exports[`Config get 4`] = `"test/installed/projects"`;
+exports[`Config get 4`] = `test/installed/projects`;
 
 exports[`Config get 5`] = `
-"[
+[
   {
     name: 'Open Audio Registry',
     url: 'https://open-audio-stack.github.io/open-audio-stack-registry'
   }
-]"
+]
 `;
 
-exports[`Config get 6`] = `"1.0.0"`;
+exports[`Config get 6`] = `1.0.0`;
 
-exports[`Config set 1`] = `"test2"`;
+exports[`Config set 1`] = `test2`;
 
-exports[`Config set 2`] = `"test"`;
+exports[`Config set 2`] = `test`;
