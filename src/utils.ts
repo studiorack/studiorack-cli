@@ -9,44 +9,33 @@ export function formatOutput(result: Package[] | Package | undefined, version?: 
     head: ['Id', 'Name', 'Version', 'Date', 'License', 'Tags'],
   });
   if (result instanceof Array) {
-    if (result.length === 0) {
-      return `No results found`;
-    }
+    if (result.length === 0) return `No results found`;
     for (const index in result) {
-      const pkg = result[index];
-      const versionNum: string = version || pkg.latestVersion();
-      const pkgVersion = pkg.getVersion(versionNum);
-      if (pkgVersion) {
-        table.push([
-          pkg.slug || '-',
-          truncateString(pkgVersion.name || '-', 40),
-          truncateString(versionNum || '-', 10),
-          truncateString(pkgVersion.date?.split('T')[0] || '-', 10),
-          truncateString(pkgVersion.license || '-', 20),
-          truncateString(pkgVersion.tags?.join(', ') || '-', 30),
-        ]);
-      }
+      const row = formatRow(result[index], version);
+      if (!row) return `No results found`;
+      table.push(row);
     }
   } else {
-    if (!result) {
-      return `No result found`;
-    }
-    const pkg = result;
-    const versionNum: string = version || pkg.latestVersion();
-    const pkgVersion = pkg.getVersion(versionNum);
-    if (!pkgVersion) {
-      return `No result found`;
-    }
-    table.push([
-      '-',
-      truncateString(pkgVersion.name || '-', 40),
-      truncateString(versionNum || '-', 10),
-      truncateString(pkgVersion.date?.split('T')[0] || '-', 10),
-      truncateString(pkgVersion.license || '-', 10),
-      truncateString(pkgVersion.tags?.join(', ') || '-', 30),
-    ]);
+    const row = formatRow(result, version);
+    if (!row) return `No result found`;
+    table.push(row);
   }
   return table.toString();
+}
+
+export function formatRow(pkg: Package, version?: string) {
+  if (!pkg) return;
+  const versionNum: string = version || pkg.latestVersion();
+  const pkgVersion = pkg.getVersion(versionNum);
+  if (!pkgVersion) return;
+  return [
+    pkg.slug || '-',
+    truncateString(pkgVersion.name || '-', 40),
+    truncateString(versionNum || '-', 10),
+    truncateString(pkgVersion.date?.split('T')[0] || '-', 10),
+    truncateString(pkgVersion.license || '-', 10),
+    truncateString(pkgVersion.tags?.join(', ') || '-', 30),
+  ];
 }
 
 // Helper function to format strings
