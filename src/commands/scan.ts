@@ -10,6 +10,7 @@ export function scan(command: Command, manager: ManagerLocal) {
     .action(async (options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();
-      console.log(await manager.scan());
+      manager.scan();
+      console.log(`${manager.type} scan has been completed`);
     });
 }

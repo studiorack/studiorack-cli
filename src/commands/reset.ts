@@ -10,6 +10,7 @@ export function reset(command: Command, manager: ManagerLocal) {
     .action((options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();
-      console.log(manager.reset());
+      manager.reset();
+      console.log(`${manager.type} cache has been reset`);
     });
 }

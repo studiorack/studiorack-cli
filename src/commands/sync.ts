@@ -10,6 +10,7 @@ export function sync(command: Command, manager: ManagerLocal) {
     .action(async (options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();
-      console.log(await manager.sync());
+      await manager.sync();
+      console.log(`${manager.type} sync has been completed`);
     });
 }
