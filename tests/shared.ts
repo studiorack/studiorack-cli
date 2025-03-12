@@ -18,7 +18,15 @@ export function cli(...args: string[]): string {
   return cleanOutput(result.stdout as string);
 }
 
-function cleanOutput(output: string): string {
+export function cliCatch(...args: string[]) {
+  try {
+    cli(...args);
+  } catch (error: any) {
+    return error;
+  }
+}
+
+export function cleanOutput(output: string): string {
   if (getSystem() === SystemType.Win) {
     output = output.replace(/\\/g, '/');
   }

@@ -161,3 +161,5 @@ exports[`List packages 1`] = `
 │ aaronaanderson/terrain                    │ Terrain                   │ 1.2.2   │ 2024-11-01 │ gpl-3.0       │ Instrument, Synthesizer, Wavet... │
 └───────────────────────────────────────────┴───────────────────────────┴─────────┴────────────┴───────────────┴───────────────────────────────────┘
 `;
+
+exports[`List packages 2`] = `No results found`;

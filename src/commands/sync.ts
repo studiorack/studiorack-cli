@@ -6,7 +6,7 @@ export function sync(command: Command, manager: ManagerLocal) {
   command
     .command('sync')
     .option('-l, --log', 'Enable logging')
-    .description('Sync remote registries and aggregate packages into cache')
+    .description('Sync remote packages into cache')
     .action(async (options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();

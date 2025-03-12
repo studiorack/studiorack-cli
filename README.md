@@ -6,133 +6,48 @@ StudioRack command line tool to manage audio DAW VST plugin dependencies.
 
 ![StudioRack Cli](/screenshot.jpg)
 
+<a href="https://github.com/open-audio-stack" target="_blank"><img src="https://raw.githubusercontent.com/open-audio-stack/open-audio-stack-registry/refs/heads/main/src/assets/powered-by-open-audio-stack.svg" alt="Powered by Open Audio Stack"></a>
+
 ## Installation
 
 To install the tool, run the command:
 
     npm install @studiorack/cli -g
 
-Verify the tool has been installed by running:
-
-    studiorack --version
-
-Check the default configuration by running:
-
-    studiorack config get pluginFolder
-    studiorack config get projectFolder
-
-If you need to adjust change using:
-
-    studiorack config set pluginFolder "path/to/plugins"
-    studiorack config set projectFolder "path/to/projects"
-
-## Usage
-
-List the projects found in projectFolder using:
-
-    studiorack project listLocal
-
-Install a project's plugins using:
-
-    studiorack project install <project-id>
-
-Then open the project using:
-
-    studiorack project open <project-id>
-
-## Creating a new project configuration
-
-You can create a new studiorack project .json file using:
-
-    studiorack project create <project-id>
-
-This will create a studiorack .json file with your configuration:
-
-    {
-      "id": "example",
-      "author": "studiorack-user",
-      "homepage": "https://studiorack.github.io/studiorack-site/",
-      "name": "StudioRack Project",
-      "description": "Created using StudioRack",
-      "repo": "songs/april",
-      "tags": [
-        "StudioRack"
-      ],
-      "version": "1.0.0",
-      "date": "2021-05-30T21:58:39.138Z",
-      "type": {
-        "name": "Ableton",
-        "ext": "als"
-      },
-      "files": {
-        "audio": {
-          "name": "example.wav",
-          "size": 1902788
-        },
-        "image": {
-          "name": "example.png",
-          "size": 16360
-        },
-        "project": {
-          "name": "example.als",
-          "size": 253018
-        }
-      },
-      "plugins": {},
-      "path": "songs/april",
-      "status": "installed"
-    }
-
-For a full list of commands use:
+Get help:
 
     studiorack --help
 
-## Finding, adding and removing plugins
+Get version:
 
-Search the plugin registry using:
+    studiorack --version
 
-    studiorack plugin search delay
+## Usage
 
-Add a plugin and update project.json config using:
+StudioRack command line tool adheres to the [Open Audio Stack - Manager specification](https://github.com/open-audio-stack/open-audio-stack-core/blob/main/specification.
 
-    studiorack project install <project-id> <plugin-id>
+Config values can be set/get using:
 
-Remove a plugin and update project.json config using:
+    studiorack config set <key> <value>
+    studiorack config get <key>
+    studiorack config get pluginsDir
 
-    studiorack plugin uninstall <project-id> <plugin-id>
+Search the registry package index for lazy matching query:
 
-## Creating and publishing a plugin
+    studiorack <registryType> search <query>
+    studiorack plugins search piano
 
-Create a new plugin using the starter template:
+Get a package metadata:
 
-    studiorack plugin create myplugin --type steinberg
+    studiorack <registryType> get <slug>
+    studiorack plugins get surge-synthesizer/surge
 
-Follow the instructions at ./myplugin/README.md to install and build your plugin
+Install a package:
 
-Validate your plugin:
+    studiorack <registryType> install <slug>@<version>
+    studiorack plugins install surge-synthesizer/surge
 
-    studiorack validate ./myplugin/build/VST3/Release/myplugin.vst3
-
-Convert and enrich validator report metadata into json:
-
-    studiorack validate ./myplugin/build/VST3/Release/myplugin.vst3 --json
-
-Scan multiple plugins at the same time using wildcard selectors:
-
-    studiorack validate "./myplugin/build/VST3/Release/**/*.{vst,vst3}" --json
-
-When ready to release, commit your plugin to GitHub and ensure it is tagged with a topic:
-
-    studiorack-plugin
-
-Then it should appear in the GitHub topic search and API:
-
-    https://github.com/topics/studiorack-plugin
-    https://api.github.com/search/repositories?q=topic:studiorack-plugin+fork:true
-
-StudioRack registry updates once a day at midnight UTC, which will make your plugin available via our API at:
-
-    https://studiorack.github.io/studiorack-registry/
+For a full list of commands, please refer to the [Open Audio Stack - Manager specification](https://github.com/open-audio-stack/open-audio-stack-core/blob/main/specification.md)
 
 ## Developer information
 
