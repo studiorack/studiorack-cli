@@ -17,7 +17,7 @@
     "check": "npm run format && npm run lint && npm run build",
     "clean": "rimraf coverage build tmp",
     "dev": "tsx ./src/index.ts",
-    "dev:cli": "rm $(which studiorack) && npm run build && npm link",
+    "dev:cli": "npm unlink -g && npm run build && npm link",
     "format": "prettier . --write",
     "lint": "eslint .",
     "test": "npm run build && vitest run ./tests --hook-timeout=60000 --test-timeout=60000 --no-file-parallelism",
@@ -39,7 +39,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@open-audio-stack/core": "^0.1.20",
+    "@open-audio-stack/core": "^0.1.21",
     "cli-table3": "^0.6.5",
     "commander": "^12.1.0"
   },

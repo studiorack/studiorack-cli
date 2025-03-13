@@ -13,6 +13,7 @@ export function get(command: Command, manager: ManagerLocal) {
       else manager.logDisable();
       const [slug, version] = inputGetParts(input);
       const pkg = manager.getPackage(slug);
-      console.log(formatOutput(pkg, version));
+      const versions = version ? [version] : Array.from(pkg?.versions.keys() || new Map().keys());
+      console.log(formatOutput(pkg, versions));
     });
 }

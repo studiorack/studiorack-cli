@@ -13,6 +13,6 @@ export function uninstall(command: Command, manager: ManagerLocal) {
       else manager.logDisable();
       const [slug, version] = inputGetParts(input);
       await manager.uninstall(slug, version);
-      console.log(formatOutput(manager.getPackage(slug), version));
+      console.log(formatOutput(manager.getPackage(slug), [version]));
     });
 }

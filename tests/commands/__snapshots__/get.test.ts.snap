@@ -5,6 +5,8 @@ exports[`Get package 1`] = `
 │ Id                      │ Name     │ Version │ Date       │ License │ Tags                          │
 ├─────────────────────────┼──────────┼─────────┼────────────┼─────────┼───────────────────────────────┤
 │ surge-synthesizer/surge │ Surge XT │ 1.3.4   │ 2024-08-11 │ gpl-3.0 │ Instrument, Synth, Modulation │
+├─────────────────────────┼──────────┼─────────┼────────────┼─────────┼───────────────────────────────┤
+│ surge-synthesizer/surge │ Surge XT │ 1.3.1   │ 2024-03-02 │ gpl-3.0 │ Instrument, Synth, Modulation │
 └─────────────────────────┴──────────┴─────────┴────────────┴─────────┴───────────────────────────────┘
 `;
 
@@ -16,4 +18,4 @@ exports[`Get package 2`] = `
 └─────────────────────────┴──────────┴─────────┴────────────┴─────────┴───────────────────────────────┘
 `;
 
-exports[`Get package 3`] = `No result found`;
+exports[`Get package 3`] = `No results found`;

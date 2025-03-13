@@ -13,6 +13,6 @@ export function install(command: Command, manager: ManagerLocal) {
       else manager.logDisable();
       const [slug, version] = inputGetParts(input);
       await manager.install(slug, version);
-      console.log(formatOutput(manager.getPackage(slug), version));
+      console.log(formatOutput(manager.getPackage(slug), [version]));
     });
 }

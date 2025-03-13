@@ -16,4 +16,4 @@ exports[`Install package 2`] = `
 └─────────────────────────┴──────────┴─────────┴────────────┴─────────┴───────────────────────────────┘
 `;
 
-exports[`Install package 3`] = `No result found`;
+exports[`Install package 3`] = `No results found`;

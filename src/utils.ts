@@ -1,7 +1,7 @@
 import { Package } from '@open-audio-stack/core';
 import CliTable3 from 'cli-table3';
 
-export function formatOutput(result: Package[] | Package | undefined, version?: string, json?: boolean): string {
+export function formatOutput(result: Package[] | Package | undefined, versions?: string[], json?: boolean): string {
   if (!result) return `No results found`;
   if (json) return JSON.stringify(result, null, 2);
 
@@ -9,17 +9,29 @@ export function formatOutput(result: Package[] | Package | undefined, version?: 
     head: ['Id', 'Name', 'Version', 'Date', 'License', 'Tags'],
   });
   if (result instanceof Array) {
-    if (result.length === 0) return `No results found`;
     for (const index in result) {
-      const row = formatRow(result[index], version);
-      if (!row) return `No results found`;
-      table.push(row);
+      if (versions && versions.length > 0) {
+        versions?.forEach((version: string) => {
+          const row = formatRow(result[index], version);
+          if (row) table.push(row);
+        });
+      } else {
+        const row = formatRow(result[index]);
+        if (row) table.push(row);
+      }
     }
   } else {
-    const row = formatRow(result, version);
-    if (!row) return `No result found`;
-    table.push(row);
+    if (versions && versions.length > 0) {
+      versions?.forEach((version: string) => {
+        const row = formatRow(result, version);
+        if (row) table.push(row);
+      });
+    } else {
+      const row = formatRow(result);
+      if (row) table.push(row);
+    }
   }
+  if (table.length === 0) return `No results found`;
   return table.toString();
 }
 
