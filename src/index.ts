@@ -24,8 +24,8 @@ const types = [RegistryType.Plugins, RegistryType.Presets, RegistryType.Projects
 for (const type of types) {
   const command: Command = program.command(type);
   const manager: ManagerLocal = new ManagerLocal(type as RegistryType, isTests() ? CONFIG_LOCAL_TEST : undefined);
-  manager.scan();
   await manager.sync();
+  manager.scan();
   create(command, manager);
   filter(command, manager);
   get(command, manager);
