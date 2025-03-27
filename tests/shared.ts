@@ -1,33 +1,34 @@
-import { dirAppData } from '@studiorack/core';
-import { exec, ExecException } from 'child_process';
+import { expect } from 'vitest';
 import path from 'path';
+import { stripVTControlCharacters } from 'util';
+import { execaSync, SyncResult } from 'execa';
+import { getSystem, SystemType } from '@open-audio-stack/core';
 
-interface CliOutput {
-  exitCode: number;
-  error: ExecException | null;
-  stdout: string;
-  stderr: string;
-}
-
-const APP_DIR: string = path.join(dirAppData(), 'studiorack');
 const CLI_PATH: string = path.resolve('./', 'build', 'index.js');
 
-function cli(cmd: string, cwd = '.'): Promise<CliOutput> {
-  return new Promise(resolve => {
-    exec(`node ${CLI_PATH} ${cmd}`, { cwd }, (error, stdout, stderr) => {
-      resolve({
-        exitCode: error && error.code ? error.code : 0,
-        error,
-        stdout: cleanOutput(stdout),
-        stderr,
-      });
-    });
-  });
+// ANSI escape codes for colors and formatting vary across systems
+// Sanitize output for snapshot testing
+expect.addSnapshotSerializer({
+  serialize: val => stripVTControlCharacters(val),
+  test: () => true,
+});
+
+export function cli(...args: string[]): string {
+  const result: SyncResult = execaSync('node', [CLI_PATH, ...args]);
+  return cleanOutput(result.stdout as string);
 }
 
-function cleanOutput(output: string): string {
-  const regex: RegExp = new RegExp(APP_DIR, 'g');
-  return output.replace(regex, '${APP_DIR}');
+export function cliCatch(...args: string[]) {
+  try {
+    cli(...args);
+  } catch (error: any) {
+    return error;
+  }
 }
 
-export { cli, CliOutput };
+export function cleanOutput(output: string): string {
+  if (getSystem() === SystemType.Win) {
+    output = output.replace(/\\/g, '/');
+  }
+  return output;
+}

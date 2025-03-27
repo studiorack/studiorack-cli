@@ -1,50 +1,41 @@
 #!/usr/bin/env node
 
+import { isTests, ManagerLocal, RegistryType } from '@open-audio-stack/core';
 import { Command } from 'commander';
-import { config } from './config.js';
-import { plugin } from './plugin.js';
-import { project } from './project.js';
-import { logEnable, pluginValidateFolder, PluginVersion, toolFolder, toolInstall } from '@studiorack/core';
-import { CliRunOptions, CliValidateOptions } from './types/options.js';
+import { sync } from './commands/sync.js';
+import { configCmd } from './commands/config.js';
+import { create } from './commands/create.js';
+import { filter } from './commands/filter.js';
+import { get } from './commands/get.js';
+import { install } from './commands/install.js';
+import { list } from './commands/list.js';
+import { reset } from './commands/reset.js';
+import { scan } from './commands/scan.js';
+import { search } from './commands/search.js';
+import { uninstall } from './commands/uninstall.js';
+import { CONFIG_LOCAL_TEST } from './data/Config.js';
 
+// Create based program and add static commands.
 const program = new Command();
-program.addCommand(config);
-program.addCommand(plugin);
-program.addCommand(project);
+program.addCommand(configCmd);
 
-program
-  .command('run [path]')
-  .option('-j, --json', 'plugin json file')
-  .option('-l, --log', 'Enable logging')
-  .option('-t, --tool <type>', 'tool (clapinfo, pluginval or validator)')
-  .description('Run a command-line tool')
-  .action(async (pluginPath: string, options: CliRunOptions) => {
-    if (options.log) logEnable();
-    await toolInstall(options.tool);
-    const results: string[] = toolFolder(options.tool, pluginPath);
-    if (results.length) {
-      results.forEach((result: string) => {
-        console.log(result);
-      });
-    }
-  });
+// Dynamically add commands for each registry type.
+const types = [RegistryType.Plugins, RegistryType.Presets, RegistryType.Projects];
+for (const type of types) {
+  const command: Command = program.command(type);
+  const manager: ManagerLocal = new ManagerLocal(type as RegistryType, isTests() ? CONFIG_LOCAL_TEST : undefined);
+  await manager.sync();
+  manager.scan();
+  create(command, manager);
+  filter(command, manager);
+  get(command, manager);
+  install(command, manager);
+  list(command, manager);
+  reset(command, manager);
+  scan(command, manager);
+  search(command, manager);
+  sync(command, manager);
+  uninstall(command, manager);
+}
 
-// Backwards compatibility with Github Actions
-program
-  .command('validate [path]')
-  .option('-f, --files', 'add files (audio, video and platform)')
-  .option('-j, --json', 'plugin json file')
-  .option('-l, --log', 'Enable logging')
-  .option('-s, --summary', 'plugins summary json file')
-  .option('-t, --txt', 'plugin txt file')
-  .option('-z, --zip', 'create a zip file of plugin')
-  .description('Validate a plugin using the Steinberg VST3 SDK validator')
-  .action(async (pluginPath: string, options: CliValidateOptions) => {
-    if (options.log) logEnable();
-    const result: PluginVersion[] = await pluginValidateFolder(pluginPath, options);
-    if (options.summary) {
-      console.log(result);
-    }
-  });
-
-program.version('2.0.1').parse(process.argv);
+program.version('3.0.0').parse(process.argv);
