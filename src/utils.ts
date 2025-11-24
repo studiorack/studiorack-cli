@@ -6,7 +6,7 @@ export function formatOutput(result: Package[] | Package | undefined, versions?:
   if (json) return JSON.stringify(result, null, 2);
 
   const table = new CliTable3({
-    head: ['Id', 'Name', 'Version', 'Date', 'License', 'Tags'],
+    head: ['Id', 'Name', 'Version', 'Installed', 'Date', 'License', 'Tags'],
   });
   if (result instanceof Array) {
     for (const index in result) {
@@ -44,6 +44,7 @@ export function formatRow(pkg: Package, version?: string) {
     pkg.slug || '-',
     truncateString(pkgVersion.name || '-', 40),
     truncateString(versionNum || '-', 10),
+    pkgVersion.installed ? '✓' : '-',
     truncateString(pkgVersion.date?.split('T')[0] || '-', 10),
     truncateString(pkgVersion.license || '-', 10),
     truncateString(pkgVersion.tags?.join(', ') || '-', 30),
