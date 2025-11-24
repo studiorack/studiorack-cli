@@ -53,8 +53,8 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.7",
     "tsx": "^4.10.1",
-    "typescript": "^5.6.3",
-    "typescript-eslint": "^8.9.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.47.0",
     "vitest": "^3.0.7"
   },
   "repository": {
