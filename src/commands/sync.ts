@@ -1,6 +1,7 @@
 import { Command } from 'commander';
+import ora from 'ora';
 import { CliOptions } from '../types/options.js';
-import { ManagerLocal } from '@open-audio-stack/core';
+import { ManagerLocal, isTests } from '@open-audio-stack/core';
 
 export function sync(command: Command, manager: ManagerLocal) {
   command
@@ -10,7 +11,15 @@ export function sync(command: Command, manager: ManagerLocal) {
     .action(async (options: CliOptions) => {
       if (options.log) manager.logEnable();
       else manager.logDisable();
-      await manager.sync();
-      console.log(`${manager.type} sync has been completed`);
+      const spinner = ora(`Syncing ${manager.type}...`).start();
+      try {
+        await manager.sync();
+        spinner.succeed(`${manager.type} sync completed`);
+        if (isTests()) console.log(`${manager.type} sync completed`);
+      } catch (error) {
+        spinner.fail(`${manager.type} sync failed`);
+        if (isTests()) console.log(`${manager.type} sync failed`);
+        throw error;
+      }
     });
 }

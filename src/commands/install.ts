@@ -1,7 +1,7 @@
 import { Command } from 'commander';
+import ora from 'ora';
 import { CliOptions } from '../types/options.js';
-import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
-import { formatOutput } from '../utils.js';
+import { inputGetParts, ManagerLocal, isTests } from '@open-audio-stack/core';
 
 export function install(command: Command, manager: ManagerLocal) {
   command
@@ -12,7 +12,15 @@ export function install(command: Command, manager: ManagerLocal) {
       if (options.log) manager.logEnable();
       else manager.logDisable();
       const [slug, version] = inputGetParts(input);
-      await manager.install(slug, version);
-      console.log(formatOutput(manager.getPackage(slug), [version]));
+      const spinner = ora(`Installing ${slug}${version ? `@${version}` : ''}...`).start();
+      try {
+        await manager.install(slug, version);
+        spinner.succeed(`Installed ${slug}${version ? `@${version}` : ''}`);
+        if (isTests()) console.log(`Installed ${slug}${version ? `@${version}` : ''}`);
+      } catch (error) {
+        spinner.fail(`Failed to install ${slug}${version ? `@${version}` : ''}`);
+        if (isTests()) console.log(`Failed to install ${slug}${version ? `@${version}` : ''}`);
+        throw error;
+      }
     });
 }

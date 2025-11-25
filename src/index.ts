@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --no-warnings=ExperimentalWarning
 
 import { isTests, ManagerLocal, RegistryType } from '@open-audio-stack/core';
 import { Command } from 'commander';
