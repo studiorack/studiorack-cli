@@ -1,19 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Uninstall package 1`] = `
-┌─────────────────────────┬──────────┬─────────┬───────────┬────────────┬─────────┬───────────────────────────────┐
-│ Id                      │ Name     │ Version │ Installed │ Date       │ License │ Tags                          │
-├─────────────────────────┼──────────┼─────────┼───────────┼────────────┼─────────┼───────────────────────────────┤
-│ surge-synthesizer/surge │ Surge XT │ 1.3.4   │ -         │ 2024-08-11 │ gpl-3.0 │ Instrument, Synth, Modulation │
-└─────────────────────────┴──────────┴─────────┴───────────┴────────────┴─────────┴───────────────────────────────┘
-`;
+exports[`Uninstall package 1`] = `Uninstalled surge-synthesizer/surge`;
 
-exports[`Uninstall package 2`] = `
-┌─────────────────────────┬──────────┬─────────┬───────────┬────────────┬─────────┬───────────────────────────────┐
-│ Id                      │ Name     │ Version │ Installed │ Date       │ License │ Tags                          │
-├─────────────────────────┼──────────┼─────────┼───────────┼────────────┼─────────┼───────────────────────────────┤
-│ surge-synthesizer/surge │ Surge XT │ 1.3.1   │ -         │ 2024-03-02 │ gpl-3.0 │ Instrument, Synth, Modulation │
-└─────────────────────────┴──────────┴─────────┴───────────┴────────────┴─────────┴───────────────────────────────┘
-`;
+exports[`Uninstall package 2`] = `Uninstalled surge-synthesizer/surge@1.3.1`;
 
-exports[`Uninstall package 3`] = `No results found`;
+exports[`Uninstall package 3`] = `Uninstalled surge-synthesizer/surge@0.0.0`;

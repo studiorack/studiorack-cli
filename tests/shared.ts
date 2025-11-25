@@ -14,7 +14,9 @@ expect.addSnapshotSerializer({
 });
 
 export function cli(...args: string[]): string {
-  const result: SyncResult = execaSync('node', [CLI_PATH, ...args]);
+  const result: SyncResult = execaSync('node', [CLI_PATH, ...args], {
+    env: { ...process.env, NODE_OPTIONS: '--no-warnings=ExperimentalWarning' },
+  });
   return cleanOutput(result.stdout as string);
 }
 

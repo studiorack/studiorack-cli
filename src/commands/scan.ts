@@ -11,6 +11,6 @@ export function scan(command: Command, manager: ManagerLocal) {
       if (options.log) manager.logEnable();
       else manager.logDisable();
       manager.scan();
-      console.log(`${manager.type} scan has been completed`);
+      console.log(`${manager.type} scan completed`);
     });
 }
