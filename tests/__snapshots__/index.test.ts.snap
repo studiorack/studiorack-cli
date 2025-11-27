@@ -9,6 +9,7 @@ Options:
 
 Commands:
   config          View/update configuration
+  apps
   plugins
   presets
   projects
