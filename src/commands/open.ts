@@ -11,6 +11,12 @@ export function open(command: Command, manager: ManagerLocal) {
       if (cliOptions.log) manager.logEnable();
       else manager.logDisable();
       const [slug, version] = inputGetParts(input);
-      await manager.open(slug, version, options);
+      try {
+        await manager.open(slug, version, options);
+      } catch (error: any) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.error(errorMessage);
+        process.exit(1);
+      }
     });
 }

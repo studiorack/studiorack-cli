@@ -17,9 +17,9 @@ export function sync(command: Command, manager: ManagerLocal) {
         spinner.succeed(`${manager.type} sync completed`);
         if (isTests()) console.log(`${manager.type} sync completed`);
       } catch (error) {
-        spinner.fail(`${manager.type} sync failed`);
-        if (isTests()) console.log(`${manager.type} sync failed`);
-        throw error;
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        spinner.fail(errorMessage);
+        if (isTests()) console.log(errorMessage);
       }
     });
 }

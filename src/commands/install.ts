@@ -18,9 +18,9 @@ export function install(command: Command, manager: ManagerLocal) {
         spinner.succeed(`Installed ${slug}${version ? `@${version}` : ''}`);
         if (isTests()) console.log(`Installed ${slug}${version ? `@${version}` : ''}`);
       } catch (error) {
-        spinner.fail(`Failed to install ${slug}${version ? `@${version}` : ''}`);
-        if (isTests()) console.log(`Failed to install ${slug}${version ? `@${version}` : ''}`);
-        throw error;
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        spinner.fail(errorMessage);
+        if (isTests()) console.log(errorMessage);
       }
     });
 }
