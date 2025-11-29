@@ -1,28 +1,19 @@
 import { expect, test } from 'vitest';
 import { cli, cliCatch, cleanOutput } from '../shared';
-import { getSystem } from '@open-audio-stack/core';
+import { getSystem, SystemType } from '@open-audio-stack/core';
 
 test('Open command help', () => {
   const result = cli('apps', 'open', '--help');
   expect(cleanOutput(result)).toMatchSnapshot();
 });
 
-test('Open command install and run steinberg/validator', () => {
+test(`Open command install and run steinberg/validator ${getSystem()}`, () => {
   // First install the app
   const installResult = cli('apps', 'install', 'steinberg/validator');
   expect(installResult).toContain('Installed steinberg/validator');
 
-  // Then try to open it with --help flag
-  try {
-    const openResult = cli('apps', 'open', 'steinberg/validator', '--', '--help');
-    expect(cleanOutput(openResult)).toMatchSnapshot(`Open command install and run steinberg/validator ${getSystem()}`);
-  } catch (error: any) {
-    // Capture the error output for snapshot testing
-    // This handles cases where the app might not run properly in CI
-    expect(cleanOutput(error.stderr || error.stdout || error.message)).toMatchSnapshot(
-      `Open command install and run steinberg/validator error ${getSystem()}`,
-    );
-  }
+  const openResult = cli('apps', 'open', 'steinberg/validator', '--', '--help');
+  expect(cleanOutput(openResult)).toMatchSnapshot();
 });
 
 test('Open command with non-existent package', () => {
