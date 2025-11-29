@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest';
 import { cli, cliCatch, cleanOutput } from '../shared';
-import { getSystem } from '@open-audio-stack/core';
 
 test('Open command help', () => {
   const result = cli('apps', 'open', '--help');
