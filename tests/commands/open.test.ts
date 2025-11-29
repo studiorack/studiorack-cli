@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest';
 import { cli, cliCatch, cleanOutput } from '../shared';
+import { getSystem } from '@open-audio-stack/core';
 
 test('Open command help', () => {
   const result = cli('apps', 'open', '--help');
@@ -14,11 +15,13 @@ test('Open command install and run steinberg/validator', () => {
   // Then try to open it with --help flag
   try {
     const openResult = cli('apps', 'open', 'steinberg/validator', '--', '--help');
-    expect(cleanOutput(openResult)).toMatchSnapshot();
+    expect(cleanOutput(openResult)).toMatchSnapshot(`Open command install and run steinberg/validator ${getSystem()}`);
   } catch (error: any) {
     // Capture the error output for snapshot testing
     // This handles cases where the app might not run properly in CI
-    expect(cleanOutput(error.stderr || error.stdout || error.message)).toMatchSnapshot();
+    expect(cleanOutput(error.stderr || error.stdout || error.message)).toMatchSnapshot(
+      `Open command install and run steinberg/validator error ${getSystem()}`,
+    );
   }
 });
 
