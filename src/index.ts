@@ -40,4 +40,4 @@ for (const type of types) {
   uninstall(command, manager);
 }
 
-program.version('3.0.0').parse(process.argv);
+program.version('3.0.1').parse(process.argv);
