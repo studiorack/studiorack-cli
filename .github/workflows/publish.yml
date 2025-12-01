@@ -1,0 +1,75 @@
+name: Publish to npm
+
+on:
+  workflow_dispatch:
+    #inputs:
+    #  version_bump:
+    #    description: 'Version bump type'
+    #    required: true
+    #    type: choice
+    #    options:
+    #      - patch
+    #      - minor
+    #      - major
+    #      - none
+    #    default: 'patch'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      #- name: Setup Node.js
+      #  uses: actions/setup-node@v4
+      #  with:
+      #    node-version: '18'
+      #    registry-url: 'https://registry.npmjs.org'
+
+      #- name: Configure Git
+      #  run: |
+      #    git config --global user.name "github-actions[bot]"
+      #    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      #- name: Bump version
+      #  if: inputs.version_bump != 'none'
+      #  run: npm version ${{ inputs.version_bump }} -m "chore: bump version to %s"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit
+        run: npm audit
+
+      - name: Lint
+        run: |
+          npm run lint
+
+      - name: Test
+        run: |
+          npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Set up .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      #- name: Push version bump
+      #  if: inputs.version_bump != 'none'
+      #  run: git push --follow-tags
