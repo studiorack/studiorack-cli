@@ -2,7 +2,10 @@ name: Test
 
 on:
   push:
-  pull_request:
+    branches-ignore:
+      - main
+    tags-ignore:
+      - 'v*'
 
 jobs:
   test_code:
