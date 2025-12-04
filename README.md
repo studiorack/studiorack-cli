@@ -82,7 +82,6 @@ To publish and release changes and create a version tag using:
 
     npm version patch
     git push && git push origin --tags
-    npm publish
 
 ## Contact
 
