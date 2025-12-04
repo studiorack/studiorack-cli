@@ -18,9 +18,9 @@ export function uninstall(command: Command, manager: ManagerLocal) {
         spinner.succeed(`Uninstalled ${slug}${version ? `@${version}` : ''}`);
         if (isTests()) console.log(`Uninstalled ${slug}${version ? `@${version}` : ''}`);
       } catch (error) {
-        spinner.fail(`Failed to uninstall ${slug}${version ? `@${version}` : ''}`);
-        if (isTests()) console.log(`Failed to uninstall ${slug}${version ? `@${version}` : ''}`);
-        throw error;
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        spinner.fail(errorMessage);
+        if (isTests()) console.log(errorMessage);
       }
     });
 }

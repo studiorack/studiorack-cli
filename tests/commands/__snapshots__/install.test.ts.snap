@@ -4,4 +4,4 @@ exports[`Install package 1`] = `Installed surge-synthesizer/surge`;
 
 exports[`Install package 2`] = `Installed surge-synthesizer/surge@1.3.1`;
 
-exports[`Install package 3`] = `Installed surge-synthesizer/surge@0.0.0`;
+exports[`Install package 3`] = `Package surge-synthesizer/surge version 0.0.0 not found in registry`;

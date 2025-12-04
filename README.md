@@ -47,6 +47,11 @@ Install a package:
     studiorack <registryType> install <slug>@<version>
     studiorack plugins install surge-synthesizer/surge
 
+Install and open an app:
+
+    studiorack apps install steinberg/validator
+    studiorack apps open steinberg/validator -- --help
+
 For a full list of commands, please refer to the [Open Audio Stack - Manager specification](https://github.com/open-audio-stack/open-audio-stack-core/blob/main/specification.md)
 
 ## Developer information

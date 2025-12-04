@@ -9,6 +9,7 @@ Options:
 
 Commands:
   config          View/update configuration
+  apps
   plugins
   presets
   projects
@@ -19,58 +20,67 @@ exports[`Root command plugins 1`] = `
 Usage: index plugins [options] [command]
 
 Options:
-  -h, --help                        display help for command
+  -h, --help                           display help for command
 
 Commands:
-  create [options] <path>           Create a new package locally
-  filter [options] <field> <value>  Filter the by field and matching value
-  get [options] <input>             Get package metadata from registry
-  install [options] <input>         Install a package locally by slug/version
-  list [options]                    List packages
-  reset [options]                   Reset the synced package cache
-  scan [options]                    Scan local packages into cache
-  search [options] <query>          Search using a lazy matching query
-  sync [options]                    Sync remote packages into cache
-  uninstall [options] <input>       Uninstall a package locally by slug/version
-  help [command]                    display help for command
+  create [options] <path>              Create a new package locally
+  filter [options] <field> <value>     Filter the by field and matching value
+  get [options] <input>                Get package metadata from registry
+  install [options] <input>            Install a package locally by
+                                       slug/version
+  list [options]                       List packages
+  open [options] <input> [options...]  Open a package by slug/version
+  reset [options]                      Reset the synced package cache
+  scan [options]                       Scan local packages into cache
+  search [options] <query>             Search using a lazy matching query
+  sync [options]                       Sync remote packages into cache
+  uninstall [options] <input>          Uninstall a package locally by
+                                       slug/version
+  help [command]                       display help for command
 `;
 
 exports[`Root command presets 1`] = `
 Usage: index presets [options] [command]
 
 Options:
-  -h, --help                        display help for command
+  -h, --help                           display help for command
 
 Commands:
-  create [options] <path>           Create a new package locally
-  filter [options] <field> <value>  Filter the by field and matching value
-  get [options] <input>             Get package metadata from registry
-  install [options] <input>         Install a package locally by slug/version
-  list [options]                    List packages
-  reset [options]                   Reset the synced package cache
-  scan [options]                    Scan local packages into cache
-  search [options] <query>          Search using a lazy matching query
-  sync [options]                    Sync remote packages into cache
-  uninstall [options] <input>       Uninstall a package locally by slug/version
-  help [command]                    display help for command
+  create [options] <path>              Create a new package locally
+  filter [options] <field> <value>     Filter the by field and matching value
+  get [options] <input>                Get package metadata from registry
+  install [options] <input>            Install a package locally by
+                                       slug/version
+  list [options]                       List packages
+  open [options] <input> [options...]  Open a package by slug/version
+  reset [options]                      Reset the synced package cache
+  scan [options]                       Scan local packages into cache
+  search [options] <query>             Search using a lazy matching query
+  sync [options]                       Sync remote packages into cache
+  uninstall [options] <input>          Uninstall a package locally by
+                                       slug/version
+  help [command]                       display help for command
 `;
 
 exports[`Root command projects 1`] = `
 Usage: index projects [options] [command]
 
 Options:
-  -h, --help                        display help for command
+  -h, --help                           display help for command
 
 Commands:
-  create [options] <path>           Create a new package locally
-  filter [options] <field> <value>  Filter the by field and matching value
-  get [options] <input>             Get package metadata from registry
-  install [options] <input>         Install a package locally by slug/version
-  list [options]                    List packages
-  reset [options]                   Reset the synced package cache
-  scan [options]                    Scan local packages into cache
-  search [options] <query>          Search using a lazy matching query
-  sync [options]                    Sync remote packages into cache
-  uninstall [options] <input>       Uninstall a package locally by slug/version
-  help [command]                    display help for command
+  create [options] <path>              Create a new package locally
+  filter [options] <field> <value>     Filter the by field and matching value
+  get [options] <input>                Get package metadata from registry
+  install [options] <input>            Install a package locally by
+                                       slug/version
+  list [options]                       List packages
+  open [options] <input> [options...]  Open a package by slug/version
+  reset [options]                      Reset the synced package cache
+  scan [options]                       Scan local packages into cache
+  search [options] <query>             Search using a lazy matching query
+  sync [options]                       Sync remote packages into cache
+  uninstall [options] <input>          Uninstall a package locally by
+                                       slug/version
+  help [command]                       display help for command
 `;
