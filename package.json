@@ -39,7 +39,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@open-audio-stack/core": "^0.1.43",
+    "@open-audio-stack/core": "^0.1.45",
     "cli-table3": "^0.6.5",
     "commander": "^12.1.0",
     "ora": "^9.0.0"
