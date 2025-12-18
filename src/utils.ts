@@ -1,5 +1,7 @@
 import { Package } from '@open-audio-stack/core';
 import CliTable3 from 'cli-table3';
+import ora from 'ora';
+import type { CliOptions } from './types/options.js';
 
 export function formatOutput(result: Package[] | Package | undefined, versions?: string[], json?: boolean): string {
   if (!result) return `No results found`;
@@ -57,5 +59,57 @@ export function truncateString(str: string, num: number) {
     return str.slice(0, num) + '...';
   } else {
     return str;
+  }
+}
+
+export async function withSpinner<T>(
+  options: CliOptions | undefined,
+  manager: any,
+  spinnerMessage: string,
+  action: () => Promise<T> | T,
+  print?: (result: T, useJson: boolean) => void,
+) {
+  const useJson = Boolean(options && options.json);
+  const spinner = useJson ? undefined : ora(spinnerMessage).start();
+  try {
+    if (manager) {
+      if (options && options.log) manager.logEnable();
+      else manager.logDisable();
+    }
+    const result = await action();
+    if (spinner) spinner.succeed(spinnerMessage);
+
+    const isStatusOnly = (val: any) => {
+      if (!val || typeof val !== 'object') return false;
+      const keys = Object.keys(val);
+      // status or type+status objects are treated as status-only
+      return keys.length <= 2 && keys.includes('status') && keys.every(k => k === 'status' || k === 'type');
+    };
+
+    if (print) {
+      print(result, useJson);
+    } else {
+      if (useJson) {
+        console.log(JSON.stringify(result, null, 2));
+      } else {
+        // When a spinner was used and the result is a simple status object
+        // (e.g. { type: 'plugins', status: 'scan completed' }), the spinner
+        // already displayed the human-readable status. Avoid printing it again.
+        if (spinner && isStatusOnly(result)) {
+          // nothing to print
+        } else {
+          console.log(result as any);
+        }
+      }
+    }
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    if (spinner) {
+      spinner.fail(errorMessage);
+    } else {
+      if (useJson) console.log(JSON.stringify({ error: errorMessage }, null, 2));
+      else console.error(errorMessage);
+    }
+    process.exit(1);
   }
 }
