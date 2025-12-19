@@ -1,6 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Search packages 1`] = `
+Search plugins
 ┌─────────────────────────┬─────────────┬─────────┬───────────┬────────────┬─────────┬────────────────────────────────┐
 │ Id                      │ Name        │ Version │ Installed │ Date       │ License │ Tags                           │
 ├─────────────────────────┼─────────────┼─────────┼───────────┼────────────┼─────────┼────────────────────────────────┤
@@ -12,4 +13,7 @@ exports[`Search packages 1`] = `
 └─────────────────────────┴─────────────┴─────────┴───────────┴────────────┴─────────┴────────────────────────────────┘
 `;
 
-exports[`Search packages 2`] = `No results found`;
+exports[`Search packages 2`] = `
+Search plugins
+No results found
+`;

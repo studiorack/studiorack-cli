@@ -11,6 +11,8 @@ Options:
 `;
 
 exports[`Open command install and run steinberg/validator mac 1`] = `
+Open steinberg/validator
+Opened steinberg/validator
 
 VST 3.6.14 Plug-in Validator:
 -help           | Print help

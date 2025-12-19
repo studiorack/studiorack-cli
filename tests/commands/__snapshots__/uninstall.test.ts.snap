@@ -1,7 +1,16 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Uninstall package 1`] = `Uninstalled surge-synthesizer/surge`;
+exports[`Uninstall package 1`] = `
+Uninstall surge-synthesizer/surge
+Uninstalled surge-synthesizer/surge
+`;
 
-exports[`Uninstall package 2`] = `Uninstalled surge-synthesizer/surge@1.3.1`;
+exports[`Uninstall package 2`] = `
+Uninstall surge-synthesizer/surge@1.3.1
+Uninstalled surge-synthesizer/surge@1.3.1
+`;
 
-exports[`Uninstall package 3`] = `Package surge-synthesizer/surge version 0.0.0 not found in registry`;
+exports[`Uninstall package 3`] = `
+Uninstall surge-synthesizer/surge@0.0.0
+Package surge-synthesizer/surge version 0.0.0 not found in registry
+`;

@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
-import { inputGetParts, ManagerLocal, isTests } from '@open-audio-stack/core';
-import { withSpinner } from '../utils.js';
+import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
+import { output, OutputType } from '../utils.js';
 
 export function install(command: Command, manager: ManagerLocal) {
   command
@@ -11,19 +11,18 @@ export function install(command: Command, manager: ManagerLocal) {
     .description('Install a package locally by slug/version')
     .action(async (input: string, options: CliOptions) => {
       const [slug, version] = inputGetParts(input);
-      await withSpinner(
-        options,
-        manager,
-        `Install ${slug}${version ? `@${version}` : ''}`,
-        async () => {
-          await manager.install(slug, version);
-          return { slug, version: version || null, installed: true, isTests: isTests() };
-        },
-        (result: any, useJson: boolean) => {
-          if (useJson)
-            console.log(JSON.stringify({ slug: result.slug, version: result.version, installed: true }, null, 2));
-          else if (result.isTests) console.log(`Installed ${result.slug}${result.version ? `@${result.version}` : ''}`);
-        },
-      );
+      const message = `Install ${slug}${version ? `@${version}` : ''}`;
+      output(OutputType.START, message, options, manager);
+      try {
+        await manager.install(slug, version);
+        const payload =
+          options && options.json
+            ? { slug, version: version || null, installed: true }
+            : `Installed ${slug}${version ? `@${version}` : ''}`;
+        output(OutputType.SUCCESS, payload, options, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, options, manager);
+        process.exit(1);
+      }
     });
 }

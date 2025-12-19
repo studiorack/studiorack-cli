@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
-import { inputGetParts, ManagerLocal, isTests } from '@open-audio-stack/core';
-import { withSpinner } from '../utils.js';
+import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
+import { output, OutputType } from '../utils.js';
 
 export function uninstall(command: Command, manager: ManagerLocal) {
   command
@@ -11,20 +11,18 @@ export function uninstall(command: Command, manager: ManagerLocal) {
     .description('Uninstall a package locally by slug/version')
     .action(async (input: string, options: CliOptions) => {
       const [slug, version] = inputGetParts(input);
-      await withSpinner(
-        options,
-        manager,
-        `Uninstall ${slug}${version ? `@${version}` : ''}`,
-        async () => {
-          await manager.uninstall(slug, version);
-          return { slug, version: version || null, installed: false, isTests: isTests() };
-        },
-        (result: any, useJson: boolean) => {
-          if (useJson)
-            console.log(JSON.stringify({ slug: result.slug, version: result.version, installed: false }, null, 2));
-          else if (result.isTests)
-            console.log(`Uninstalled ${result.slug}${result.version ? `@${result.version}` : ''}`);
-        },
-      );
+      const message = `Uninstall ${slug}${version ? `@${version}` : ''}`;
+      output(OutputType.START, message, options, manager);
+      try {
+        await manager.uninstall(slug, version);
+        const payload =
+          options && options.json
+            ? { slug, version: version || null, installed: false }
+            : `Uninstalled ${slug}${version ? `@${version}` : ''}`;
+        output(OutputType.SUCCESS, payload, options, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, options, manager);
+        process.exit(1);
+      }
     });
 }

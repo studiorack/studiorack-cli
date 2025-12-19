@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
-import { ManagerLocal, isTests } from '@open-audio-stack/core';
-import { withSpinner } from '../utils.js';
+import { ManagerLocal } from '@open-audio-stack/core';
+import { output, OutputType } from '../utils.js';
 
 export function sync(command: Command, manager: ManagerLocal) {
   command
@@ -10,18 +10,15 @@ export function sync(command: Command, manager: ManagerLocal) {
     .option('-l, --log', 'Enable logging')
     .description('Sync remote packages into cache')
     .action(async (options: CliOptions) => {
-      await withSpinner(
-        options,
-        manager,
-        `Sync ${manager.type}`,
-        async () => {
-          await manager.sync();
-          return { type: manager.type, status: 'sync completed', isTests: isTests() };
-        },
-        (result: any, useJson: boolean) => {
-          if (useJson) console.log(JSON.stringify({ type: result.type, status: result.status }, null, 2));
-          else if (isTests()) console.log(`${result.type} sync completed`);
-        },
-      );
+      const message = `Sync ${manager.type}`;
+      output(OutputType.START, message, options, manager);
+      try {
+        await manager.sync();
+        const payload = options && options.json ? { type: manager.type, status: 'synced' } : `Synced ${manager.type}`;
+        output(OutputType.SUCCESS, payload, options, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, options, manager);
+        process.exit(1);
+      }
     });
 }

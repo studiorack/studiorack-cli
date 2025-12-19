@@ -23,7 +23,7 @@ Options:
   -h, --help                           display help for command
 
 Commands:
-  create [options] <path>              Create a new package locally
+  create [options]                     Create a new package locally
   filter [options] <field> <value>     Filter the by field and matching value
   get [options] <input>                Get package metadata from registry
   install [options] <input>            Install a package locally by
@@ -46,7 +46,7 @@ Options:
   -h, --help                           display help for command
 
 Commands:
-  create [options] <path>              Create a new package locally
+  create [options]                     Create a new package locally
   filter [options] <field> <value>     Filter the by field and matching value
   get [options] <input>                Get package metadata from registry
   install [options] <input>            Install a package locally by
@@ -69,7 +69,7 @@ Options:
   -h, --help                           display help for command
 
 Commands:
-  create [options] <path>              Create a new package locally
+  create [options]                     Create a new package locally
   filter [options] <field> <value>     Filter the by field and matching value
   get [options] <input>                Get package metadata from registry
   install [options] <input>            Install a package locally by

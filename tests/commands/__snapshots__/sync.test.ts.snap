@@ -1,3 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Sync packages 1`] = `plugins sync completed`;
+exports[`Sync packages 1`] = `
+Sync plugins
+Synced plugins
+`;

@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
 import { ManagerLocal } from '@open-audio-stack/core';
-import { formatOutput, withSpinner } from '../utils.js';
+import { formatOutput, output, OutputType } from '../utils.js';
 
 interface ListOptions extends CliOptions {
   incompatible: boolean;
@@ -17,17 +17,15 @@ export function list(command: Command, manager: ManagerLocal) {
     .option('-l, --log', 'Enable logging')
     .description('List packages')
     .action(async (options: ListOptions) => {
-      await withSpinner(
-        options,
-        manager,
-        `List ${manager.type}`,
-        async () => {
-          return manager.listPackages(options.installed, options.incompatible);
-        },
-        (result: any, useJson: boolean) => {
-          if (useJson) console.log(JSON.stringify(result, null, 2));
-          else console.log(formatOutput(result as any));
-        },
-      );
+      const message = `List ${manager.type}`;
+      output(OutputType.START, message, options, manager);
+      try {
+        const result = await manager.listPackages(options.installed, options.incompatible);
+        const payload = options && options.json ? result : formatOutput(result);
+        output(OutputType.SUCCESS, payload, options, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, options, manager);
+        process.exit(1);
+      }
     });
 }

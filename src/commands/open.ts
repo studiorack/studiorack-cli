@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
 import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
-import { withSpinner } from '../utils.js';
+import { output, OutputType } from '../utils.js';
 
 export function open(command: Command, manager: ManagerLocal) {
   command
@@ -9,18 +9,15 @@ export function open(command: Command, manager: ManagerLocal) {
     .option('-l, --log', 'Enable logging')
     .description('Open a package by slug/version')
     .action(async (input: string, options: string[], cliOptions: CliOptions) => {
-      await withSpinner(
-        cliOptions,
-        manager,
-        `Open ${input}`,
-        async () => {
-          const [slug, version] = inputGetParts(input);
-          await manager.open(slug, version, options);
-          return { slug, version };
-        },
-        () => {
-          // open is an action side-effect; no additional output required
-        },
-      );
+      const message = `Open ${input}`;
+      output(OutputType.START, message, cliOptions, manager);
+      try {
+        const [slug, version] = inputGetParts(input);
+        await manager.open(slug, version, options);
+        output(OutputType.SUCCESS, `Opened ${input}`, cliOptions, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, cliOptions, manager);
+        process.exit(1);
+      }
     });
 }
