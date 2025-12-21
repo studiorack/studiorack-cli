@@ -1,5 +1,7 @@
-import { Package } from '@open-audio-stack/core';
+import { Base, isTests, Package } from '@open-audio-stack/core';
 import CliTable3 from 'cli-table3';
+import ora, { Ora } from 'ora';
+import type { CliOptions } from './types/options.js';
 
 export function formatOutput(result: Package[] | Package | undefined, versions?: string[], json?: boolean): string {
   if (!result) return `No results found`;
@@ -57,5 +59,49 @@ export function truncateString(str: string, num: number) {
     return str.slice(0, num) + '...';
   } else {
     return str;
+  }
+}
+
+export enum OutputType {
+  START = 'start',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
+let spinner: Ora | undefined;
+
+export function output(type: OutputType, message: any, options?: CliOptions, base?: Base) {
+  // console.log('\n output', type, message, options);
+  const useJson = Boolean(options && options.json);
+  if (message.message) message = message.message;
+
+  // If logging, ensure core package logging is enabled.
+  if (base) {
+    if (options && options.log) base.logEnable();
+    else base.logDisable();
+  }
+
+  // If json, output json only.
+  if (useJson) {
+    console.log(JSON.stringify({ type, message }, null, 2));
+    return;
+  }
+
+  // If test, output text only.
+  if (isTests()) {
+    console.log(message);
+    return;
+  }
+
+  // If interactive run, use spinners.
+  if (type === OutputType.START) {
+    spinner = ora(message).start();
+    return;
+  } else if (type === OutputType.SUCCESS) {
+    spinner?.succeed(message);
+    return;
+  } else {
+    spinner?.fail(message);
+    return;
   }
 }

@@ -1,26 +1,28 @@
 import { Command } from 'commander';
-import ora from 'ora';
 import { CliOptions } from '../types/options.js';
-import { inputGetParts, ManagerLocal, isTests } from '@open-audio-stack/core';
+import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
+import { output, OutputType } from '../utils.js';
 
 export function install(command: Command, manager: ManagerLocal) {
   command
     .command('install <input>')
+    .option('-j, --json', 'Output results as json')
     .option('-l, --log', 'Enable logging')
     .description('Install a package locally by slug/version')
     .action(async (input: string, options: CliOptions) => {
-      if (options.log) manager.logEnable();
-      else manager.logDisable();
       const [slug, version] = inputGetParts(input);
-      const spinner = ora(`Installing ${slug}${version ? `@${version}` : ''}...`).start();
+      const message = `Install ${slug}${version ? `@${version}` : ''}`;
+      output(OutputType.START, message, options, manager);
       try {
         await manager.install(slug, version);
-        spinner.succeed(`Installed ${slug}${version ? `@${version}` : ''}`);
-        if (isTests()) console.log(`Installed ${slug}${version ? `@${version}` : ''}`);
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : String(error);
-        spinner.fail(errorMessage);
-        if (isTests()) console.log(errorMessage);
+        const payload =
+          options && options.json
+            ? { slug, version: version || null, installed: true }
+            : `Installed ${slug}${version ? `@${version}` : ''}`;
+        output(OutputType.SUCCESS, payload, options, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, options, manager);
+        process.exit(1);
       }
     });
 }

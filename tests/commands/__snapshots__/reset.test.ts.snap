@@ -1,3 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Reset packages 1`] = `plugins cache has been reset`;
+exports[`Reset packages 1`] = `
+{
+  code: 0,
+  err: ,
+  out: Reset plugins
+Reset complete plugins,
+}
+`;

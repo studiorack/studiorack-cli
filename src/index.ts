@@ -40,4 +40,18 @@ for (const type of types) {
   uninstall(command, manager);
 }
 
-program.version('3.0.1').parse(process.argv);
+import fs from 'fs';
+import path from 'path';
+
+let version = '0.0.0';
+try {
+  const pkgPath = path.resolve(process.cwd(), 'package.json');
+  const pkgRaw = fs.readFileSync(pkgPath, 'utf8');
+  const pkg = JSON.parse(pkgRaw);
+  if (pkg && pkg.version) version = pkg.version;
+} catch (e) {
+  console.error(e);
+  // ignore and fallback to default
+}
+
+program.version(version).parse(process.argv);

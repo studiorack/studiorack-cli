@@ -1,3 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Scan packages 1`] = `plugins scan completed`;
+exports[`Scan packages 1`] = `
+{
+  code: 0,
+  err: ,
+  out: Scan plugins
+Scanned plugins,
+}
+`;

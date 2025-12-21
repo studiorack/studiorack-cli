@@ -1,6 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Search packages 1`] = `
+{
+  code: 0,
+  err: ,
+  out: Search plugins
 ┌─────────────────────────┬─────────────┬─────────┬───────────┬────────────┬─────────┬────────────────────────────────┐
 │ Id                      │ Name        │ Version │ Installed │ Date       │ License │ Tags                           │
 ├─────────────────────────┼─────────────┼─────────┼───────────┼────────────┼─────────┼────────────────────────────────┤
@@ -9,7 +13,15 @@ exports[`Search packages 1`] = `
 │ tesselode/flutterbird   │ Flutterbird │ 1.0.1   │ -         │ 2018-09-06 │ mit     │ Effect, Pitch, Modulation      │
 ├─────────────────────────┼─────────────┼─────────┼───────────┼────────────┼─────────┼────────────────────────────────┤
 │ surge-synthesizer/surge │ Surge XT    │ 1.3.4   │ ✓         │ 2024-08-11 │ gpl-3.0 │ Instrument, Synth, Modulation  │
-└─────────────────────────┴─────────────┴─────────┴───────────┴────────────┴─────────┴────────────────────────────────┘
+└─────────────────────────┴─────────────┴─────────┴───────────┴────────────┴─────────┴────────────────────────────────┘,
+}
 `;
 
-exports[`Search packages 2`] = `No results found`;
+exports[`Search packages 2`] = `
+{
+  code: 0,
+  err: ,
+  out: Search plugins
+No results found,
+}
+`;

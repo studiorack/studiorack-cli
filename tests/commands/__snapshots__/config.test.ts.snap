@@ -1,24 +1,73 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Config get 1`] = `test`;
-
-exports[`Config get 2`] = `test/installed/plugins`;
-
-exports[`Config get 3`] = `test/installed/presets`;
-
-exports[`Config get 4`] = `test/installed/projects`;
-
-exports[`Config get 5`] = `
-[
-  {
-    name: 'Open Audio Registry',
-    url: 'https://open-audio-stack.github.io/open-audio-stack-registry'
-  }
-]
+exports[`Config get 1`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config appDir
+test,
+}
 `;
 
-exports[`Config get 6`] = `1.0.0`;
+exports[`Config get 2`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config pluginsDir
+test/installed/plugins,
+}
+`;
 
-exports[`Config set 1`] = `test2`;
+exports[`Config get 3`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config presetsDir
+test/installed/presets,
+}
+`;
 
-exports[`Config set 2`] = `test`;
+exports[`Config get 4`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config projectsDir
+test/installed/projects,
+}
+`;
+
+exports[`Config get 5`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config registries
+[object Object],
+}
+`;
+
+exports[`Config get 6`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config version
+1.0.0,
+}
+`;
+
+exports[`Config set 1`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config appDir
+test2,
+}
+`;
+
+exports[`Config set 2`] = `
+{
+  code: 0,
+  err: ,
+  out: Get config appDir
+test,
+}
+`;

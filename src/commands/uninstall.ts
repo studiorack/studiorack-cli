@@ -1,26 +1,28 @@
 import { Command } from 'commander';
-import ora from 'ora';
 import { CliOptions } from '../types/options.js';
-import { inputGetParts, ManagerLocal, isTests } from '@open-audio-stack/core';
+import { inputGetParts, ManagerLocal } from '@open-audio-stack/core';
+import { output, OutputType } from '../utils.js';
 
 export function uninstall(command: Command, manager: ManagerLocal) {
   command
     .command('uninstall <input>')
+    .option('-j, --json', 'Output results as json')
     .option('-l, --log', 'Enable logging')
     .description('Uninstall a package locally by slug/version')
     .action(async (input: string, options: CliOptions) => {
-      if (options.log) manager.logEnable();
-      else manager.logDisable();
       const [slug, version] = inputGetParts(input);
-      const spinner = ora(`Uninstalling ${slug}${version ? `@${version}` : ''}...`).start();
+      const message = `Uninstall ${slug}${version ? `@${version}` : ''}`;
+      output(OutputType.START, message, options, manager);
       try {
         await manager.uninstall(slug, version);
-        spinner.succeed(`Uninstalled ${slug}${version ? `@${version}` : ''}`);
-        if (isTests()) console.log(`Uninstalled ${slug}${version ? `@${version}` : ''}`);
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : String(error);
-        spinner.fail(errorMessage);
-        if (isTests()) console.log(errorMessage);
+        const payload =
+          options && options.json
+            ? { slug, version: version || null, installed: false }
+            : `Uninstalled ${slug}${version ? `@${version}` : ''}`;
+        output(OutputType.SUCCESS, payload, options, manager);
+      } catch (err: any) {
+        output(OutputType.ERROR, err, options, manager);
+        process.exit(1);
       }
     });
 }
