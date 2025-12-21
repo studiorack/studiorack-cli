@@ -14,7 +14,7 @@ Options:
 }
 `;
 
-exports[`Open command install and run steinberg/validator mac 1`] = `
+exports[`Open command install and run steinberg/validator 1`] = `
 {
   code: 0,
   err: ,
@@ -23,7 +23,7 @@ Installed steinberg/validator,
 }
 `;
 
-exports[`Open command install and run steinberg/validator mac 2`] = `
+exports[`Open command install and run steinberg/validator 2`] = `
 {
   code: 0,
   err: ,
