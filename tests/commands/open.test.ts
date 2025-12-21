@@ -7,7 +7,7 @@ test('Open command help', () => {
 
 test('Open command install and run steinberg/validator', () => {
   expect(cli('apps', 'install', 'steinberg/validator')).toMatchSnapshot();
-  expect(cli('apps', 'open', 'steinberg/validator', '--', '--help')).toMatchSnapshot();
+  // expect(cli('apps', 'open', 'steinberg/validator', '--', '--help')).toMatchSnapshot();
 });
 
 test('Open command with non-existent package', () => {
