@@ -1,6 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Sync packages 1`] = `
-Sync plugins
-Synced plugins
+{
+  code: 0,
+  err: ,
+  out: Sync plugins
+Synced plugins,
+}
 `;

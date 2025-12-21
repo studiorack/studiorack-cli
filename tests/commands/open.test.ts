@@ -1,22 +1,16 @@
 import { expect, test } from 'vitest';
-import { cli, cliCatch, cleanOutput } from '../shared';
+import { cli } from '../shared';
 import { getSystem } from '@open-audio-stack/core';
 
 test('Open command help', () => {
-  const result = cli('apps', 'open', '--help');
-  expect(cleanOutput(result)).toMatchSnapshot();
+  expect(cli('apps', 'open', '--help')).toMatchSnapshot();
 });
 
 test(`Open command install and run steinberg/validator ${getSystem()}`, () => {
-  const installResult = cli('apps', 'install', 'steinberg/validator');
-  expect(installResult).toContain('Installed steinberg/validator');
-
-  const openResult = cli('apps', 'open', 'steinberg/validator', '--', '--help');
-  expect(cleanOutput(openResult)).toMatchSnapshot();
+  expect(cli('apps', 'install', 'steinberg/validator')).toMatchSnapshot();
+  expect(cli('apps', 'open', 'steinberg/validator', '--', '--help')).toMatchSnapshot();
 });
 
 test('Open command with non-existent package', () => {
-  const error = cliCatch('apps', 'open', 'non-existent/package');
-  expect(error.exitCode).toBe(1);
-  expect(cleanOutput(error.stderr)).toMatchSnapshot();
+  expect(cli('apps', 'open', 'non-existent/package')).toMatchSnapshot();
 });

@@ -1,41 +1,73 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Config get 1`] = `
-Get config appDir
-test2
+{
+  code: 0,
+  err: ,
+  out: Get config appDir
+test,
+}
 `;
 
 exports[`Config get 2`] = `
-Get config pluginsDir
-test/installed/plugins
+{
+  code: 0,
+  err: ,
+  out: Get config pluginsDir
+test/installed/plugins,
+}
 `;
 
 exports[`Config get 3`] = `
-Get config presetsDir
-test/installed/presets
+{
+  code: 0,
+  err: ,
+  out: Get config presetsDir
+test/installed/presets,
+}
 `;
 
 exports[`Config get 4`] = `
-Get config projectsDir
-test/installed/projects
+{
+  code: 0,
+  err: ,
+  out: Get config projectsDir
+test/installed/projects,
+}
 `;
 
 exports[`Config get 5`] = `
-Get config registries
-[object Object]
+{
+  code: 0,
+  err: ,
+  out: Get config registries
+[object Object],
+}
 `;
 
 exports[`Config get 6`] = `
-Get config version
-1.0.0
+{
+  code: 0,
+  err: ,
+  out: Get config version
+1.0.0,
+}
 `;
 
 exports[`Config set 1`] = `
-Get config appDir
-test2
+{
+  code: 0,
+  err: ,
+  out: Get config appDir
+test2,
+}
 `;
 
 exports[`Config set 2`] = `
-Get config appDir
-test
+{
+  code: 0,
+  err: ,
+  out: Get config appDir
+test,
+}
 `;

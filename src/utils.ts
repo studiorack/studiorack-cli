@@ -1,6 +1,6 @@
-import { Base, Package } from '@open-audio-stack/core';
+import { Base, isTests, Package } from '@open-audio-stack/core';
 import CliTable3 from 'cli-table3';
-import ora from 'ora';
+import ora, { Ora } from 'ora';
 import type { CliOptions } from './types/options.js';
 
 export function formatOutput(result: Package[] | Package | undefined, versions?: string[], json?: boolean): string {
@@ -62,96 +62,46 @@ export function truncateString(str: string, num: number) {
   }
 }
 
-// Simple spinner registry for the `output` API so callers can start/stop spinners
-const _spinners: Map<string, ReturnType<typeof ora>> = new Map();
-
 export enum OutputType {
   START = 'start',
   SUCCESS = 'success',
   ERROR = 'error',
 }
 
-/**
- * Low level output API that callers can use to mark start, success, and error
- * states for long-running operations. This provides clear control over when
- * spinners start/stop and when textual/json output is emitted.
- */
-export function output(type: OutputType, payload: any, options?: CliOptions, base?: Base) {
+let spinner: Ora | undefined;
+
+export function output(type: OutputType, message: any, options?: CliOptions, base?: Base) {
+  // console.log('\n output', type, message, options);
   const useJson = Boolean(options && options.json);
-  const isTest = Boolean(process.env.VITEST || process.env.NODE_ENV === 'test');
-  const key = String(typeof payload === 'string' ? payload : (payload && payload.message) || payload || '');
+  if (message.message) message = message.message;
 
-  if (type === OutputType.START) {
-    // configure base logging at start
-    if (base) {
-      if (options && options.log) base.logEnable();
-      else base.logDisable();
-    }
-
-    if (useJson) {
-      console.log(JSON.stringify({ status: 'inprogress', message: key }, null, 2));
-      return;
-    }
-
-    if (isTest) {
-      console.log(key);
-      return;
-    }
-
-    // interactive run: create and start a spinner for this key
-    const s = ora(key).start();
-    _spinners.set(key, s);
-    return;
+  // If logging, ensure core package logging is enabled.
+  if (base) {
+    if (options && options.log) base.logEnable();
+    else base.logDisable();
   }
 
-  if (type === OutputType.SUCCESS) {
-    // If JSON requested and payload is an object, print it
-    if (useJson && typeof payload === 'object') {
-      console.log(JSON.stringify(payload, null, 2));
-      return;
-    }
-
-    // For non-json modes we expect payload to be a string (commands should pass a string)
-    const messageOut = String(payload);
-
-    if (isTest) {
-      // In test mode only print the final payload (no start/checkmark).
-      console.log(messageOut);
-      return;
-    }
-
-    const s = _spinners.get(key);
-    if (s) {
-      s.succeed(key);
-      if (messageOut && messageOut !== key) console.log(messageOut);
-      _spinners.delete(key);
-      return;
-    }
-
-    // fallback
-    console.log(key);
-    if (messageOut && messageOut !== key) console.log(messageOut);
-    return;
-  }
-
-  // ERROR
-  const errMsg = payload instanceof Error ? payload.message : String(payload);
+  // If json, output json only.
   if (useJson) {
-    console.log(JSON.stringify({ error: errMsg }, null, 2));
+    console.log(JSON.stringify({ type, message }, null, 2));
     return;
   }
 
-  if (isTest) {
-    console.error(errMsg);
+  // If test, output text only.
+  if (isTests()) {
+    console.log(message);
     return;
   }
 
-  const s2 = _spinners.get(key);
-  if (s2) {
-    s2.fail(errMsg);
-    _spinners.delete(key);
+  // If interactive run, use spinners.
+  if (type === OutputType.START) {
+    spinner = ora(message).start();
+    return;
+  } else if (type === OutputType.SUCCESS) {
+    spinner?.succeed(message);
+    return;
+  } else {
+    spinner?.fail(message);
     return;
   }
-
-  console.error(errMsg);
 }

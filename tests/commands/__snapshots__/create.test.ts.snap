@@ -1,8 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Create package 1`] = `
-User force closed the prompt with 0 null
-Create package
+{
+  code: 1,
+  err: ,
+  out: Create package
 ? Org id (org-name)
-
+User force closed the prompt with 0 null,
+}
 `;

@@ -13,35 +13,28 @@ expect.addSnapshotSerializer({
   test: val => typeof val === 'string',
 });
 
-export function cli(...args: string[]): string {
-  const result: SyncResult = execaSync('node', [CLI_PATH, ...args], {
-    env: { ...process.env, NODE_OPTIONS: '--no-warnings=ExperimentalWarning' },
-  });
-  return cleanOutput(result.stdout as string);
-}
-
 export type CliResult = {
-  exitCode: number | null;
-  stdout: string;
-  stderr: string;
+  code: number | null;
+  out: string;
+  err: string;
 };
 
-export function cliCatch(...args: string[]): CliResult {
+export function cli(...args: string[]): CliResult {
   try {
     const result: SyncResult = execaSync('node', [CLI_PATH, ...args], {
       env: { ...process.env, NODE_OPTIONS: '--no-warnings=ExperimentalWarning' },
     });
     return {
-      exitCode: result.exitCode ?? 0,
-      stdout: cleanOutput(String(result.stdout ?? '')),
-      stderr: cleanOutput(String(result.stderr ?? '')),
+      code: result.exitCode ?? 0,
+      out: cleanOutput(String(result.stdout ?? '')),
+      err: cleanOutput(String(result.stderr ?? '')),
     };
   } catch (error: any) {
-    // execa throws an error with stdout/stderr and exitCode properties
-    const exitCode = typeof error.exitCode === 'number' ? error.exitCode : 1;
-    const stdout = cleanOutput(String(error.stdout ?? ''));
-    const stderr = cleanOutput(String(error.stderr ?? error.message ?? ''));
-    return { exitCode, stdout, stderr };
+    return {
+      code: error.exitCode ?? 1,
+      out: cleanOutput(String(error.stdout ?? '')),
+      err: cleanOutput(String(error.stderr ?? error.message ?? '')),
+    };
   }
 }
 

@@ -1,17 +1,33 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Open command help 1`] = `
-Usage: index apps open [options] <input> [options...]
+{
+  code: 0,
+  err: ,
+  out: Usage: index apps open [options] <input> [options...]
 
 Open a package by slug/version
 
 Options:
   -l, --log   Enable logging
-  -h, --help  display help for command
+  -h, --help  display help for command,
+}
 `;
 
 exports[`Open command install and run steinberg/validator mac 1`] = `
-Open steinberg/validator
+{
+  code: 0,
+  err: ,
+  out: Install steinberg/validator
+Installed steinberg/validator,
+}
+`;
+
+exports[`Open command install and run steinberg/validator mac 2`] = `
+{
+  code: 0,
+  err: ,
+  out: Open steinberg/validator
 Opened steinberg/validator
 
 VST 3.6.14 Plug-in Validator:
@@ -26,7 +42,15 @@ VST 3.6.14 Plug-in Validator:
 -snapshots      | List snapshots from all installed Plug-Ins
 
 Usage: vstvalidator [options] vst3module
-
+,
+}
 `;
 
-exports[`Open command with non-existent package 1`] = `Package non-existent/package not found`;
+exports[`Open command with non-existent package 1`] = `
+{
+  code: 1,
+  err: ,
+  out: Open non-existent/package
+Package non-existent/package not found,
+}
+`;
