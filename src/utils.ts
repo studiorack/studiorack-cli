@@ -3,6 +3,17 @@ import CliTable3 from 'cli-table3';
 import ora, { Ora } from 'ora';
 import type { CliOptions } from './types/options.js';
 
+// Default sort for every list/search/filter command: most-downloaded first, falling back to
+// name for packages with equal (or no) download data, so results stay stable and alphabetical
+// among ties instead of reflecting arbitrary Map insertion order.
+export function sortByDownloads(packages: Package[]): Package[] {
+  return packages.sort((a: Package, b: Package) => {
+    const downloadsDiff = b.getTotalDownloads() - a.getTotalDownloads();
+    if (downloadsDiff !== 0) return downloadsDiff;
+    return (a.getVersionLatest()?.name || a.slug).localeCompare(b.getVersionLatest()?.name || b.slug);
+  });
+}
+
 export function formatOutput(result: Package[] | Package | undefined, versions?: string[], json?: boolean): string {
   if (!result) return `No results found`;
   if (json) return JSON.stringify(result, null, 2);
@@ -93,15 +104,32 @@ export function output(type: OutputType, message: any, options?: CliOptions, bas
     return;
   }
 
-  // If interactive run, use spinners.
+  // If interactive run, use spinners. ora only prefixes the checkmark/cross onto the first
+  // line of `message` - fine for a one-line status, but it splices into and misaligns anything
+  // multi-line (e.g. a rendered table), so print those separately after a plain succeed/fail.
+  const isMultiline = typeof message === 'string' && message.includes('\n');
   if (type === OutputType.START) {
-    spinner = ora(message).start();
+    // Reuse an already-spinning spinner (e.g. the upfront registry sync in index.ts) rather than
+    // stopping and restarting one, so the sync-then-command sequence reads as one continuous
+    // spinner that just relabels itself, instead of two separate flashes.
+    if (spinner && spinner.isSpinning) spinner.text = message;
+    else spinner = ora(message).start();
     return;
   } else if (type === OutputType.SUCCESS) {
-    spinner?.succeed(message);
+    if (isMultiline) {
+      spinner?.succeed();
+      console.log(message);
+    } else {
+      spinner?.succeed(message);
+    }
     return;
   } else {
-    spinner?.fail(message);
+    if (isMultiline) {
+      spinner?.fail();
+      console.log(message);
+    } else {
+      spinner?.fail(message);
+    }
     return;
   }
 }

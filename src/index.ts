@@ -15,18 +15,36 @@ import { scan } from './commands/scan.js';
 import { search } from './commands/search.js';
 import { uninstall } from './commands/uninstall.js';
 import { CONFIG_LOCAL_TEST } from './data/Config.js';
+import { output, OutputType } from './utils.js';
 
 // Create based program and add static commands.
 const program = new Command();
 program.addCommand(configCmd);
+
+// Only the registry type actually being invoked (e.g. `plugins` in `studiorack plugins list`)
+// needs its data loaded - other types' managers are never touched during this run (dependency
+// installs create their own short-lived ManagerLocal per type instead of reusing these), so
+// syncing/scanning all four on every invocation was wasted network + disk work.
+const invokedType = process.argv[2];
+const useJson = process.argv.includes('--json') || process.argv.includes('-j');
+// Start the spinner immediately, before the (potentially slow, network-bound) sync even begins,
+// so it's actually visible - the command's own "List/Search/..." spinner reuses this same
+// instance (see output()'s START handling) rather than replacing it, so the whole sync+command
+// sequence reads as one continuous spinner. Skipped for --json (clean output only) and tests
+// (matches the existing silent/plain-text test behavior).
+const showSyncSpinner = !isTests() && !useJson;
 
 // Dynamically add commands for each registry type.
 const types = [RegistryType.Apps, RegistryType.Plugins, RegistryType.Presets, RegistryType.Projects];
 for (const type of types) {
   const command: Command = program.command(type);
   const manager: ManagerLocal = new ManagerLocal(type as RegistryType, isTests() ? CONFIG_LOCAL_TEST : undefined);
-  await manager.sync();
-  manager.scan();
+  if (type === invokedType) {
+    if (showSyncSpinner) output(OutputType.START, `Sync ${type}`);
+    await manager.sync();
+    manager.scan();
+    if (showSyncSpinner) output(OutputType.SUCCESS, `Synced ${type}`);
+  }
   create(command, manager);
   filter(command, manager);
   get(command, manager);

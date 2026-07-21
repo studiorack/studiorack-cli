@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
 import { ManagerLocal, PackageVersion } from '@open-audio-stack/core';
-import { formatOutput, output, OutputType } from '../utils.js';
+import { formatOutput, output, OutputType, sortByDownloads } from '../utils.js';
 
 export function filter(command: Command, manager: ManagerLocal) {
   command
@@ -24,7 +24,7 @@ export function filter(command: Command, manager: ManagerLocal) {
           if (fieldVal === undefined || fieldVal === null) return false;
           return String(fieldVal) === value;
         };
-        const result = await manager.filter(predicate);
+        const result = sortByDownloads(await manager.filter(predicate));
         const payload = options && options.json ? result : formatOutput(result);
         output(OutputType.SUCCESS, payload, options, manager);
       } catch (err: any) {
