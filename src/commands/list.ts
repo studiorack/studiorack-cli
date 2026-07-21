@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CliOptions } from '../types/options.js';
-import { ManagerLocal } from '@open-audio-stack/core';
-import { formatOutput, output, OutputType } from '../utils.js';
+import { getArchitecture, getSystem, ManagerLocal } from '@open-audio-stack/core';
+import { formatOutput, output, OutputType, sortByDownloads } from '../utils.js';
 
 interface ListOptions extends CliOptions {
   incompatible: boolean;
@@ -20,7 +20,13 @@ export function list(command: Command, manager: ManagerLocal) {
       const message = `List ${manager.type}`;
       output(OutputType.START, message, options, manager);
       try {
-        const result = await manager.listPackages(options.installed, options.incompatible);
+        const result = sortByDownloads(
+          await manager.listPackages(
+            options.installed,
+            options.incompatible ? undefined : getArchitecture(),
+            options.incompatible ? undefined : getSystem(),
+          ),
+        );
         const payload = options && options.json ? result : formatOutput(result);
         output(OutputType.SUCCESS, payload, options, manager);
       } catch (err: any) {
