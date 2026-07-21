@@ -3,5 +3,5 @@ import { cli } from '../shared';
 import { RegistryType } from '@open-audio-stack/core';
 
 test('Scan packages', async () => {
-  expect(cli(RegistryType.Plugins, 'scan')).toMatchSnapshot();
+  expect(await cli(RegistryType.Plugins, 'scan')).toMatchSnapshot();
 });

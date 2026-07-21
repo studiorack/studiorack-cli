@@ -7,5 +7,5 @@ const APP_DIR: string = 'test';
 const PROJECT_DIR: string = path.join(APP_DIR, 'create-project');
 
 test('Create package', async () => {
-  expect(cli(RegistryType.Plugins, 'create', PROJECT_DIR)).toMatchSnapshot();
+  expect(await cli(RegistryType.Plugins, 'create', PROJECT_DIR)).toMatchSnapshot();
 });
